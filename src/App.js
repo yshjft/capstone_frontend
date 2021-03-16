@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import {faLaptopHouse} from '@fortawesome/free-solid-svg-icons'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import {Button} from 'react-bootstrap'
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <FontAwesomeIcon icon={faLaptopHouse} size="5x" />
+        <div>setting</div>
+        <Button>ddfd</Button>
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
