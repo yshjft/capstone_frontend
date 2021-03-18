@@ -1,15 +1,20 @@
-import {faLaptopHouse} from '@fortawesome/free-solid-svg-icons'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {Button} from 'react-bootstrap'
+import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import {routes} from './route'
+import Header from './components/common/Header'
+import Footer from './components/common/Footer'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <FontAwesomeIcon icon={faLaptopHouse} size="5x" />
-        <div>setting</div>
-        <Button>ddfd</Button>
-      </header>
+      <Router>
+        <Header />
+        <Switch>
+          {routes.map((route) => (
+            <Route key={route.path} {...route} />
+          ))}
+        </Switch>
+        <Footer />
+      </Router>
     </div>
   )
 }
