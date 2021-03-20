@@ -2,7 +2,7 @@ import React from 'react'
 import Layout from '../../../components/common/Layout'
 import MainSearch from '../../../components/MainSearch'
 import Preview from '../../../components/Preview'
-import Pagination from '../../../components/common/PaginationBlock'
+import Pagination from '../../../components/PaginationBlock'
 
 const MainContainer = (props) => {
   return (
