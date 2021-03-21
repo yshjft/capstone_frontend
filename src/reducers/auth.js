@@ -1,15 +1,22 @@
-const USER_LOGIN = 'auth/USER_LOGIN'
+import {POST_AUTH, POST_AUTH_SUCCESS, POST_AUTH_ERROR, POST_AUTH_FINISH} from '../actions/auth.'
 
 const initialState = {
+  isLoading: false,
   id: 0,
   nickName: '',
-  email: ''
+  isLoggedIn: false
 }
 
 export default function authReducer(state = initialState, action) {
   switch (action.type) {
-    case USER_LOGIN:
-      return {...state, ...action.payload}
+    case POST_AUTH:
+      return {...state, isLoading: true}
+    case POST_AUTH_SUCCESS:
+      return {...state, ...{...action.payload, isLoggedIn: true}}
+    case POST_AUTH_ERROR:
+      return {...state, ...{...action.payload, isLoggedIn: false}}
+    case POST_AUTH_FINISH:
+      return {...state, isLoading: false}
     default:
       return state
   }

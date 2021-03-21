@@ -40,6 +40,24 @@ html, body, #root {
       .activeNavLink {
         font-weight: bold;
       }
+      .navDropdown {
+        margin-left: 10px;
+
+        font-size: 15px;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+      }
+      .navDropdownItem {
+        padding: 4px 24px;
+        .link {
+          color: #24292e;
+          text-decoration: none;
+        }
+      }
+      .navDropdownItem:hover{
+        background-color: #f8f9fa;
+      }
     }
   }
 }
@@ -132,6 +150,12 @@ html, body, #root {
     }
     .group {
       margin-bottom: 10%;
+    }
+    .loginError {
+      margin-bottom: 5%;
+      text-align: center;
+      color: #e74c3c;
+
     }
     .buttonArea {
       margin-bottom: 5%;

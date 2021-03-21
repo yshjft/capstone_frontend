@@ -1,26 +1,26 @@
 import React, {useState, useRef} from 'react'
 import Layout from '../../../components/common/Layout'
 import LoginPresenter from '../../../presenters/Auth/LoginPresenter'
-import {useDispatch} from 'react-redux'
-import {getHelloWorld} from '../../../actions/test'
-import {validateEmail} from '../../../lib/validate'
+import {useDispatch, useSelector} from 'react-redux'
+import {postAuth} from '../../../actions/auth.'
 
 const LoginContainer = (props) => {
-  const [isEmailValid, setIsEmailValid] = useState(true)
-  const [isPasswordValid, setIsPasswordValid] = useState(true)
+  const [loginError, setLoginError] = useState(false)
   const dispatch = useDispatch()
+  const isLoading = useSelector((state) => state.auth.isLoading)
   const emailRef = useRef()
   const passwordRef = useRef()
 
   async function handleLogin(event) {
     event.preventDefault()
+    const email = emailRef.current.value
+    const password = passwordRef.current.value
 
-    // console.log(emailRef.current.value)
-    // console.log(passwordRef.current.value)
     try {
-      dispatch(getHelloWorld())
+      setLoginError(false)
+      await dispatch(postAuth({email, password}))
     } catch (error) {
-      console.log(error)
+      setLoginError(true)
     }
   }
 
@@ -28,8 +28,8 @@ const LoginContainer = (props) => {
     <Layout>
       <LoginPresenter
         ref={{emailRef, passwordRef}}
-        isEmailValid={isEmailValid}
-        isPasswordVaid={isPasswordValid}
+        loginError={loginError}
+        isLoading={isLoading}
         handleLogin={handleLogin}
       />
     </Layout>
