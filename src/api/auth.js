@@ -8,3 +8,12 @@ export async function postAuth(data) {
     throw error
   }
 }
+
+export async function getAuthCheck() {
+  try {
+    const res = await api.get('/auth/authCheck')
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}

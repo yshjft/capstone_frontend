@@ -1,13 +1,14 @@
 import React, {useState} from 'react'
-import {Link, NavLink} from 'react-router-dom'
-import {OverlayTrigger, Popover} from 'react-bootstrap'
+import {useHistory, NavLink} from 'react-router-dom'
+import {Dropdown} from 'react-bootstrap'
+import CustomToggle from './CutomToggle'
 
 const Header = (props) => {
   const {isLoggedIn, nickName} = props
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const history = useHistory()
 
-  function handleDropDown() {
-    setIsDropdownOpen(!isDropdownOpen)
+  function handlePageMove(path) {
+    history.push(path)
   }
 
   return (
@@ -17,7 +18,7 @@ const Header = (props) => {
           AlgoHub
         </NavLink>
         <div className="nav">
-          {isLoggedIn && (
+          {!isLoggedIn && (
             <>
               <NavLink to="/login" className="navLink" activeClassName="activeNavLink">
                 로그인
@@ -27,11 +28,19 @@ const Header = (props) => {
               </NavLink>
             </>
           )}
-          {!isLoggedIn && (
+          {isLoggedIn && (
             <>
               <NavLink to="/write" className="navLink" activeClassName="activeNavLink">
                 알고리즘 기록
               </NavLink>
+              <Dropdown>
+                <Dropdown.Toggle as={CustomToggle}>{nickName}</Dropdown.Toggle>
+                <Dropdown.Menu>
+                  <Dropdown.Item onClick={() => handlePageMove(`/@${nickName}`)}>마이페이지</Dropdown.Item>
+                  <Dropdown.Item onClick={() => handlePageMove('/setting')}>설정</Dropdown.Item>
+                  <Dropdown.Item>로그아웃</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             </>
           )}
         </div>

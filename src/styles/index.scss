@@ -42,7 +42,7 @@ html, body, #root {
       }
       .navDropdown {
         margin-left: 10px;
-
+        padding-bottom: 15px;
         font-size: 15px;
         font-weight: bold;
         color: white;
@@ -133,7 +133,7 @@ html, body, #root {
 }
 
 .loginLayout {
-  margin: 10% 5%;
+  margin: 9% 5%;
   display: flex;
   justify-content: center;
   align-items: center;
