@@ -2,7 +2,7 @@ import React, {useState, useRef} from 'react'
 import Layout from '../../../components/common/Layout'
 import LoginPresenter from '../../../presenters/Auth/LoginPresenter'
 import {useDispatch, useSelector} from 'react-redux'
-import {postAuth} from '../../../actions/auth.'
+import {postAuth} from '../../../actions/auth'
 
 const LoginContainer = (props) => {
   const [loginError, setLoginError] = useState(false)

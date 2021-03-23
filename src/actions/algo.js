@@ -1,5 +1,5 @@
 import * as algoApi from '../api/algo'
-import {GET_AUTH_CHECK} from './auth.'
+import {GET_AUTH_CHECK} from './auth'
 
 export const GET_ALGO_POSTS = 'GET_ALGO_POSTS'
 export const GET_ALGO_POSTS_SUCCESS = 'GET_ALGO_POSTS_SUCCESS'

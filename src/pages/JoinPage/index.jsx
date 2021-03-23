@@ -1,7 +1,8 @@
 import React from 'react'
+import JoinContainer from './JoinContainer'
 
 const JoinPage = (props) => {
-  return <div>join component</div>
+  return <JoinContainer />
 }
 
 export default JoinPage

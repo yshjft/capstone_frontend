@@ -1,8 +1,7 @@
-import React from 'react'
+import React, {forwardRef} from 'react'
 
-const CustomToggle = React.forwardRef(({children, onClick}, ref) => (
-  <a
-    href=""
+const CustomToggle = forwardRef(({children, onClick}, ref) => (
+  <div
     ref={ref}
     onClick={(e) => {
       e.preventDefault()
@@ -12,7 +11,7 @@ const CustomToggle = React.forwardRef(({children, onClick}, ref) => (
   >
     {children}
     &#x25bc;
-  </a>
+  </div>
 ))
 
 export default CustomToggle

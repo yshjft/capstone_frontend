@@ -1,26 +1,20 @@
 import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import {getAuthCheck} from '../actions/auth.'
+import {getAuthCheck} from '../actions/auth'
+import {Redirect} from 'react-router-dom'
 
 const withIsNotLoggedIn = (WrappedComponent) => {
   return (props) => {
-    const {history} = props
     const dispatch = useDispatch()
-
-    console.log(history)
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
 
     useEffect(() => {
-      dispatch(getAuthCheck())
-        .then((res) => {
-          if (res.isLoggedIn) history.goBack()
-        })
-        .catch((error) => {
-          // 서버 에러 처리, 나중에 시간되면
-          history.goBack()
-        })
-    }, [])
+      dispatch(getAuthCheck()).catch((error) => {
+        // 서버 에러 처리, 나중에 시간되면
+      })
+    }, [dispatch])
 
-    return <WrappedComponent {...props} />
+    return isLoggedIn ? <Redirect to="/" /> : <WrappedComponent {...props} />
   }
 }
 

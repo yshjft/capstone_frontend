@@ -8,7 +8,7 @@ export const routes = [
   {path: '/login', component: withIsNotLoggedIn(LoginPage)},
   {path: '/write', component: withIsLoggedIn(WritePage)},
   {path: '/@:nickName', component: UserPage, exact: true},
-  {path: '/setting', component: SettingPage}
+  {path: '/setting', component: withIsLoggedIn(SettingPage)}
 ]
 
 /*

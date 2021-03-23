@@ -17,3 +17,12 @@ export async function getAuthCheck() {
     throw error
   }
 }
+
+export async function getLogOut() {
+  try {
+    const res = await api.get('/auth/logout')
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}

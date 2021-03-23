@@ -5,6 +5,7 @@ export const POST_AUTH_SUCCESS = 'POST_AUTH_SUCCESS'
 export const POST_AUTH_ERROR = 'POST_AUTH_ERROR'
 export const POST_AUTH_FINISH = 'POST_AUTH_FINISH'
 export const GET_AUTH_CHECK = 'GET_AUTH_CHECK'
+export const GET_LOGOUT = 'GET_LOGOUT'
 
 export const postAuth = ({email, password}) => {
   return async (dispatch, state) => {
@@ -27,6 +28,17 @@ export const getAuthCheck = () => {
       const payload = await authApi.getAuthCheck()
       dispatch({type: GET_AUTH_CHECK, payload})
       return payload
+    } catch (error) {
+      throw error
+    }
+  }
+}
+
+export const getLogout = () => {
+  return async (dispatch, state) => {
+    try {
+      await authApi.getLogOut()
+      dispatch({type: GET_LOGOUT})
     } catch (error) {
       throw error
     }

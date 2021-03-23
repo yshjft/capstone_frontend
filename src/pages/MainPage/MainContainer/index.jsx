@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch} from 'react-redux'
 import {getAlgoPosts} from '../../../actions/algo'
 import Layout from '../../../components/common/Layout'
 import MainSearch from '../../../components/MainSearch'
@@ -11,7 +11,7 @@ const MainContainer = (props) => {
 
   useEffect(() => {
     dispatch(getAlgoPosts())
-  }, [])
+  }, [dispatch])
 
   return (
     <Layout>

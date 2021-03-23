@@ -42,11 +42,11 @@ html, body, #root {
       }
       .navDropdown {
         margin-left: 10px;
-        padding-bottom: 15px;
         font-size: 15px;
         font-weight: bold;
         color: white;
         text-decoration: none;
+        cursor: pointer;
       }
       .navDropdownItem {
         padding: 4px 24px;
