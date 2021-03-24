@@ -6,6 +6,7 @@ import Layout from '../../../components/common/Layout/Layout'
 import JoinPresenter from '../../../presenters/Auth/JoinPresenter'
 
 const JoinContainer = (props) => {
+  const {history} = props
   const [isValidEmail, setIsValidEmail] = useState({isValid: true, inValidType: ''})
   const [isValidNickName, setIsValidNickName] = useState({isValid: true, inValidType: ''})
   const [isValidPassword, setIsValidPassword] = useState({isValid: true, inValidType: ''})
@@ -65,6 +66,7 @@ const JoinContainer = (props) => {
 
     try {
       await dispatch(postJoin({email, nickName, password}))
+      history.push('/login')
     } catch (error) {
       switch (error.response.data.type) {
         case 'SAME_EMAIL':

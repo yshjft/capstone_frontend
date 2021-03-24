@@ -17,7 +17,7 @@ export const postJoin = ({email, nickName, password}) => {
     } catch (error) {
       throw error
     } finally {
-      dispatch({type: POST_JOIN})
+      dispatch({type: POST_JOIN_FINISH})
     }
   }
 }
