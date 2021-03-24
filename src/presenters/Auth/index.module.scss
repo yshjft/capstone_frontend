@@ -21,7 +21,6 @@
       margin-bottom: 5%;
       text-align: center;
       color: #e74c3c;
-
     }
     .buttonArea {
       margin-bottom: 5%;
@@ -34,6 +33,39 @@
       margin-bottom: 10%;
       text-align: center;
       color: #24292e;
+    }
+  }
+}
+
+.joinLayout {
+  margin: 9% 5%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ced4da;
+  border-radius: 10px;
+  .form{
+    width: 60%;
+    .title {
+      margin: 10% 0;
+      color: #24292e;
+      font-size: 32px;
+      font-weight: bold;
+      text-align: center;
+    }
+    .group {
+      margin-bottom: 10%;
+      .warning {
+        margin-top: 5px;
+        color: #dc3545;
+      }
+    }
+    .buttonArea {
+      margin-bottom: 5%;
+      text-align: center;
+      .button {
+        background-color: #24292e;
+      }
     }
   }
 }

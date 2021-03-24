@@ -1,6 +1,15 @@
 import api from './index'
 
-export async function postAuth(data) {
+export async function postJoin(data) {
+  try {
+    const res = await api.post('/auth/join', data)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
+
+export async function postLogin(data) {
   try {
     const res = await api.post('/auth/login', data)
     return res.data

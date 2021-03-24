@@ -1,23 +1,38 @@
 import * as authApi from '../api/auth'
 
-export const POST_AUTH = 'POST_AUTH'
-export const POST_AUTH_SUCCESS = 'POST_AUTH_SUCCESS'
-export const POST_AUTH_ERROR = 'POST_AUTH_ERROR'
-export const POST_AUTH_FINISH = 'POST_AUTH_FINISH'
+export const POST_JOIN = 'POST_JOIN'
+export const POST_JOIN_FINISH = 'POST_JOIN_FINISH'
+export const POST_LOGIN = 'POST_LOGIN'
+export const POST_LOGIN_SUCCESS = 'POST_LOGIN_SUCCESS'
+export const POST_LOGIN_ERROR = 'POST_LOGIN_ERROR'
+export const POST_LOGIN_FINISH = 'POST_LOGIN_FINISH'
 export const GET_AUTH_CHECK = 'GET_AUTH_CHECK'
 export const GET_LOGOUT = 'GET_LOGOUT'
 
-export const postAuth = ({email, password}) => {
+export const postJoin = ({email, nickName, password}) => {
   return async (dispatch, state) => {
-    dispatch({type: POST_AUTH})
+    dispatch({type: POST_JOIN})
     try {
-      const payload = await authApi.postAuth({email, password})
-      dispatch({type: POST_AUTH_SUCCESS, payload})
+      await authApi.postJoin({email, nickName, password})
     } catch (error) {
-      dispatch({type: POST_AUTH_ERROR})
       throw error
     } finally {
-      dispatch({type: POST_AUTH_FINISH})
+      dispatch({type: POST_JOIN})
+    }
+  }
+}
+
+export const postLogin = ({email, password}) => {
+  return async (dispatch, state) => {
+    dispatch({type: POST_LOGIN})
+    try {
+      const payload = await authApi.postLogin({email, password})
+      dispatch({type: POST_LOGIN_SUCCESS, payload})
+    } catch (error) {
+      dispatch({type: POST_LOGIN_ERROR})
+      throw error
+    } finally {
+      dispatch({type: POST_LOGIN_FINISH})
     }
   }
 }

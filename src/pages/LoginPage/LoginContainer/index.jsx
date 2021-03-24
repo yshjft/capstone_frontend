@@ -2,7 +2,7 @@ import React, {useState, useRef} from 'react'
 import Layout from '../../../components/common/Layout/Layout'
 import LoginPresenter from '../../../presenters/Auth/LoginPresenter'
 import {useDispatch, useSelector} from 'react-redux'
-import {postAuth} from '../../../actions/auth'
+import {postLogin} from '../../../actions/auth'
 
 const LoginContainer = (props) => {
   const [loginError, setLoginError] = useState(false)
@@ -18,7 +18,7 @@ const LoginContainer = (props) => {
 
     try {
       setLoginError(false)
-      await dispatch(postAuth({email, password}))
+      await dispatch(postLogin({email, password}))
     } catch (error) {
       setLoginError(true)
     }
