@@ -4,6 +4,7 @@ import {getLogout} from '../../../actions/auth'
 import {useHistory, NavLink} from 'react-router-dom'
 import {Dropdown} from 'react-bootstrap'
 import CustomToggle from './CutomToggle'
+import styles from './index.module.scss'
 
 const Header = (props) => {
   const {isLoggedIn, nickName} = props
@@ -24,25 +25,25 @@ const Header = (props) => {
   }
 
   return (
-    <div className="headerLayout">
-      <div className="header">
-        <NavLink to="/" className="brand">
+    <div className={styles.headerLayout}>
+      <div className={styles.header}>
+        <NavLink to="/" className={styles.brand}>
           AlgoHub
         </NavLink>
-        <div className="nav">
+        <div className={styles.nav}>
           {!isLoggedIn && (
             <>
-              <NavLink to="/login" className="navLink" activeClassName="activeNavLink">
+              <NavLink to="/login" className={styles.navLink} activeClassName={styles.activeNavLink}>
                 로그인
               </NavLink>
-              <NavLink to="/join" className="navLink" activeClassName="activeNavLink">
+              <NavLink to="/join" className={styles.navLink} activeClassName={styles.activeNavLink}>
                 회원가입
               </NavLink>
             </>
           )}
           {isLoggedIn && (
             <>
-              <NavLink to="/write" className="navLink" activeClassName="activeNavLink">
+              <NavLink to="/write" className={styles.navLink} activeClassName={styles.activeNavLink}>
                 알고리즘 기록
               </NavLink>
               <Dropdown>

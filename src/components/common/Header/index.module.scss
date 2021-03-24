@@ -1,0 +1,52 @@
+.headerLayout {
+  background-color: #24292e;
+  .header {
+    margin-left: 10%;
+    margin-right: 10%;
+    height: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .brand {
+      font-size: 25px;
+      font-weight: bold;
+      color: white;
+      text-decoration: none;
+    }
+    .nav {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .navLink {
+        margin-left: 10px;
+        font-size: 15px;
+        color: white;
+        text-decoration: none;
+      }
+      .navLink:hover {
+        text-decoration: underline;
+      }
+      .activeNavLink {
+        font-weight: bold;
+      }
+      .navDropdown {
+        margin-left: 10px;
+        font-size: 15px;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .navDropdownItem {
+        padding: 4px 24px;
+        .link {
+          color: #24292e;
+          text-decoration: none;
+        }
+      }
+      .navDropdownItem:hover{
+        background-color: #f8f9fa;
+      }
+    }
+  }
+}

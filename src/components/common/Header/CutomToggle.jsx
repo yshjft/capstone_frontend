@@ -1,4 +1,5 @@
 import React, {forwardRef} from 'react'
+import styles from './index.module.scss'
 
 const CustomToggle = forwardRef(({children, onClick}, ref) => (
   <div
@@ -7,7 +8,7 @@ const CustomToggle = forwardRef(({children, onClick}, ref) => (
       e.preventDefault()
       onClick(e)
     }}
-    className="navDropdown"
+    className={styles.navDropdown}
   >
     {children}
     &#x25bc;

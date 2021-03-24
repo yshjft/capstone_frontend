@@ -1,5 +1,5 @@
 import React, {useState, useRef} from 'react'
-import Layout from '../../../components/common/Layout'
+import Layout from '../../../components/common/Layout/Layout'
 import LoginPresenter from '../../../presenters/Auth/LoginPresenter'
 import {useDispatch, useSelector} from 'react-redux'
 import {postAuth} from '../../../actions/auth'

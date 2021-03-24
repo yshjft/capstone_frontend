@@ -1,0 +1,37 @@
+.footerLayout{
+  margin-top:auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid silver;
+  color: silver;
+  .footer {
+    padding-top: 5px;
+    padding-bottom: 10px;
+    margin-left: 10%;
+    margin-right: 10%;
+    text-align: center;
+    .brand {
+      margin: 5px;
+      font-size: 25px;
+    }
+    .developers {
+      margin: 1px 0px;
+    }
+    .gitForDevelopers{
+      margin: 1px 0px;
+      display: flex;
+      justify-content: center;
+      .gitForDeveloper {
+        margin: 0px 10px;
+        .link {
+          color: silver;
+          text-decoration: none;
+        }
+        .link:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

@@ -1,7 +1,7 @@
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
 import {routes} from './route'
 import Header from './components/common/Header/Header'
-import Footer from './components/common/Footer'
+import Footer from './components/common/Footer/Footer'
 import {useSelector, shallowEqual} from 'react-redux'
 
 function App() {

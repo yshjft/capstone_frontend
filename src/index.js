@@ -5,7 +5,7 @@ import {Provider} from 'react-redux'
 import {PersistGate} from 'redux-persist/integration/react'
 import createStore from './store/index'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './styles/index.scss'
+import './index.scss'
 
 const {store, persistor} = createStore()
 
