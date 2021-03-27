@@ -8,3 +8,12 @@ export async function getAlgoPosts() {
     throw error
   }
 }
+
+export async function postAlgPost(data) {
+  try {
+    const res = await api.post('/post', data)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}

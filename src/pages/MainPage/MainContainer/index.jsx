@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import {useDispatch} from 'react-redux'
-import {getAlgoPosts} from '../../../actions/algo'
+import {getAlgoPosts} from '../../../actions/algoPost'
 import Layout from '../../../components/common/Layout/Layout'
 import MainSearch from '../../../components/MainSearch'
 import Preview from '../../../components/Preview'

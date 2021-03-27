@@ -1,4 +1,4 @@
-import {GET_ALGO_POSTS, GET_ALGO_POSTS_ERROR, GET_ALGO_POSTS_SUCCESS, GET_ALGO_POSTS_FINISH} from '../actions/algo'
+import {GET_ALGO_POSTS, GET_ALGO_POSTS_ERROR, GET_ALGO_POSTS_SUCCESS, GET_ALGO_POSTS_FINISH} from '../actions/algoPost'
 
 const initialState = {
   isLoading: false,
@@ -6,7 +6,7 @@ const initialState = {
   total: 0
 }
 
-export default function algoPostsReducer(state = initialState, action) {
+export default function algoPostReducer(state = initialState, action) {
   switch (action.type) {
     case GET_ALGO_POSTS:
       return {...state, isLoading: true}

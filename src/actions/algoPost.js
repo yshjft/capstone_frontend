@@ -1,4 +1,4 @@
-import * as algoApi from '../api/algo'
+import * as algoApi from '../api/algoPost'
 import {GET_AUTH_CHECK} from './auth'
 
 export const GET_ALGO_POSTS = 'GET_ALGO_POSTS'
@@ -21,3 +21,5 @@ export const getAlgoPosts = () => {
     }
   }
 }
+
+export const postAlgoPost = ({title, language, isPublic, code, memo}) => {}
