@@ -1,7 +1,8 @@
 import React from 'react'
+import WriteContainer from './WriteContainer'
 
 const WritePage = (props) => {
-  return <div>Write Component</div>
+  return <WriteContainer />
 }
 
 export default WritePage

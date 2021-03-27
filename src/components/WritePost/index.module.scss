@@ -1,0 +1,46 @@
+.writePostLayout {
+  margin-top: 30px;
+  .label{
+    margin-right: 10px;
+    color: #24292e;
+    font-weight: bold;
+  }
+  .titleArea {
+    margin: 2% 0;
+    input {
+      width: 100%;
+      padding: 5px;
+      font-size: 25px;
+      font-weight: bold;
+      outline:none;
+    }
+  }
+  .infoArea {
+    margin: 2% 0;
+    display: flex;
+    align-items: center;
+    .languageArea {
+      margin-right: 3%;
+      display: flex;
+      align-items: center;
+      select {
+        height: 35px;
+      }
+    }
+    .isPublicArea {
+      display: flex;
+      align-items: center;
+      .button{
+        min-width: 120px;
+        margin-right: 5px;
+        font-weight: bold;
+        color: silver;
+        border: 2px solid silver;
+        background-color: white;
+        span {
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+}
