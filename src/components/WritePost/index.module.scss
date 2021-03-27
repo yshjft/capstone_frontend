@@ -1,5 +1,8 @@
 .writePostLayout {
   margin-top: 30px;
+  .warning {
+    color: #e74c3c;
+  }
   .label{
     margin-right: 10px;
     color: #24292e;
@@ -13,6 +16,7 @@
       font-size: 25px;
       font-weight: bold;
       outline:none;
+      border: none;
     }
   }
   .infoArea {
@@ -41,6 +45,38 @@
           margin-left: 5px;
         }
       }
+      .button:active {
+        color: white;
+        background-color: #24292e;
+      }
+      .buttonSelected {
+        min-width: 120px;
+        margin-right: 5px;
+        font-weight: bold;
+        color: white;
+        border: 2px solid #24292e;
+        background-color: #24292e;
+        span {
+          margin-left: 5px;
+        }
+      }
+      .buttonSelected:active {
+        color: white;
+        background-color: #24292e;
+      }
+    }
+  }
+  .codeArea {
+    margin: 2% 0;
+  }
+  .memoArea {
+    margin: 2% 0;
+    textarea {
+      width: 100%;
+      outline: none;
+      border: none;
+      font-size: 18px;
+      resize: none;
     }
   }
 }

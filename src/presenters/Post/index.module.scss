@@ -1,0 +1,21 @@
+.buttonArea {
+  margin: 5% 0;
+  text-align: center;
+  button {
+    padding: 2px 12px;
+    height: 40px;
+    min-width: 120px;
+    margin-right: 5px;
+    font-weight: bold;
+    color: white;
+    border: 2px solid #24292e;
+    border-radius: 5px;
+    background-color: #24292e;
+  }
+  button:hover {
+    color: #24292e;
+    border: 2px solid #24292e;
+    background-color: white;
+    transition: 0.2s;
+  }
+}

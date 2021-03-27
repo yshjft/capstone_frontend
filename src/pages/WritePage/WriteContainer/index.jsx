@@ -4,9 +4,14 @@ import WritePresenter from '../../../presenters/Post/WritePresenter'
 
 const WriteContainer = (props) => {
   // submit api 호출
+
+  function handleSubmit(title, language, isPublic, code, memo) {
+    console.log(title, language, isPublic, code, memo)
+  }
+
   return (
     <Layout>
-      <WritePresenter />
+      <WritePresenter handleSubmit={handleSubmit} />
     </Layout>
   )
 }
