@@ -1,9 +1,11 @@
 import React, {useState} from 'react'
 import WritePost from '../../components/WritePost'
+import {useSelector} from 'react-redux'
 import styles from './index.module.scss'
 
 const WritePresenter = (props) => {
   const {handleSubmit} = props
+  const isSending = useSelector((state) => state.algoPost.isSending)
   const [title, setTitle] = useState('')
   const [language, setLanguage] = useState('c')
   const [code, setCode] = useState('')
@@ -66,7 +68,7 @@ const WritePresenter = (props) => {
       />
       <div className={styles.buttonArea}>
         <button onClick={handleCheckInput} className={styles.button}>
-          기록하기
+          {isSending ? '기록중...' : '기록하기'}
         </button>
       </div>
     </>

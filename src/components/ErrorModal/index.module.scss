@@ -1,0 +1,29 @@
+.dialogArea {
+
+}
+.header {
+  padding: 10px 10px 5px 10px;
+  width: 250px;
+  display: flex;
+  justify-content: space-between;
+  .title {
+    font-weight: bold;
+    font-size: 20px;
+  }
+  .closeIcon {
+    color: silver;
+    font-size: 25px;
+  }
+  .closeIcon:hover {
+    color: #24292e;
+    transition: 0.2s;
+  }
+}
+.message {
+  height: 100px;
+  padding: 5px 10px 10px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+}

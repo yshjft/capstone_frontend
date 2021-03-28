@@ -9,7 +9,7 @@ export async function getAlgoPosts() {
   }
 }
 
-export async function postAlgPost(data) {
+export async function postAlgoPost(data) {
   try {
     const res = await api.post('/post', data)
     return res.data

@@ -22,4 +22,18 @@ export const getAlgoPosts = () => {
   }
 }
 
-export const postAlgoPost = ({title, language, isPublic, code, memo}) => {}
+export const POST_ALGO_POST = 'POST_ALGO_POST'
+export const POST_ALGO_POST_FINISH = 'POST_ALGO_POST_FINISH'
+
+export const postAlgoPost = (title, language, isPublic, code, memo) => {
+  return async (dispatch, state) => {
+    dispatch({type: POST_ALGO_POST})
+    try {
+      await algoApi.postAlgoPost({title, language, public: isPublic, code, memo})
+    } catch (error) {
+      throw error
+    } finally {
+      dispatch({type: POST_ALGO_POST_FINISH})
+    }
+  }
+}
