@@ -10,8 +10,9 @@ export const getAlgoPosts = () => {
   return async (dispatch, state) => {
     dispatch({type: GET_ALGO_POSTS})
     try {
-      const {isLoggedIn, id, nickName, data, total} = await algoApi.getAlgoPosts()
-      dispatch({type: GET_AUTH_CHECK, payload: {isLoggedIn, id, nickName}})
+      const {auth, data, total} = await algoApi.getAlgoPosts()
+
+      dispatch({type: GET_AUTH_CHECK, payload: auth})
       dispatch({type: GET_ALGO_POSTS_SUCCESS, payload: {data, total}})
     } catch (error) {
       // 서버 에러가 있는 경우 아예 에러 전용 창을 보여줄 수 있도록 하자

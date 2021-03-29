@@ -19,16 +19,32 @@ const JoinContainer = (props) => {
 
   function handleValidEmail() {
     const email = emailRef.current.value
-    if (email === '') return setIsValidEmail({isValid: false, inValidType: 'EMPTY'})
-    if (!validateEmail(email)) return setIsValidEmail({isValid: false, inValidType: 'INVALID_EMAIL'})
+
+    if (email === '') {
+      setIsValidEmail({isValid: false, inValidType: 'EMPTY'})
+      return false
+    }
+
+    if (!validateEmail(email)) {
+      setIsValidEmail({isValid: false, inValidType: 'INVALID_EMAIL'})
+      return false
+    }
 
     setIsValidEmail({isValid: true, inValidType: ''})
   }
 
   function handleValidNickName() {
     const nickName = nickNameRef.current.value
-    if (nickName === '') return setIsValidNickName({isValid: false, inValidType: 'EMPTY'})
-    if (nickName.length > 10) return setIsValidNickName({isValid: false, inValidType: 'TOO_LONG'})
+
+    if (nickName === '') {
+      setIsValidNickName({isValid: false, inValidType: 'EMPTY'})
+      return false
+    }
+
+    if (nickName.length > 10) {
+      setIsValidNickName({isValid: false, inValidType: 'TOO_LONG'})
+      return false
+    }
 
     setIsValidNickName({isValid: true, inValidType: ''})
   }
@@ -52,13 +68,13 @@ const JoinContainer = (props) => {
 
   async function handleJoin(e) {
     e.preventDefault()
-    handleValidEmail()
-    handleValidNickName()
-    handleValidPassword()
-    handleValidPasswordCheck()
 
-    if (!isValidEmail.isValid || !isValidNickName.isValid || !isValidPassword.isValid || !isValidPasswordCheck.isValid)
-      return
+    const validEmail = handleValidEmail()
+    const validNickName = handleValidNickName()
+    const validPassword = handleValidPassword()
+    const validPasswordCheck = handleValidPasswordCheck()
+
+    if (!validEmail || !validNickName || !validPassword || !validPasswordCheck) return
 
     const email = emailRef.current.value
     const nickName = nickNameRef.current.value
