@@ -1,0 +1,30 @@
+.postInfo {
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(0,0,0,.125);
+  .header {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .dateLike {
+    margin-top: 5px;
+    .date {
+      margin-right: 10px;
+    }
+    .like {
+      .icon {
+        margin-right: 5px;
+      }
+    }
+  }
+  .badge {
+    margin-top: 5px;
+    padding: 8px 5px;
+    width: 50px;
+  }
+  .byWriter {
+    margin-top: 5px;
+    .writer {
+      font-weight: bold;
+    }
+  }
+}

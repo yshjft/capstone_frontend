@@ -31,6 +31,7 @@ const JoinContainer = (props) => {
     }
 
     setIsValidEmail({isValid: true, inValidType: ''})
+    return true
   }
 
   function handleValidNickName() {
@@ -47,23 +48,38 @@ const JoinContainer = (props) => {
     }
 
     setIsValidNickName({isValid: true, inValidType: ''})
+    return true
   }
 
   function handleValidPassword() {
     const password = passwordRef.current.value
-    if (password === '') return setIsValidPassword({isValid: false, inValidType: 'EMPTY'})
-    if (password.length < 6) return setIsValidPassword({isValid: false, inValidType: 'TOO_SHORT'})
+    if (password === '') {
+      setIsValidPassword({isValid: false, inValidType: 'EMPTY'})
+      return false
+    }
+    if (password.length < 6) {
+      setIsValidPassword({isValid: false, inValidType: 'TOO_SHORT'})
+      return false
+    }
 
     setIsValidPassword({isValid: true, inValidType: ''})
+    return true
   }
 
   function handleValidPasswordCheck() {
     const password = passwordRef.current.value
     const passwordCheck = passwordCheckRef.current.value
-    if (passwordCheck === '') return setIsValidPasswordCheck({isValid: false, inValidType: 'EMPTY'})
-    if (password !== passwordCheck) return setIsValidPasswordCheck({isValid: false, inValidType: 'NOT_EQUAL'})
+    if (passwordCheck === '') {
+      setIsValidPasswordCheck({isValid: false, inValidType: 'EMPTY'})
+      return false
+    }
+    if (password !== passwordCheck) {
+      setIsValidPasswordCheck({isValid: false, inValidType: 'NOT_EQUAL'})
+      return false
+    }
 
     setIsValidPasswordCheck({isValid: true, inValidType: ''})
+    return true
   }
 
   async function handleJoin(e) {
