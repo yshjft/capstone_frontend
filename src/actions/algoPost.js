@@ -6,11 +6,11 @@ export const GET_ALGO_POSTS_SUCCESS = 'GET_ALGO_POSTS_SUCCESS'
 export const GET_ALGO_POSTS_ERROR = 'GET_ALGO_POSTS_ERROR'
 export const GET_ALGO_POSTS_FINISH = 'GET_ALGO_POSTS_FINISH'
 
-export const getAlgoPosts = () => {
+export const getAlgoPosts = (page) => {
   return async (dispatch, state) => {
     dispatch({type: GET_ALGO_POSTS})
     try {
-      const {auth, data, total} = await algoApi.getAlgoPosts()
+      const {auth, data, total} = await algoApi.getAlgoPosts(page)
 
       dispatch({type: GET_AUTH_CHECK, payload: auth})
       dispatch({type: GET_ALGO_POSTS_SUCCESS, payload: {data, total}})
