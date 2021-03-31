@@ -1,4 +1,5 @@
 import React from 'react'
+import {useHistory} from 'react-router-dom'
 import {Badge, Card} from 'react-bootstrap'
 import {faThumbsUp} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
@@ -8,9 +9,14 @@ import style from './index.module.scss'
 
 const PostInfo = (props) => {
   const {postInfo} = props
+  const history = useHistory()
+
+  function handleClick() {
+    history.push(`/@${postInfo.writer}/${postInfo.id}`)
+  }
 
   return (
-    <div className={style.postInfo}>
+    <div className={style.postInfo} onClick={handleClick}>
       <Card>
         <Card.Header className={style.header}>{postInfo.title}</Card.Header>
         <Card.Body>
