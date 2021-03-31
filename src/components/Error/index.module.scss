@@ -1,0 +1,26 @@
+.errorLayout {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #24292e;
+  font-weight: bold;
+  font-size: 30px;
+  .errorInfo {
+    text-align: center;
+    margin: 20px 0;
+    .errorStatus {
+      margin: 10px 0;
+    }
+    .errorRedo {
+      padding: 5px;
+      cursor: pointer
+    }
+    .errorRedo:hover{
+      padding: 5px;
+      color: white;
+      background-color: black;
+      border-radius: 100px;
+      transition: 0.2s;
+    }
+  }
+}

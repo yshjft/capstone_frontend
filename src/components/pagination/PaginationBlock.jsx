@@ -21,7 +21,9 @@ const PaginationBlock = (props) => {
 
   return (
     <div className={style.pagination}>
-      <Pagination count={Math.ceil(total / 10)} page={page} onChange={handleChange} shape="rounded" size="large" />
+      {total !== 0 && (
+        <Pagination count={Math.ceil(total / 10)} page={page} onChange={handleChange} shape="rounded" size="large" />
+      )}
     </div>
   )
 }
