@@ -25,7 +25,8 @@ const initialState = {
     writer: '',
     likeNum: 0,
     code: '',
-    memo: ''
+    memo: '',
+    liek: false
   }
 }
 
@@ -59,7 +60,8 @@ export default function algoPostReducer(state = initialState, action) {
           writer: '',
           likeNum: 0,
           code: '',
-          memo: ''
+          memo: '',
+          like: false
         }
       }
     case GET_ALGO_POST_FINISH:

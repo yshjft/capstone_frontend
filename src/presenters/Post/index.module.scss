@@ -57,11 +57,27 @@
           }
         }
       }
-      .postLike {
+      .postLikeFalse {
         padding: 3px 10px;
         border: 1px solid silver;
         border-radius: 50px;
         color: silver;
+        cursor: pointer;
+        .icon{
+          margin-right: 10px;
+        }
+      }
+      .postLikeFalse:hover{
+        border: 1px solid #24292e;
+        color: #24292e;
+      }
+      .postLikeTrue {
+        padding: 3px 10px;
+        border: 1px solid #24292e;
+        border-radius: 50px;
+        background-color: #24292e;
+        color: white;
+        cursor: pointer;
         .icon{
           margin-right: 10px;
         }

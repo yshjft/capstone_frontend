@@ -1,7 +1,7 @@
 import React, {useState, useRef} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import Layout from '../../../components/common/Layout/Layout'
 import LoginPresenter from '../../../presenters/Auth/LoginPresenter'
-import {useDispatch, useSelector} from 'react-redux'
 import {postLogin} from '../../../actions/auth'
 
 const LoginContainer = (props) => {

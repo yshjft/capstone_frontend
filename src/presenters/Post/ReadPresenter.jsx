@@ -23,7 +23,8 @@ import style from './index.module.scss'
 import language from '../../lib/language'
 
 const ReadPresenter = (props) => {
-  const {postDetail} = props
+  const {postDetail, handlePostLike} = props
+
   return (
     <div className={style.readPostLayout}>
       <div className={style.postTitle}>{postDetail.title}</div>
@@ -39,10 +40,20 @@ const ReadPresenter = (props) => {
               </Link>
             </span>
           </div>
-          <div className={style.postLike}>
-            <FontAwesomeIcon icon={regularThumbsUp} className={style.icon} />
-            <span>{postDetail.likeNum}</span>
-          </div>
+          {/*==============================================================*/}
+          {!postDetail.like && (
+            <div className={style.postLikeFalse} onClick={handlePostLike}>
+              <FontAwesomeIcon icon={regularThumbsUp} className={style.icon} />
+              <span>{postDetail.likeNum}</span>
+            </div>
+          )}
+          {postDetail.like && (
+            <div className={style.postLikeTrue} onClick={handlePostLike}>
+              <FontAwesomeIcon icon={solidThumbsUp} className={style.icon} />
+              <span>{postDetail.likeNum}</span>
+            </div>
+          )}
+          {/*==============================================================*/}
         </div>
         <div className={style.postLanguageArea}>
           <Badge variant="primary" className={style.postLanguage}>
