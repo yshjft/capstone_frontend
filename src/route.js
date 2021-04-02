@@ -19,15 +19,15 @@ export const routes = [
 /write => 로그인일 경우에만 접근 가능
 
 
-1) 로그인 X 일 때 접근 가능
-/join, /login
+  1) 로그인 X 일 때 접근 가능
+  /join, /login
 
-로그인 상태 => 이전 페이지로 리다이렉트
+  로그인 상태 => 이전 페이지로 리다이렉트
 
 
-2) 로그인 O 일 때 접근 가능
-/write, /edit (글 수정), /setting
+  2) 로그인 O 일 때 접근 가능
+  /write, /edit (글 수정), /setting
 
-로그인 상태 X => 로그인 페이지
+  로그인 상태 X => 로그인 페이지
 
  */

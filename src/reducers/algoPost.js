@@ -4,14 +4,29 @@ import {
   GET_ALGO_POSTS_SUCCESS,
   GET_ALGO_POSTS_FINISH,
   POST_ALGO_POST,
-  POST_ALGO_POST_FINISH
+  POST_ALGO_POST_FINISH,
+  GET_ALGO_POST,
+  GET_ALGO_POST_ERROR,
+  GET_ALGO_POST_SUCCESS,
+  GET_ALGO_POST_FINISH
 } from '../actions/algoPost'
 
 const initialState = {
   isLoading: false,
-  data: [],
+  isSending: false,
   total: 0,
-  isSending: false
+  data: [],
+  dataDetail: {
+    id: 0,
+    title: '',
+    language: '',
+    createdAt: '',
+    updatedAt: '',
+    writer: '',
+    likeNum: 0,
+    code: '',
+    memo: ''
+  }
 }
 
 export default function algoPostReducer(state = initialState, action) {
@@ -28,6 +43,27 @@ export default function algoPostReducer(state = initialState, action) {
       return {...state, isSending: true}
     case POST_ALGO_POST_FINISH:
       return {...state, isSending: false}
+    case GET_ALGO_POST:
+      return {...state, isLoading: true}
+    case GET_ALGO_POST_SUCCESS:
+      return {...state, dataDetail: action.payload}
+    case GET_ALGO_POST_ERROR:
+      return {
+        ...state,
+        dataDetail: {
+          id: 0,
+          title: '',
+          language: '',
+          createdAt: '',
+          updatedAt: '',
+          writer: '',
+          likeNum: 0,
+          code: '',
+          memo: ''
+        }
+      }
+    case GET_ALGO_POST_FINISH:
+      return {...state, isLoading: false}
     default:
       return state
   }

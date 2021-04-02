@@ -1,4 +1,7 @@
 const formatDate = (dateWithTime) => {
+  if (dateWithTime === '') {
+    return '----년 --월 --일'
+  }
   const date = dateWithTime.split(' ')[0].split('-')
   const yyyy = date[0]
   const mm = date[1][0] === '0' ? date[1][1] : date[1]

@@ -17,3 +17,12 @@ export async function postAlgoPost(data) {
     throw error
   }
 }
+
+export async function getAlgoPost(postId) {
+  try {
+    const res = await api.get(`/post/${postId}`)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}

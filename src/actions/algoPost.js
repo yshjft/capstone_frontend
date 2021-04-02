@@ -38,3 +38,23 @@ export const postAlgoPost = (title, language, isPublic, code, memo) => {
     }
   }
 }
+
+export const GET_ALGO_POST = 'GET_ALGO_POST'
+export const GET_ALGO_POST_SUCCESS = 'GET_ALGO_POST_SUCCESS'
+export const GET_ALGO_POST_ERROR = 'GET_ALGO_POST_ERROR'
+export const GET_ALGO_POST_FINISH = 'GET_ALGO_POST_FINISH'
+
+export const getAlgoPost = (postId) => {
+  return async (dispatch, state) => {
+    dispatch({type: GET_ALGO_POST})
+    try {
+      const {auth, data} = await algoApi.getAlgoPost(postId)
+      dispatch({type: GET_AUTH_CHECK, payload: auth})
+      dispatch({type: GET_ALGO_POST_SUCCESS, payload: data})
+    } catch (error) {
+      dispatch({type: GET_ALGO_POST_ERROR})
+    } finally {
+      dispatch({type: GET_ALGO_POST_FINISH})
+    }
+  }
+}
