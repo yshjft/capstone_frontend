@@ -35,21 +35,36 @@
     font-weight: bold;
   }
   .postInfo {
-    .date {
-      color: silver;
-    }
-    .divide {
-      margin: 0 10px;
-      color: silver;
-    }
-    .byWriter {
-      color: silver;
-      .by {
-        font-weight: bold;
+    .postDateWriterLikeArea{
+      display: flex;
+      justify-content: space-between;
+      .postDateWriter {
+        .date {
+          color: silver;
+        }
+        .divide {
+          margin: 0 10px;
+          color: silver;
+        }
+        .byWriter {
+          color: silver;
+          .by {
+            font-weight: bold;
+          }
+          .writer{
+            color: silver;
+            margin-left: 10px;
+          }
+        }
       }
-      .writer{
+      .postLike {
+        padding: 3px 10px;
+        border: 1px solid silver;
+        border-radius: 50px;
         color: silver;
-        margin-left: 10px;
+        .icon{
+          margin-right: 10px;
+        }
       }
     }
     .postLanguageArea{

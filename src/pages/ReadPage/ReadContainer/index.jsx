@@ -19,11 +19,9 @@ const ReadContainer = (props) => {
   }, [params])
 
   return (
-    <>
-      <Layout>
-        <ReadPresenter postDetail={postDetail} />
-      </Layout>
-    </>
+    <Layout>
+      <ReadPresenter postDetail={postDetail} />
+    </Layout>
   )
 }
 

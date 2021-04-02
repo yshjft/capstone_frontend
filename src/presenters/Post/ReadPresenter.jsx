@@ -14,6 +14,8 @@ import 'ace-builds/src-noconflict/mode-golang'
 import 'ace-builds/src-noconflict/theme-tomorrow'
 import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
 import {faChevronRight} from '@fortawesome/free-solid-svg-icons'
+import {faThumbsUp as regularThumbsUp} from '@fortawesome/free-regular-svg-icons'
+import {faThumbsUp as solidThumbsUp} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import formatDate from '../../lib/formatDate'
 import {Badge} from 'react-bootstrap'
@@ -25,9 +27,9 @@ const ReadPresenter = (props) => {
   return (
     <div className={style.readPostLayout}>
       <div className={style.postTitle}>{postDetail.title}</div>
-      <div>
-        <div className={style.postInfo}>
-          <>
+      <div className={style.postInfo}>
+        <div className={style.postDateWriterLikeArea}>
+          <div className={style.postDateWriter}>
             <span className={style.date}>{formatDate(postDetail.createdAt)}</span>
             <span className={style.divide}>·</span>
             <span className={style.byWriter}>
@@ -36,12 +38,16 @@ const ReadPresenter = (props) => {
                 {postDetail.writer}
               </Link>
             </span>
-          </>
-          <div className={style.postLanguageArea}>
-            <Badge variant="primary" className={style.postLanguage}>
-              {language(postDetail.language)}
-            </Badge>
           </div>
+          <div className={style.postLike}>
+            <FontAwesomeIcon icon={regularThumbsUp} className={style.icon} />
+            <span>{postDetail.likeNum}</span>
+          </div>
+        </div>
+        <div className={style.postLanguageArea}>
+          <Badge variant="primary" className={style.postLanguage}>
+            {language(postDetail.language)}
+          </Badge>
         </div>
       </div>
       <div className={style.postCode}>
