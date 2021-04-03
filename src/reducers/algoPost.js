@@ -8,8 +8,11 @@ import {
   GET_ALGO_POST,
   GET_ALGO_POST_ERROR,
   GET_ALGO_POST_SUCCESS,
-  GET_ALGO_POST_FINISH
+  GET_ALGO_POST_FINISH,
+  POST_ALGO_POST_LIKE,
+  DELETE_ALGO_POST_LIKE
 } from '../actions/algoPost'
+import {act} from '@testing-library/react'
 
 const initialState = {
   isLoading: false,
@@ -19,14 +22,14 @@ const initialState = {
   dataDetail: {
     id: 0,
     title: '',
-    language: '',
+    language: 'c_cpp',
     createdAt: '',
     updatedAt: '',
     writer: '',
     likeNum: 0,
+    like: false,
     code: '',
-    memo: '',
-    liek: false
+    memo: ''
   }
 }
 
@@ -66,6 +69,15 @@ export default function algoPostReducer(state = initialState, action) {
       }
     case GET_ALGO_POST_FINISH:
       return {...state, isLoading: false}
+    case POST_ALGO_POST_LIKE:
+    case DELETE_ALGO_POST_LIKE:
+      const cpyDataDetail = {
+        ...state.dataDetail,
+        like: action.type === POST_ALGO_POST_LIKE ? true : false,
+        likeNum: action.payload
+      }
+      state.dataDetail = cpyDataDetail
+      return state
     default:
       return state
   }

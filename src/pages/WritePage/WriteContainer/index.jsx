@@ -1,13 +1,16 @@
 import React, {useState} from 'react'
-import Layout from '../../../components/common/Layout/Layout'
-import WritePresenter from '../../../presenters/Post/WritePresenter'
+import {useLocation, useHistory} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {postAlgoPost} from '../../../actions/algoPost'
+import Layout from '../../../components/common/Layout/Layout'
 import ErrorModal from '../../../components/ErrorModal'
+import WritePresenter from '../../../presenters/Post/WritePresenter'
+import {handleUnauthorized} from '../../../lib/handleResError'
 
 const WriteContainer = (props) => {
-  const {history} = props
   const [errorModalVisible, setErrorModalVisible] = useState(false)
+  const location = useLocation()
+  const history = useHistory()
   const nickName = useSelector((state) => state.auth.nickName)
   const dispatch = useDispatch()
 
@@ -20,7 +23,11 @@ const WriteContainer = (props) => {
       await dispatch(postAlgoPost(title, language, isPublic, code, memo))
       history.push(`/@${nickName}`)
     } catch (error) {
-      setErrorModalVisible(true)
+      if (error.response.status === 401) {
+        handleUnauthorized(location.pathname, dispatch, history)
+      } else {
+        setErrorModalVisible(true)
+      }
     }
   }
 

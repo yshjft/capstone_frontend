@@ -1,5 +1,5 @@
 import React from 'react'
-import Preview from '../../components/PostInfo/PostInfo'
+import PostPreview from '../../components/PostPreview/PostPreview'
 
 const PostListPresenter = (props) => {
   const {postList} = props
@@ -7,7 +7,7 @@ const PostListPresenter = (props) => {
   return (
     <>
       {postList.map((postInfo, index) => (
-        <Preview key={postInfo.id} postInfo={postInfo} />
+        <PostPreview key={postInfo.id} postInfo={postInfo} />
       ))}
     </>
   )

@@ -1,7 +1,8 @@
 import React, {useEffect} from 'react'
 import {useParams, useLocation, useHistory} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
-import {getAlgoPost} from '../../../actions/algoPost'
+import {getAlgoPost, postAlgoPostLike, deleteAlgoPostLike} from '../../../actions/algoPost'
+import {handleUnauthorized} from '../../../lib/handleResError'
 import Layout from '../../../components/common/Layout/Layout'
 import ReadPresenter from '../../../presenters/Post/ReadPresenter'
 
@@ -27,10 +28,16 @@ const ReadContainer = (props) => {
       return history.push(`/login?returnTo=${returnTo}`)
     }
 
-    console.log(123)
-
-    if (postDetail.like) {
-    } else {
+    try {
+      if (postDetail.like) {
+        await dispatch(deleteAlgoPostLike(postDetail.id))
+      } else {
+        await dispatch(postAlgoPostLike(postDetail.id))
+      }
+    } catch (error) {
+      if (error.response.status === 401) {
+        handleUnauthorized(location.pathname, dispatch, history)
+      }
     }
   }
 

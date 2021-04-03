@@ -9,6 +9,15 @@ export async function getAlgoPosts(page) {
   }
 }
 
+export async function getAlgoPost(postId) {
+  try {
+    const res = await api.get(`/post/${postId}`)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
+
 export async function postAlgoPost(data) {
   try {
     const res = await api.post('/post', data)
@@ -18,9 +27,18 @@ export async function postAlgoPost(data) {
   }
 }
 
-export async function getAlgoPost(postId) {
+export async function postAlgoPostLike(id) {
   try {
-    const res = await api.get(`/post/${postId}`)
+    const res = await api.post(`/post/like/${id}`)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
+
+export async function deleteAlgoPostLike(id) {
+  try {
+    const res = await api.delete(`/post/like/${id}`)
     return res.data
   } catch (error) {
     throw error

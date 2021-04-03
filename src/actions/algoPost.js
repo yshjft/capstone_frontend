@@ -58,3 +58,29 @@ export const getAlgoPost = (postId) => {
     }
   }
 }
+
+export const POST_ALGO_POST_LIKE = 'POST_ALGO_POST_LIKE'
+
+export const postAlgoPostLike = (postId) => {
+  return async (dispatch, state) => {
+    try {
+      const {likeNum} = await algoApi.postAlgoPostLike(postId)
+      dispatch({type: POST_ALGO_POST_LIKE, payload: likeNum})
+    } catch (error) {
+      throw error
+    }
+  }
+}
+
+export const DELETE_ALGO_POST_LIKE = 'DELETE_ALGO_POST_LIKE'
+
+export const deleteAlgoPostLike = (postId) => {
+  return async (dispatch, state) => {
+    try {
+      const {likeNum} = await algoApi.deleteAlgoPostLike(postId)
+      dispatch({type: DELETE_ALGO_POST_LIKE, payload: likeNum})
+    } catch (error) {
+      throw error
+    }
+  }
+}

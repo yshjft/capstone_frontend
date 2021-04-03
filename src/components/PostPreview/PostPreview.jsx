@@ -7,7 +7,7 @@ import language from '../../lib/language'
 import formatDate from '../../lib/formatDate'
 import style from './index.module.scss'
 
-const PostInfo = (props) => {
+const PostPreview = (props) => {
   const {postInfo} = props
   const history = useHistory()
 
@@ -40,4 +40,4 @@ const PostInfo = (props) => {
   )
 }
 
-export default PostInfo
+export default PostPreview

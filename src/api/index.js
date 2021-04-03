@@ -4,9 +4,11 @@ const instance = axios.create({baseURL: '/api', withCredentials: true, time: 200
 
 async function errorHandler(e) {
   console.log(`[Error Data]: ${JSON.stringify(e.response.data, null, 2)}`)
-  if (e.response.status === 401) {
-    window.open('/', '_self')
-  }
+  // if (e.response.status === 401) {
+  //   const returnTo = window.location.pathname
+  //   window.history.go({data: `/login?returnTo=${returnTo}`})
+  //   // window.open('/', '_self')
+  // }
   throw e
 }
 

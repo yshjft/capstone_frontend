@@ -86,7 +86,8 @@
     .postLanguageArea{
       margin: 5px 0;
       .postLanguage {
-        padding: 5px;
+        padding: 5px 5px;
+        max-width: 90px;
         font-size: 15px
       }
     }
