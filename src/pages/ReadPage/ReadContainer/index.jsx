@@ -25,8 +25,10 @@ const ReadContainer = (props) => {
   }, [params])
 
   function handleGetPost() {
-    const {id} = params
-    dispatch(getAlgoPost(id))
+    console.log(params)
+    const {nickName, id} = params
+    console.log(nickName)
+    dispatch(getAlgoPost(nickName, id))
       .then((result) => setIsError(false))
       .catch((error) => {
         setIsError(true)

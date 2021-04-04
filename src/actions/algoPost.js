@@ -44,11 +44,11 @@ export const GET_ALGO_POST_SUCCESS = 'GET_ALGO_POST_SUCCESS'
 export const GET_ALGO_POST_ERROR = 'GET_ALGO_POST_ERROR'
 export const GET_ALGO_POST_FINISH = 'GET_ALGO_POST_FINISH'
 
-export const getAlgoPost = (postId) => {
+export const getAlgoPost = (postWriter, postId) => {
   return async (dispatch, state) => {
     dispatch({type: GET_ALGO_POST})
     try {
-      const {auth, data} = await algoApi.getAlgoPost(postId)
+      const {auth, data} = await algoApi.getAlgoPost(postWriter, postId)
       dispatch({type: GET_AUTH_CHECK, payload: auth})
       dispatch({type: GET_ALGO_POST_SUCCESS, payload: data})
     } catch (error) {

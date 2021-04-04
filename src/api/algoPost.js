@@ -9,9 +9,9 @@ export async function getAlgoPosts(page) {
   }
 }
 
-export async function getAlgoPost(postId) {
+export async function getAlgoPost(postWriter, postId) {
   try {
-    const res = await api.get(`/post/${postId}`)
+    const res = await api.get(`/post/${postWriter}/${postId}`)
     return res.data
   } catch (error) {
     throw error
