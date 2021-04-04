@@ -12,18 +12,22 @@ import 'ace-builds/src-noconflict/mode-kotlin'
 import 'ace-builds/src-noconflict/mode-swift'
 import 'ace-builds/src-noconflict/mode-golang'
 import 'ace-builds/src-noconflict/theme-tomorrow'
-import {faChevronLeft} from '@fortawesome/free-solid-svg-icons'
-import {faChevronRight} from '@fortawesome/free-solid-svg-icons'
+import {
+  faChevronLeft,
+  faChevronRight,
+  faEdit,
+  faTrash,
+  faThumbsUp as solidThumbsUp
+} from '@fortawesome/free-solid-svg-icons'
 import {faThumbsUp as regularThumbsUp} from '@fortawesome/free-regular-svg-icons'
-import {faThumbsUp as solidThumbsUp} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import formatDate from '../../lib/formatDate'
 import {Badge} from 'react-bootstrap'
-import style from './index.module.scss'
+import formatDate from '../../lib/formatDate'
 import language from '../../lib/language'
+import style from './index.module.scss'
 
 const ReadPresenter = (props) => {
-  const {postDetail, handlePostLike} = props
+  const {postDetail, isLoggedIn, userNickName, handlePostLike} = props
 
   return (
     <div className={style.readPostLayout}>
@@ -40,7 +44,6 @@ const ReadPresenter = (props) => {
               </Link>
             </span>
           </div>
-          {/*==============================================================*/}
           {!postDetail.like && (
             <div className={style.postLikeFalse} onClick={handlePostLike}>
               <FontAwesomeIcon icon={regularThumbsUp} className={style.icon} />
@@ -53,7 +56,6 @@ const ReadPresenter = (props) => {
               <span>{postDetail.likeNum}</span>
             </div>
           )}
-          {/*==============================================================*/}
         </div>
         <div className={style.postLanguageArea}>
           <Badge variant="primary" className={style.postLanguage}>
@@ -61,6 +63,20 @@ const ReadPresenter = (props) => {
           </Badge>
         </div>
       </div>
+
+      {isLoggedIn && userNickName === postDetail.writer && (
+        <div className={style.postEditDelete}>
+          <button className={style.button}>
+            <FontAwesomeIcon icon={faEdit} />
+            <span>수정</span>
+          </button>
+          <button className={style.button} onClick={() => {}}>
+            <FontAwesomeIcon icon={faTrash} />
+            <span>삭제</span>
+          </button>
+        </div>
+      )}
+
       <div className={style.postCode}>
         <div className={style.tag}>
           <FontAwesomeIcon icon={faChevronLeft} />

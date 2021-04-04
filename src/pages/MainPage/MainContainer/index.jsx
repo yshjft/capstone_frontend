@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import qs from 'query-string'
 import {getAlgoPosts} from '../../../actions/algoPost'
 import Layout from '../../../components/common/Layout/Layout'
-import Error from '../../../components/Error'
+import ServerError from '../../../components/Error/ServerError'
 import MainSearch from '../../../components/MainSearch'
 import PostListPresenter from '../../../presenters/Post/PostListPresenter'
 import PaginationBlock from '../../../components/pagination/PaginationBlock'
@@ -44,7 +44,7 @@ const MainContainer = (props) => {
   return (
     <Layout>
       <MainSearch />
-      {isError && <Error errStatus={errStatus} redo={handlePagination} />}
+      {isError && <ServerError errStatus={errStatus} redo={handlePagination} />}
       {!isError && (
         <PostListPresenter postList={data} total={total} page={query.page} handlePagination={handlePagination} />
       )}

@@ -1,26 +1,38 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import {useParams, useLocation, useHistory} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {getAlgoPost, postAlgoPostLike, deleteAlgoPostLike} from '../../../actions/algoPost'
 import {handleUnauthorized} from '../../../lib/handleResError'
 import Layout from '../../../components/common/Layout/Layout'
+import ServerError from '../../../components/Error/ServerError'
 import ReadPresenter from '../../../presenters/Post/ReadPresenter'
+import NotFoundError from '../../../components/Error/NotFoundError'
 
 const ReadContainer = (props) => {
+  const [isError, setIsError] = useState(false)
+  const [errorStatus, setErrorStatus] = useState()
   const params = useParams()
   const location = useLocation()
   const history = useHistory()
   const dispatch = useDispatch()
+  const isLoading = useSelector((state) => state.algoPost.isLoading)
   const postDetail = useSelector((state) => state.algoPost.dataDetail)
+  const userNickName = useSelector((state) => state.auth.nickName)
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
 
   useEffect(() => {
-    const {id} = params
-    // 에러 발생시 처리
-    // 비공개 개시물 접근 블락
-    // 존재하지 않는 게시물 알림
-    dispatch(getAlgoPost(id))
+    handleGetPost()
   }, [params])
+
+  function handleGetPost() {
+    const {id} = params
+    dispatch(getAlgoPost(id))
+      .then((result) => setIsError(false))
+      .catch((error) => {
+        setIsError(true)
+        setErrorStatus(error.response.status)
+      })
+  }
 
   async function handlePostLike() {
     if (!isLoggedIn) {
@@ -35,15 +47,22 @@ const ReadContainer = (props) => {
         await dispatch(postAlgoPostLike(postDetail.id))
       }
     } catch (error) {
-      if (error.response.status === 401) {
-        handleUnauthorized(location.pathname, dispatch, history)
-      }
+      if (error.response.status === 401) handleUnauthorized(location.pathname, dispatch, history)
     }
   }
 
   return (
     <Layout>
-      <ReadPresenter postDetail={postDetail} handlePostLike={handlePostLike} />
+      {!isLoading && isError && errorStatus !== 404 && <ServerError errStatus={errorStatus} redo={handleGetPost} />}
+      {!isLoading && isError && errorStatus === 404 && <NotFoundError />}
+      {!isLoading && !isError && (
+        <ReadPresenter
+          postDetail={postDetail}
+          isLoggedIn={isLoggedIn}
+          userNickName={userNickName}
+          handlePostLike={handlePostLike}
+        />
+      )}
     </Layout>
   )
 }

@@ -25,6 +25,7 @@ const initialState = {
     language: 'c_cpp',
     createdAt: '',
     updatedAt: '',
+    writerId: 0,
     writer: '',
     likeNum: 0,
     like: false,
@@ -57,7 +58,7 @@ export default function algoPostReducer(state = initialState, action) {
         dataDetail: {
           id: 0,
           title: '',
-          language: '',
+          language: 'c_cpp',
           createdAt: '',
           updatedAt: '',
           writer: '',

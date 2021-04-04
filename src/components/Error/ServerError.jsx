@@ -3,7 +3,7 @@ import {faRedo} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import style from './index.module.scss'
 
-const Error = (props) => {
+const ServerError = (props) => {
   const {errStatus, redo} = props
 
   return (
@@ -18,4 +18,4 @@ const Error = (props) => {
   )
 }
 
-export default Error
+export default ServerError

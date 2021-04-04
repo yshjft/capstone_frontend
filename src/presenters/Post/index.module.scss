@@ -92,6 +92,20 @@
       }
     }
   }
+  .postEditDelete {
+    .button {
+      margin-right: 10px;
+      padding: 2px 20px;
+      background-color: #24292e;
+      color: white;
+      border: 1px solid #24292e;
+      border-radius: 5px;
+    }
+    .button:active{
+      background-color: white;
+      color: #24292e;
+    }
+  }
   .postCode {
     margin-top: 2%;
     margin-bottom: 4%;

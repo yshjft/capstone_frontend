@@ -53,6 +53,7 @@ export const getAlgoPost = (postId) => {
       dispatch({type: GET_ALGO_POST_SUCCESS, payload: data})
     } catch (error) {
       dispatch({type: GET_ALGO_POST_ERROR})
+      throw error
     } finally {
       dispatch({type: GET_ALGO_POST_FINISH})
     }

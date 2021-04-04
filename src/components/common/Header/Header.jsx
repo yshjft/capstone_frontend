@@ -1,15 +1,21 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
+import {useHistory, useLocation, NavLink} from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import {getLogout} from '../../../actions/auth'
-import {useHistory, NavLink} from 'react-router-dom'
 import {Dropdown} from 'react-bootstrap'
 import CustomToggle from './CutomToggle'
 import styles from './index.module.scss'
 
 const Header = (props) => {
   const {isLoggedIn, nickName} = props
-  const dispatch = useDispatch()
+  const [returnTo, setReturnTo] = useState('')
   const history = useHistory()
+  const dispatch = useDispatch()
+  const location = useLocation()
+
+  useEffect(() => {
+    setReturnTo(location.pathname)
+  }, [location])
 
   function handlePageMove(path) {
     history.push(path)
@@ -18,6 +24,7 @@ const Header = (props) => {
   async function handleLogout() {
     try {
       await dispatch(getLogout())
+      history.push('/')
     } catch (error) {
       // 에러처리 로그아웃 에러 발생시 에러 처리 필요
       console.log(error)
@@ -33,7 +40,11 @@ const Header = (props) => {
         <div className={styles.nav}>
           {!isLoggedIn && (
             <>
-              <NavLink to="/login" className={styles.navLink} activeClassName={styles.activeNavLink}>
+              <NavLink
+                to={`/login?returnTo=${returnTo}`}
+                className={styles.navLink}
+                activeClassName={styles.activeNavLink}
+              >
                 로그인
               </NavLink>
               <NavLink to="/join" className={styles.navLink} activeClassName={styles.activeNavLink}>
