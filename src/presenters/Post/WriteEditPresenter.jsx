@@ -3,7 +3,7 @@ import WritePost from '../../components/WritePost'
 import {useSelector} from 'react-redux'
 import styles from './index.module.scss'
 
-const WritePresenter = (props) => {
+const WriteEditPresenter = (props) => {
   const {handleSubmit} = props
   const isSending = useSelector((state) => state.algoPost.isSending)
   const [title, setTitle] = useState('')
@@ -68,11 +68,11 @@ const WritePresenter = (props) => {
       />
       <div className={styles.buttonArea}>
         <button onClick={handleCheckInput} className={styles.button}>
-          {isSending ? '기록중...' : '기록하기'}
+          {isSending ? '저장 중...' : '저장하기'}
         </button>
       </div>
     </>
   )
 }
 
-export default WritePresenter
+export default WriteEditPresenter

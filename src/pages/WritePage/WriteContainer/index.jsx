@@ -4,7 +4,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {postAlgoPost} from '../../../actions/algoPost'
 import Layout from '../../../components/common/Layout/Layout'
 import ErrorModal from '../../../components/ErrorModal'
-import WritePresenter from '../../../presenters/Post/WritePresenter'
+import WriteEditPresenter from '../../../presenters/Post/WriteEditPresenter'
 import {handleUnauthorized} from '../../../lib/handleResError'
 
 const WriteContainer = (props) => {
@@ -33,7 +33,7 @@ const WriteContainer = (props) => {
 
   return (
     <Layout>
-      <WritePresenter handleSubmit={handleSubmit} />
+      <WriteEditPresenter handleSubmit={handleSubmit} />
       <ErrorModal
         show={errorModalVisible}
         message={'알고리즘 기록에 실패하였습니다'}

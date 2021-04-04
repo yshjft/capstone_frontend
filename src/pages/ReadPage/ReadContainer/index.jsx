@@ -5,8 +5,8 @@ import {getAlgoPost, postAlgoPostLike, deleteAlgoPostLike} from '../../../action
 import {handleUnauthorized} from '../../../lib/handleResError'
 import Layout from '../../../components/common/Layout/Layout'
 import ServerError from '../../../components/Error/ServerError'
-import ReadPresenter from '../../../presenters/Post/ReadPresenter'
 import NotFoundError from '../../../components/Error/NotFoundError'
+import ReadPresenter from '../../../presenters/Post/ReadPresenter'
 
 const ReadContainer = (props) => {
   const [isError, setIsError] = useState(false)
@@ -34,7 +34,7 @@ const ReadContainer = (props) => {
       })
   }
 
-  async function handlePostLike() {
+  async function handleLikePost() {
     if (!isLoggedIn) {
       const returnTo = location.pathname
       return history.push(`/login?returnTo=${returnTo}`)
@@ -51,6 +51,10 @@ const ReadContainer = (props) => {
     }
   }
 
+  function handleEditPost() {
+    history.push(`/write/${postDetail.id}`)
+  }
+
   return (
     <Layout>
       {!isLoading && isError && errorStatus !== 404 && <ServerError errStatus={errorStatus} redo={handleGetPost} />}
@@ -60,7 +64,8 @@ const ReadContainer = (props) => {
           postDetail={postDetail}
           isLoggedIn={isLoggedIn}
           userNickName={userNickName}
-          handlePostLike={handlePostLike}
+          handleLikePost={handleLikePost}
+          handleEditPost={handleEditPost}
         />
       )}
     </Layout>

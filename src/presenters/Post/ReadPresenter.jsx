@@ -17,7 +17,9 @@ import {
   faChevronRight,
   faEdit,
   faTrash,
-  faThumbsUp as solidThumbsUp
+  faThumbsUp as solidThumbsUp,
+  faLock,
+  faLockOpen
 } from '@fortawesome/free-solid-svg-icons'
 import {faThumbsUp as regularThumbsUp} from '@fortawesome/free-regular-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
@@ -27,7 +29,7 @@ import language from '../../lib/language'
 import style from './index.module.scss'
 
 const ReadPresenter = (props) => {
-  const {postDetail, isLoggedIn, userNickName, handlePostLike} = props
+  const {postDetail, isLoggedIn, userNickName, handleLikePost, handleEditPost} = props
 
   return (
     <div className={style.readPostLayout}>
@@ -43,15 +45,21 @@ const ReadPresenter = (props) => {
                 {postDetail.writer}
               </Link>
             </span>
+            {isLoggedIn && userNickName === postDetail.writer && (
+              <span className={style.isPublic}>
+                <FontAwesomeIcon icon={postDetail.public ? faLockOpen : faLock} className={style.icon} />
+                {postDetail.public ? <span>공개</span> : <span>비공개</span>}
+              </span>
+            )}
           </div>
           {!postDetail.like && (
-            <div className={style.postLikeFalse} onClick={handlePostLike}>
+            <div className={style.postLikeFalse} onClick={handleLikePost}>
               <FontAwesomeIcon icon={regularThumbsUp} className={style.icon} />
               <span>{postDetail.likeNum}</span>
             </div>
           )}
           {postDetail.like && (
-            <div className={style.postLikeTrue} onClick={handlePostLike}>
+            <div className={style.postLikeTrue} onClick={handleLikePost}>
               <FontAwesomeIcon icon={solidThumbsUp} className={style.icon} />
               <span>{postDetail.likeNum}</span>
             </div>
@@ -66,7 +74,7 @@ const ReadPresenter = (props) => {
 
       {isLoggedIn && userNickName === postDetail.writer && (
         <div className={style.postEditDelete}>
-          <button className={style.button}>
+          <button className={style.button} onClick={handleEditPost}>
             <FontAwesomeIcon icon={faEdit} />
             <span>수정</span>
           </button>

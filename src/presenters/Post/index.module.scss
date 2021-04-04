@@ -56,6 +56,17 @@
             margin-left: 10px;
           }
         }
+        .isPublic{
+          margin-left: 20px;
+          padding: 2px 8px;
+          background-color: #24292e;
+          color: white;
+          border-radius: 10px;
+          border: 1px solid #24292e;
+          .icon {
+            margin-right: 5px;
+          }
+        }
       }
       .postLikeFalse {
         padding: 3px 10px;

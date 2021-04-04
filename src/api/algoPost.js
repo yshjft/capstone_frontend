@@ -1,8 +1,17 @@
 import api from './index'
 
+export async function postAlgoPost(data) {
+  try {
+    const res = await api.post('/posts', data)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
+
 export async function getAlgoPosts(page) {
   try {
-    const res = await api.get(`/post?start=${page - 1}`)
+    const res = await api.get(`/posts?start=${page - 1}`)
     return res.data
   } catch (error) {
     throw error
@@ -11,16 +20,25 @@ export async function getAlgoPosts(page) {
 
 export async function getAlgoPost(postWriter, postId) {
   try {
-    const res = await api.get(`/post/${postWriter}/${postId}`)
+    const res = await api.get(`/posts/${postId}?writer=${postWriter}`)
     return res.data
   } catch (error) {
     throw error
   }
 }
 
-export async function postAlgoPost(data) {
+export async function getEditAlgoPost(postId) {
   try {
-    const res = await api.post('/post', data)
+    const res = await api.get(`/posts/edit/${postId}`)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
+
+export async function putAlgoPost(postId) {
+  try {
+    const res = await api.get(`/posts/${postId}`)
     return res.data
   } catch (error) {
     throw error
@@ -29,7 +47,7 @@ export async function postAlgoPost(data) {
 
 export async function postAlgoPostLike(id) {
   try {
-    const res = await api.post(`/post/like/${id}`)
+    const res = await api.post(`/posts/like/${id}`)
     return res.data
   } catch (error) {
     throw error
@@ -38,7 +56,7 @@ export async function postAlgoPostLike(id) {
 
 export async function deleteAlgoPostLike(id) {
   try {
-    const res = await api.delete(`/post/like/${id}`)
+    const res = await api.delete(`/posts/like/${id}`)
     return res.data
   } catch (error) {
     throw error
