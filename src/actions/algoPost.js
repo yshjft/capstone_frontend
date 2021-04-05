@@ -76,6 +76,21 @@ export const getEditAlgoPost = (postId) => {
   }
 }
 
+export const PUT_AlGO_POST = 'PUT_ALGO_POST'
+export const PUT_ALGO_POST_FINISH = 'PUT_ALGO_POST_FINISH'
+export const putAlgoPost = (postId, title, language, isPublic, code, memo) => {
+  return async (dispatch, state) => {
+    dispatch({type: PUT_AlGO_POST})
+    try {
+      await algoApi.putAlgoPost(postId, {title, language, public: isPublic, code, memo})
+    } catch (error) {
+      throw error
+    } finally {
+      dispatch({type: PUT_ALGO_POST_FINISH})
+    }
+  }
+}
+
 export const POST_ALGO_POST_LIKE = 'POST_ALGO_POST_LIKE'
 export const postAlgoPostLike = (postId) => {
   return async (dispatch, state) => {

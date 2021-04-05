@@ -83,7 +83,6 @@ export default function algoPostReducer(state = initialState, action) {
           ...action.payload,
           createdAt: '',
           updatedAt: '',
-          writer: '',
           likeNum: 0,
           like: false
         }

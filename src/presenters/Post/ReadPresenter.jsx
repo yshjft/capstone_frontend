@@ -96,12 +96,13 @@ const ReadPresenter = (props) => {
             value={postDetail.code}
             mode={postDetail.language === 'c' || postDetail.language === 'cpp' ? 'c_cpp' : postDetail.language}
             theme="tomorrow"
+            showPrintMargin={false}
             fontSize={15}
             highlightActiveLine={false}
-            minLines={5}
             maxLines={Infinity}
             width="100%"
             readOnly={true}
+            setOptions={{useWorker: false}}
           />
         </div>
       </div>

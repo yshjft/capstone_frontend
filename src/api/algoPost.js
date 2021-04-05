@@ -36,9 +36,9 @@ export async function getEditAlgoPost(postId) {
   }
 }
 
-export async function putAlgoPost(postId) {
+export async function putAlgoPost(postId, data) {
   try {
-    const res = await api.get(`/posts/${postId}`)
+    const res = await api.put(`/posts/${postId}`, data)
     return res.data
   } catch (error) {
     throw error

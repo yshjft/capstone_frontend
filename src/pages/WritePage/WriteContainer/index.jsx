@@ -11,8 +11,8 @@ const WriteContainer = (props) => {
   const [errorModalVisible, setErrorModalVisible] = useState(false)
   const location = useLocation()
   const history = useHistory()
-  const nickName = useSelector((state) => state.auth.nickName)
   const dispatch = useDispatch()
+  const nickName = useSelector((state) => state.auth.nickName)
 
   function handleErrorModalClose() {
     setErrorModalVisible(false)
