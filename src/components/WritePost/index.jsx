@@ -84,7 +84,7 @@ const WritePost = (props) => {
           onChange={handleCodeChange}
           mode={language === 'c' || language === 'cpp' ? 'c_cpp' : language}
           theme="tomorrow"
-          fontSize={18}
+          fontSize={16}
           highlightActiveLine={true}
           minLines={15}
           maxLines={Infinity}

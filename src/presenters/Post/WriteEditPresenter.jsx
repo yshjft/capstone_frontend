@@ -1,19 +1,29 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import WritePost from '../../components/WritePost'
 import {useSelector} from 'react-redux'
 import styles from './index.module.scss'
 
 const WriteEditPresenter = (props) => {
-  const {handleSubmit} = props
-  const isSending = useSelector((state) => state.algoPost.isSending)
+  const {type = 'write', postDetail = null, handleSubmit} = props
   const [title, setTitle] = useState('')
   const [language, setLanguage] = useState('c')
-  const [code, setCode] = useState('')
   const [isPublic, setIsPublic] = useState(true)
+  const [code, setCode] = useState('')
   const [memo, setMemo] = useState('')
   const [warningForTitle, setWarningForTitle] = useState(false)
   const [warningForCode, setWarningForCode] = useState(false)
   const [warningForMemo, setWarningForMemo] = useState(false)
+  const isSending = useSelector((state) => state.algoPost.isSending)
+
+  useEffect(() => {
+    if (type === 'edit' && postDetail != null) {
+      setTitle(postDetail.title)
+      setLanguage(postDetail.language)
+      setIsPublic(postDetail.public)
+      setCode(postDetail.code)
+      setMemo(postDetail.memo)
+    }
+  }, [postDetail])
 
   function handleTitleChange(e) {
     setTitle(e.target.value)

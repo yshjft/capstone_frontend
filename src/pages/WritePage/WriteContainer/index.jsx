@@ -34,11 +34,7 @@ const WriteContainer = (props) => {
   return (
     <Layout>
       <WriteEditPresenter handleSubmit={handleSubmit} />
-      <ErrorModal
-        show={errorModalVisible}
-        message={'알고리즘 기록에 실패하였습니다'}
-        handleClose={handleErrorModalClose}
-      />
+      <ErrorModal show={errorModalVisible} message={'저장에 실패하였습니다'} handleClose={handleErrorModalClose} />
     </Layout>
   )
 }
