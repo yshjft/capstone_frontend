@@ -91,6 +91,17 @@ export const putAlgoPost = (postId, title, language, isPublic, code, memo) => {
   }
 }
 
+export const DELETE_ALGO_POST = 'DELETE_ALGO_POST'
+export const DELETE_ALGO_POST_FINISH = 'DELETE_ALGO_POST_FINISH'
+export const deleteAlgoPost = () => {
+  return async (dispatch, state) => {
+    try {
+    } catch (error) {
+    } finally {
+    }
+  }
+}
+
 export const POST_ALGO_POST_LIKE = 'POST_ALGO_POST_LIKE'
 export const postAlgoPostLike = (postId) => {
   return async (dispatch, state) => {

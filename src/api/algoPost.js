@@ -45,6 +45,15 @@ export async function putAlgoPost(postId, data) {
   }
 }
 
+export async function deleteAlgoPost(postId) {
+  try {
+    const res = await api.delete(`/posts/${postId}`)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
+
 export async function postAlgoPostLike(id) {
   try {
     const res = await api.post(`/posts/like/${id}`)
