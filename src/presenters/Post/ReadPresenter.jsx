@@ -29,7 +29,7 @@ import language from '../../lib/language'
 import style from './index.module.scss'
 
 const ReadPresenter = (props) => {
-  const {postDetail, isLoggedIn, userNickName, handleLikePost, handleEditPost} = props
+  const {postDetail, isLoggedIn, userNickName, handleLikePost, handleEditPost, handleDeleteModalVisible} = props
 
   return (
     <div className={style.readPostLayout}>
@@ -74,12 +74,12 @@ const ReadPresenter = (props) => {
 
       {isLoggedIn && userNickName === postDetail.writer && (
         <div className={style.postEditDelete}>
-          <button className={style.button} onClick={handleEditPost}>
-            <FontAwesomeIcon icon={faEdit} />
+          <button onClick={handleEditPost} className={style.button}>
+            <FontAwesomeIcon icon={faEdit} className={style.icon} />
             <span>수정</span>
           </button>
-          <button className={style.button} onClick={() => {}}>
-            <FontAwesomeIcon icon={faTrash} />
+          <button onClick={() => handleDeleteModalVisible(true)} className={style.button}>
+            <FontAwesomeIcon icon={faTrash} className={style.icon} />
             <span>삭제</span>
           </button>
         </div>

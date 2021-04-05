@@ -93,11 +93,15 @@ export const putAlgoPost = (postId, title, language, isPublic, code, memo) => {
 
 export const DELETE_ALGO_POST = 'DELETE_ALGO_POST'
 export const DELETE_ALGO_POST_FINISH = 'DELETE_ALGO_POST_FINISH'
-export const deleteAlgoPost = () => {
+export const deleteAlgoPost = (postId) => {
   return async (dispatch, state) => {
+    dispatch({type: DELETE_ALGO_POST})
     try {
+      await algoApi.deleteAlgoPost(postId)
     } catch (error) {
+      throw error
     } finally {
+      dispatch({type: DELETE_ALGO_POST_FINISH})
     }
   }
 }

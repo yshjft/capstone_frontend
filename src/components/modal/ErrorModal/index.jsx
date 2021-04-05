@@ -1,5 +1,5 @@
 import React from 'react'
-import Dialog from '@material-ui/core/Dialog'
+import {Dialog} from '@material-ui/core'
 import {faTimes} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import styles from './index.module.scss'

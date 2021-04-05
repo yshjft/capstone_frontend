@@ -7,10 +7,12 @@ import Layout from '../../../components/common/Layout/Layout'
 import ServerError from '../../../components/Error/ServerError'
 import NotFoundError from '../../../components/Error/NotFoundError'
 import ReadPresenter from '../../../presenters/Post/ReadPresenter'
+import DeleteModal from '../../../components/modal/ DeleteModal'
 
 const ReadContainer = (props) => {
   const [isError, setIsError] = useState(false)
   const [errorStatus, setErrorStatus] = useState()
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false)
   const params = useParams()
   const location = useLocation()
   const history = useHistory()
@@ -55,18 +57,26 @@ const ReadContainer = (props) => {
     history.push(`/write/${postDetail.id}`)
   }
 
+  function handleDeleteModalVisible(value) {
+    setDeleteModalVisible(value)
+  }
+
   return (
     <Layout>
       {!isLoading && isError && errorStatus !== 404 && <ServerError errStatus={errorStatus} redo={handleGetPost} />}
       {!isLoading && isError && errorStatus === 404 && <NotFoundError />}
       {!isLoading && !isError && (
-        <ReadPresenter
-          postDetail={postDetail}
-          isLoggedIn={isLoggedIn}
-          userNickName={userNickName}
-          handleLikePost={handleLikePost}
-          handleEditPost={handleEditPost}
-        />
+        <>
+          <ReadPresenter
+            postDetail={postDetail}
+            isLoggedIn={isLoggedIn}
+            userNickName={userNickName}
+            handleLikePost={handleLikePost}
+            handleEditPost={handleEditPost}
+            handleDeleteModalVisible={handleDeleteModalVisible}
+          />
+          <DeleteModal open={deleteModalVisible} handleDeleteModalVisible={handleDeleteModalVisible} />
+        </>
       )}
     </Layout>
   )

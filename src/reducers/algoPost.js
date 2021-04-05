@@ -13,10 +13,11 @@ import {
   GET_EDIT_ALGO_POST_ERROR,
   GET_EDIT_ALGO_POST_SUCCESS,
   GET_EDIT_ALGO_POST_FINISH,
+  DELETE_ALGO_POST,
+  DELETE_ALGO_POST_FINISH,
   POST_ALGO_POST_LIKE,
   DELETE_ALGO_POST_LIKE
 } from '../actions/algoPost'
-import {act} from '@testing-library/react'
 
 const initialState = {
   isLoading: false,
@@ -105,6 +106,10 @@ export default function algoPostReducer(state = initialState, action) {
       }
     case GET_EDIT_ALGO_POST_FINISH:
       return {...state, isLoading: false}
+    case DELETE_ALGO_POST:
+      return {...state, isSending: true}
+    case DELETE_ALGO_POST_FINISH:
+      return {...state, isSending: false}
     case POST_ALGO_POST_LIKE:
     case DELETE_ALGO_POST_LIKE:
       const cpyDataDetail = {

@@ -7,7 +7,7 @@ import Layout from '../../../components/common/Layout/Layout'
 import ServerError from '../../../components/Error/ServerError'
 import NotFoundError from '../../../components/Error/NotFoundError'
 import WriteEditPresenter from '../../../presenters/Post/WriteEditPresenter'
-import ErrorModal from '../../../components/ErrorModal'
+import ErrorModal from '../../../components/modal/ErrorModal'
 
 const EditContainer = (props) => {
   const [isError, setIsError] = useState(false)
