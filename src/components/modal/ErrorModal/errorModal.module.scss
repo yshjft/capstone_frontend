@@ -1,0 +1,32 @@
+.dialogArea {
+  width: 320px;
+  padding: 15px 20px;
+  .title {
+    margin-top:5px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .message {
+    margin: 25px 0px;
+    text-align: center;
+    font-weight: bold;
+  }
+  .buttonArea {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: flex-end;
+    button {
+      border: none;
+      border-radius:5px;
+      padding: 5px 15px;
+      color: white;
+      font-weight: bold;
+      background-color: #24292e;
+    }
+    button:active{
+      opacity: 0.8;
+    }
+  }
+}

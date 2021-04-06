@@ -66,18 +66,16 @@ const ReadContainer = (props) => {
       {!isLoading && isError && errorStatus !== 404 && <ServerError errStatus={errorStatus} redo={handleGetPost} />}
       {!isLoading && isError && errorStatus === 404 && <NotFoundError />}
       {!isLoading && !isError && (
-        <>
-          <ReadPresenter
-            postDetail={postDetail}
-            isLoggedIn={isLoggedIn}
-            userNickName={userNickName}
-            handleLikePost={handleLikePost}
-            handleEditPost={handleEditPost}
-            handleDeleteModalVisible={handleDeleteModalVisible}
-          />
-          <DeleteModal open={deleteModalVisible} handleDeleteModalVisible={handleDeleteModalVisible} />
-        </>
+        <ReadPresenter
+          postDetail={postDetail}
+          isLoggedIn={isLoggedIn}
+          userNickName={userNickName}
+          handleLikePost={handleLikePost}
+          handleEditPost={handleEditPost}
+          handleDeleteModalVisible={handleDeleteModalVisible}
+        />
       )}
+      <DeleteModal open={deleteModalVisible} handleDeleteModalVisible={handleDeleteModalVisible} />
     </Layout>
   )
 }

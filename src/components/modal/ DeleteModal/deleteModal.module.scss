@@ -1,0 +1,39 @@
+.deleteModalArea {
+  width: 320px;
+  padding: 15px 20px;
+  color: #24292e;
+  .title{
+    margin-top:5px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .question {
+    margin: 25px 0px;
+    text-align: center;
+    font-weight: bold;
+  }
+  .buttonArea {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: flex-end;
+    button {
+      margin-left: 5px;
+      border: none;
+      border-radius: 5px;
+      padding: 5px 15px;
+      font-weight: bold;
+    }
+    button:active{
+      opacity: 0.8;
+    }
+    .cancel {
+      color: gray;
+    }
+    .delete {
+      color: white;
+      background-color: #24292e;
+    }
+  }
+}
