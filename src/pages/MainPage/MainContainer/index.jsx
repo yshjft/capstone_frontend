@@ -24,7 +24,7 @@ const MainContainer = (props) => {
       setErrStatus(error.response.status)
       setIsError(true)
     })
-  }, [dispatch])
+  }, [dispatch, query.page])
 
   async function handlePagination(page) {
     try {

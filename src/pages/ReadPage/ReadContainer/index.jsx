@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useCallback} from 'react'
 import {useParams, useLocation, useHistory} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {getAlgoPost, deleteAlgoPost, postAlgoPostLike, deleteAlgoPostLike} from '../../../actions/algoPost'
@@ -25,11 +25,7 @@ const ReadContainer = (props) => {
   const userNickName = useSelector((state) => state.auth.nickName)
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
 
-  useEffect(() => {
-    handleGetPost()
-  }, [params])
-
-  function handleGetPost() {
+  const handleGetPost = useCallback(() => {
     const {nickName, id} = params
     dispatch(getAlgoPost(nickName, id))
       .then((result) => setIsError(false))
@@ -37,7 +33,11 @@ const ReadContainer = (props) => {
         setIsError(true)
         setErrorStatus(error.response.status)
       })
-  }
+  }, [params, dispatch])
+
+  useEffect(() => {
+    handleGetPost()
+  }, [handleGetPost])
 
   async function handleLikePost() {
     if (!isLoggedIn) {

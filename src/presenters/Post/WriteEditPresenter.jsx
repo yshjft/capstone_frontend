@@ -23,7 +23,7 @@ const WriteEditPresenter = (props) => {
       setCode(postDetail.code)
       setMemo(postDetail.memo)
     }
-  }, [postDetail])
+  }, [postDetail, type])
 
   function handleTitleChange(e) {
     setTitle(e.target.value)

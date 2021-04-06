@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useCallback} from 'react'
 import {useParams, useLocation, useHistory} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {getEditAlgoPost, putAlgoPost} from '../../../actions/algoPost'
@@ -20,15 +20,7 @@ const EditContainer = (props) => {
   const location = useLocation()
   const history = useHistory()
 
-  useEffect(() => {
-    handleGetEditPost()
-  }, [params])
-
-  function handleErrorModalClose() {
-    setErrorModalVisible(false)
-  }
-
-  function handleGetEditPost() {
+  const handleGetEditPost = useCallback(() => {
     const {id} = params
     dispatch(getEditAlgoPost(id))
       .then((result) => setIsError(false))
@@ -39,7 +31,11 @@ const EditContainer = (props) => {
         setIsError(true)
         setErrorStatus(error.response.status)
       })
-  }
+  }, [params, history, dispatch])
+
+  useEffect(() => {
+    handleGetEditPost()
+  }, [handleGetEditPost])
 
   async function handlePutPost(title, language, isPublic, code, memo) {
     try {
@@ -54,6 +50,10 @@ const EditContainer = (props) => {
         setErrorModalVisible(true)
       }
     }
+  }
+
+  function handleErrorModalClose() {
+    setErrorModalVisible(false)
   }
 
   return (
