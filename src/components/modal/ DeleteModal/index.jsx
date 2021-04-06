@@ -3,7 +3,7 @@ import {Dialog} from '@material-ui/core'
 import style from './deleteModal.module.scss'
 
 const DeleteModal = (props) => {
-  const {open, handleDeleteModalVisible} = props
+  const {open, handleDeleteModalVisible, handleDeletePost} = props
 
   return (
     <Dialog open={open}>
@@ -14,7 +14,9 @@ const DeleteModal = (props) => {
           <button onClick={() => handleDeleteModalVisible(false)} className={style.cancel}>
             취소
           </button>
-          <button className={style.delete}>삭제</button>
+          <button onClick={handleDeletePost} className={style.delete}>
+            삭제
+          </button>
         </div>
       </div>
     </Dialog>

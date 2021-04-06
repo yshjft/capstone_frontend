@@ -1,18 +1,21 @@
 import React, {useEffect, useState} from 'react'
 import {useParams, useLocation, useHistory} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
-import {getAlgoPost, postAlgoPostLike, deleteAlgoPostLike} from '../../../actions/algoPost'
+import {getAlgoPost, deleteAlgoPost, postAlgoPostLike, deleteAlgoPostLike} from '../../../actions/algoPost'
 import {handleUnauthorized} from '../../../lib/handleResError'
 import Layout from '../../../components/common/Layout/Layout'
 import ServerError from '../../../components/Error/ServerError'
 import NotFoundError from '../../../components/Error/NotFoundError'
 import ReadPresenter from '../../../presenters/Post/ReadPresenter'
 import DeleteModal from '../../../components/modal/ DeleteModal'
+import ErrorModal from '../../../components/modal/ErrorModal'
 
 const ReadContainer = (props) => {
   const [isError, setIsError] = useState(false)
   const [errorStatus, setErrorStatus] = useState()
   const [deleteModalVisible, setDeleteModalVisible] = useState(false)
+  const [errorModalVisible, setErrorModalVisible] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
   const params = useParams()
   const location = useLocation()
   const history = useHistory()
@@ -53,12 +56,33 @@ const ReadContainer = (props) => {
     }
   }
 
+  async function handleDeletePost() {
+    try {
+      await dispatch(deleteAlgoPost(postDetail.id))
+      history.push('/')
+    } catch (error) {
+      if (error.response.status === 401) {
+        handleUnauthorized(location.pathname, dispatch, history)
+      } else {
+        if (error.response.status === 404) setErrorMessage('삭제할 수 없는 게시물 입니다')
+        else setErrorMessage('삭제에 실패하였습니다')
+        setErrorModalVisible(true)
+      }
+    } finally {
+      setDeleteModalVisible(false)
+    }
+  }
+
   function handleEditPost() {
     history.push(`/write/${postDetail.id}`)
   }
 
   function handleDeleteModalVisible(value) {
     setDeleteModalVisible(value)
+  }
+
+  function handleErrorModalClose() {
+    setErrorModalVisible(false)
   }
 
   return (
@@ -75,7 +99,12 @@ const ReadContainer = (props) => {
           handleDeleteModalVisible={handleDeleteModalVisible}
         />
       )}
-      <DeleteModal open={deleteModalVisible} handleDeleteModalVisible={handleDeleteModalVisible} />
+      <DeleteModal
+        open={deleteModalVisible}
+        handleDeleteModalVisible={handleDeleteModalVisible}
+        handleDeletePost={handleDeletePost}
+      />
+      <ErrorModal show={errorModalVisible} message={errorMessage} handleClose={handleErrorModalClose} />
     </Layout>
   )
 }
