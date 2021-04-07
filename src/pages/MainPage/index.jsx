@@ -1,7 +1,7 @@
 import React from 'react'
-import MainContainer from './MainContainer'
 import {Redirect} from 'react-router-dom'
 import qs from 'query-string'
+import MainContainer from './MainContainer'
 
 const MainPage = (props) => {
   const query = qs.parse(props.location.search)
