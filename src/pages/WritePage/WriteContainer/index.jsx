@@ -3,7 +3,7 @@ import {useLocation, useHistory} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {postAlgoPost} from '../../../actions/algoPost'
 import Layout from '../../../components/common/Layout/Layout'
-import ErrorModal from '../../../components/modal/ErrorModal'
+import ErrorModal from '../../../components/Modal/ErrorModal'
 import WriteEditPresenter from '../../../presenters/Post/WriteEditPresenter'
 import {handleUnauthorized} from '../../../lib/handleResError'
 

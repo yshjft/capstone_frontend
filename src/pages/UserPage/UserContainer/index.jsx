@@ -1,12 +1,23 @@
-import React from 'react'
+import React, {useEffect} from 'react'
+import {useLocation} from 'react-router-dom'
+import qs from 'query-string'
 import Layout from '../../../components/common/Layout/Layout'
+import UserInfoPresenter from '../../../presenters/User/UserInfoPresenter'
+import UserPostLogPresenter from '../../../presenters/User/UserPostLogPresenter'
 import TabPresenter from '../../../presenters/User/TabPresenter'
 
 const UserContainer = (props) => {
+  const location = useLocation()
+  const query = qs.parse(location.search)
+
+  useEffect(() => {
+    console.log(query.tab)
+  }, [query.tab])
+
   return (
     <Layout>
-      <div>user information(nickName, email, number of total like, subscribe button)</div>
-      <div>use post log(미정)</div>
+      <UserInfoPresenter />
+      <UserPostLogPresenter />
       <TabPresenter />
     </Layout>
   )

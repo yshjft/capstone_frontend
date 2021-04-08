@@ -7,7 +7,7 @@ import Layout from '../../../components/common/Layout/Layout'
 import ServerError from '../../../components/Error/ServerError'
 import MainSearch from '../../../components/MainSearch'
 import PostListPresenter from '../../../presenters/Post/PostListPresenter'
-import PaginationBlock from '../../../components/pagination/PaginationBlock'
+import PaginationBlock from '../../../components/PaginationBlock/PaginationBlock'
 
 const MainContainer = (props) => {
   const [isError, setIsError] = useState(false)

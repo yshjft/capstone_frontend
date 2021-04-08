@@ -7,8 +7,8 @@ import Layout from '../../../components/common/Layout/Layout'
 import ServerError from '../../../components/Error/ServerError'
 import NotFoundError from '../../../components/Error/NotFoundError'
 import ReadPresenter from '../../../presenters/Post/ReadPresenter'
-import DeleteModal from '../../../components/modal/ DeleteModal'
-import ErrorModal from '../../../components/modal/ErrorModal'
+import DeleteModal from '../../../components/Modal/DeleteModal'
+import ErrorModal from '../../../components/Modal/ErrorModal'
 
 const ReadContainer = (props) => {
   const [isError, setIsError] = useState(false)

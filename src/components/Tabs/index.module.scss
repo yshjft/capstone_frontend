@@ -1,0 +1,18 @@
+.tabsArea {
+  width: 100%;
+  margin: 30px 0px;
+  text-align: center;
+  button {
+    width: 160px;
+    border: none;
+    padding: 5px 0px;
+    color: silver;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: white ;
+  }
+  .selected {
+    border-bottom: 3px solid #24292e;
+    color: #24292e;
+  }
+}
