@@ -12,6 +12,7 @@ const UserPage = (props) => {
     // posts & likes & subscribes
     query.year = new Date().getFullYear()
     query.tab = 'posts'
+    query.tabPage = 1
 
     return <Redirect to={{pathname: location.pathname, search: qs.stringify(query)}} />
   }

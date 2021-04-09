@@ -10,6 +10,7 @@ const CalenderForLog = (props) => {
   const [weekList, setWeekList] = useState([])
 
   useEffect(() => {
+    if (!year) return
     const endOfMonth = formatYearMonthDateDay(new Date(year, month, 0))
     let weekList = []
 
@@ -38,7 +39,13 @@ const CalenderForLog = (props) => {
 
   return (
     <div className={styles.calenderLayout}>
-      <div className={getDateByType('month') === month ? styles.todayMonth : styles.month}>{month}</div>
+      <div
+        className={
+          getDateByType('year') === year && getDateByType('month') === month ? styles.todayMonth : styles.month
+        }
+      >
+        {month}
+      </div>
       <div className={styles.weekArea}>
         <div>
           {weekList.map((week, weekListIndex) => (

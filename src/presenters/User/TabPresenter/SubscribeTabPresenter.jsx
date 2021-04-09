@@ -1,7 +1,12 @@
 import React from 'react'
+import NoData from '../../../components/NoData'
 
 const SubscribeTabPresenter = (props) => {
-  return <div>사용자가 구독한 사람들</div>
+  return (
+    <div>
+      <NoData />
+    </div>
+  )
 }
 
 export default SubscribeTabPresenter

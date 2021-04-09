@@ -9,19 +9,7 @@ const monthList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 const yearList = [2021, 2022, 2023, 2024]
 
 const UserPostLogPresenter = (props) => {
-  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear())
-  const history = useHistory()
-  const location = useLocation()
-  const query = qs.parse(location.search)
-
-  function handleYearChange(year) {
-    query.year = year
-    history.push({
-      pathname: location.pathname,
-      search: qs.stringify(query)
-    })
-    setSelectedYear(year)
-  }
+  const {selectedYear, handleYearChange} = props
 
   return (
     <div className={styles.userPostLogArea}>
