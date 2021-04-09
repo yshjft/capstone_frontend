@@ -4,7 +4,7 @@ import {Badge, Card} from 'react-bootstrap'
 import {faThumbsUp} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import language from '../../lib/language'
-import formatDate from '../../lib/formatDate'
+import {formatDate} from '../../lib/formatDate'
 import style from './index.module.scss'
 
 const PostPreview = (props) => {

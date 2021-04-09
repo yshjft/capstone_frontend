@@ -14,6 +14,10 @@ const UserContainer = (props) => {
     console.log(query.tab)
   }, [query.tab])
 
+  useEffect(() => {
+    console.log(query.year)
+  }, [query.year])
+
   return (
     <Layout>
       <UserInfoPresenter />

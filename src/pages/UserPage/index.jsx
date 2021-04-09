@@ -10,7 +10,9 @@ const UserPage = (props) => {
   if (!query.tab) {
     // 사용자가 쓴 글 목록 & 사용자가 좋아요 누른 글 목록 & 사용자가 구독한 목록
     // posts & likes & subscribes
+    query.year = new Date().getFullYear()
     query.tab = 'posts'
+
     return <Redirect to={{pathname: location.pathname, search: qs.stringify(query)}} />
   }
 

@@ -1,0 +1,32 @@
+.calenderLayout{
+  margin: 5px;
+  min-width: 15%;
+  //border: 1px solid #24292e;
+  .month {
+    text-align: center;
+    font-weight: bold;
+  }
+  .todayMonth{
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    background-color: #24292e;
+  }
+  .weekArea{
+    display: flex;
+    justify-content: center;
+    .week{
+      .vacant {
+        margin: 0px 1px;
+        color: white
+      }
+      .icon {
+        margin: 0px 1px;
+        color: silver;
+      }
+      .todayIcon {
+        margin: 0px 1px;
+      }
+    }
+  }
+}

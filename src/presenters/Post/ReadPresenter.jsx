@@ -24,7 +24,7 @@ import {
 import {faThumbsUp as regularThumbsUp} from '@fortawesome/free-regular-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {Badge} from 'react-bootstrap'
-import formatDate from '../../lib/formatDate'
+import {formatDate} from '../../lib/formatDate'
 import language from '../../lib/language'
 import style from './index.module.scss'
 
