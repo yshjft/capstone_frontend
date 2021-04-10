@@ -1,4 +1,5 @@
 import React from 'react'
+import {useSelector} from 'react-redux'
 import {faEnvelope, faUsers, faThumbsUp, faUserPlus} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import styles from './index.module.scss'
@@ -11,21 +12,23 @@ import styles from './index.module.scss'
 */
 
 const UserInfoPresenter = (props) => {
+  const {userInfo} = props
+
   return (
     <div className={styles.userInfoLayout}>
-      <div className={styles.userNickName}>jerry</div>
+      <div className={styles.userNickName}>{userInfo.nickName}</div>
       <div className={styles.userEmail}>
         <FontAwesomeIcon icon={faEnvelope} className={styles.icon} />
-        <div>jerry@test.com</div>
+        <div>{userInfo.email}</div>
       </div>
       <div className={styles.userFollowerLike}>
         <span className={styles.follower}>
           <FontAwesomeIcon icon={faUsers} />
-          <span> 0 팔로워</span>
+          <span> {userInfo.followerNum} 팔로워</span>
         </span>
         <span className={styles.like}>
           <FontAwesomeIcon icon={faThumbsUp} />
-          <span> 0 좋아요</span>
+          <span> {userInfo.totalLike} 좋아요</span>
         </span>
       </div>
       <div className={styles.userFollow}>

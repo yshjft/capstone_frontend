@@ -6,7 +6,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import styles from './index.module.scss'
 
 const CalenderForLog = (props) => {
-  const {year, month} = props
+  const {year, month, postLogSet} = props
   const [weekList, setWeekList] = useState([])
 
   useEffect(() => {
@@ -53,6 +53,8 @@ const CalenderForLog = (props) => {
               {week.map((day, dayIndex) => {
                 return day === null ? (
                   <FontAwesomeIcon key={dayIndex} icon={solid} className={styles.vacant} />
+                ) : postLogSet.has(`${day.year}-${day.month}-${day.date}`) ? (
+                  <FontAwesomeIcon key={dayIndex} icon={check} className={styles.check} />
                 ) : (
                   <FontAwesomeIcon
                     key={dayIndex}

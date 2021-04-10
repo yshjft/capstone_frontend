@@ -1,15 +1,35 @@
 import React, {useState, useEffect} from 'react'
 import {useLocation, useHistory} from 'react-router-dom'
 import qs from 'query-string'
-import {formatYearMonthDateDay} from '../../../lib/formatDate'
+import {formatYearMonthDateDay, getDateByType} from '../../../lib/formatDate'
 import CalenderForLog from '../../../components/CalenderForLog'
 import styles from './index.module.scss'
 
 const monthList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-const yearList = [2021, 2022, 2023, 2024]
 
 const UserPostLogPresenter = (props) => {
-  const {selectedYear, handleYearChange} = props
+  const {userInfo, postLog, selectedYear, handleYearChange} = props
+  const [yearList, setYearList] = useState([])
+  const [postLogSet, setPostLogSet] = useState()
+
+  useEffect(() => {
+    const joinYear = new Date(userInfo.createdAt).getFullYear()
+    const recentActiveYear = new Date(userInfo.lastPostCreatedAt).getFullYear()
+    const yearsAfterJoin = []
+
+    for (let i = joinYear; i <= recentActiveYear; i++) yearsAfterJoin.push(i)
+    setYearList(yearsAfterJoin)
+  }, [userInfo])
+
+  useEffect(() => {
+    const postLogSet = new Set()
+    postLog.forEach((log) => {
+      const dateObj = formatYearMonthDateDay(new Date(log.createdAt))
+      postLogSet.add(`${dateObj.year}-${dateObj.month}-${dateObj.date}`)
+    })
+    setPostLogSet(postLogSet)
+    console.log(postLogSet)
+  }, [postLog])
 
   return (
     <div className={styles.userPostLogArea}>
@@ -27,7 +47,7 @@ const UserPostLogPresenter = (props) => {
       </div>
       <div className={styles.calenderArea}>
         {monthList.map((month, index) => (
-          <CalenderForLog key={index} year={selectedYear} month={month} />
+          <CalenderForLog key={index} year={selectedYear} month={month} postLogSet={postLogSet} />
         ))}
       </div>
     </div>
