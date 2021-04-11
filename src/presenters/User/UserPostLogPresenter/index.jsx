@@ -6,6 +6,7 @@ import CalenderForLog from '../../../components/CalenderForLog'
 import styles from './index.module.scss'
 
 const monthList = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+const tmpList = [2021, 2022, 2023]
 
 const UserPostLogPresenter = (props) => {
   const {userInfo, postLog, selectedYear, handleYearChange} = props
@@ -18,7 +19,8 @@ const UserPostLogPresenter = (props) => {
     const yearsAfterJoin = []
 
     for (let i = joinYear; i <= recentActiveYear; i++) yearsAfterJoin.push(i)
-    setYearList(yearsAfterJoin)
+    // setYearList(yearsAfterJoin)
+    setYearList(tmpList)
   }, [userInfo])
 
   useEffect(() => {
@@ -28,7 +30,6 @@ const UserPostLogPresenter = (props) => {
       postLogSet.add(`${dateObj.year}-${dateObj.month}-${dateObj.date}`)
     })
     setPostLogSet(postLogSet)
-    console.log(postLogSet)
   }, [postLog])
 
   return (

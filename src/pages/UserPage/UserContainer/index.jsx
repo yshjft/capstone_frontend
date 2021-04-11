@@ -1,28 +1,42 @@
 import React, {useEffect, useState, useCallback} from 'react'
 import {useHistory, useParams, useLocation} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
-import {getUserInfo} from '../../../actions/uesr'
+import {GET_USER_INFO, GET_USER_POST_LOG, GET_USER_TAB_POST, getUserInfo} from '../../../actions/uesr'
 import qs from 'query-string'
 import Layout from '../../../components/common/Layout/Layout'
+import Loading from '../../../components/Loading'
 import UserInfoPresenter from '../../../presenters/User/UserInfoPresenter'
 import UserPostLogPresenter from '../../../presenters/User/UserPostLogPresenter'
 import TabPresenter from '../../../presenters/User/TabPresenter'
 
 const UserContainer = (props) => {
-  const [selectedYear, setSelectedYear] = useState(new Date().getFullYear())
+  const [selectedYear, setSelectedYear] = useState('')
+  const [selectedTab, setSelectedTab] = useState('')
+  const [curTabPage, setCurTabPage] = useState(0)
   const dispatch = useDispatch()
-  const isLoading = useSelector((state) => state.user.isLoading)
+  // useSelector 부분 정리좀 해주세요
+  const isUserInfoLoading = useSelector((state) => state.user.isUserInfoLoading)
+  const isPostLogLoading = useSelector((state) => state.user.isPostLogLoading)
+  const isTabPostLoading = useSelector((state) => state.user.isTabPostLoading)
   const userInfo = useSelector((state) => state.user.userInfo)
   const postLog = useSelector((state) => state.user.postLog)
+  const posts = useSelector((state) => state.user.posts)
+  const likePosts = useSelector((state) => state.user.likePosts)
+  const followingUsers = useSelector((state) => state.user.followingUsers)
+  const total = useSelector((state) => state.user.total)
   const history = useHistory()
   const location = useLocation()
   const params = useParams()
   const query = qs.parse(location.search)
 
   const handleGetUserInfo = useCallback(
-    (nickName, year, tab, tabPage) => {
-      dispatch(getUserInfo(nickName, year, tab, tabPage - 1))
-        .then((result) => setSelectedYear(Number(year)))
+    (type, nickName, year, tab, tabPage) => {
+      dispatch(getUserInfo(type, nickName, year, tab, tabPage - 1))
+        .then((result) => {
+          setSelectedYear(Number(year))
+          setSelectedTab(tab)
+          setCurTabPage(tabPage)
+        })
         .catch((error) => console.log(error))
     },
     [dispatch]
@@ -31,31 +45,62 @@ const UserContainer = (props) => {
   useEffect(() => {
     const {nickName} = params
     const {year, tab, tabPage} = query
+    dispatch({type: GET_USER_INFO})
+    handleGetUserInfo(GET_USER_INFO, nickName, year, tab, tabPage)
+  }, [params.nickName])
 
-    handleGetUserInfo(nickName, year, tab, tabPage)
-  }, [params.nickName, query.year, query.tab, query.tabPage])
+  // api 호출, postLogLoading
+  async function handleYearChange(year) {
+    const {nickName} = params
+    const {tab, tabPage} = query
 
-  function handleYearChange(year) {
     query.year = year
     history.push({
       pathname: location.pathname,
       search: qs.stringify(query)
     })
-    setSelectedYear(year)
+    handleGetUserInfo(GET_USER_POST_LOG, nickName, year, tab, tabPage)
   }
 
-  return (
-    <Layout>
-      <UserInfoPresenter userInfo={userInfo} />
-      <UserPostLogPresenter
-        userInfo={userInfo}
-        postLog={postLog}
-        selectedYear={selectedYear}
-        handleYearChange={handleYearChange}
-      />
-      <TabPresenter />
-    </Layout>
-  )
+  // api 호출, TabPPostLoading
+  async function handleTabSelect(tab) {
+    const {nickName} = params
+    const {year, tabPage} = query
+
+    query.tab = tab
+    history.push({
+      pathname: location.pathname,
+      search: qs.stringify(query)
+    })
+    handleGetUserInfo(GET_USER_TAB_POST, nickName, year, tab, tabPage)
+  }
+
+  // api 호출, TabPPostLoading
+  async function handleTabPageChange() {}
+
+  if (isUserInfoLoading) return <Loading />
+  if (!isUserInfoLoading)
+    return (
+      <Layout>
+        <UserInfoPresenter userInfo={userInfo} />
+        <UserPostLogPresenter
+          userInfo={userInfo}
+          postLog={postLog}
+          selectedYear={selectedYear}
+          handleYearChange={handleYearChange}
+        />
+        <TabPresenter
+          selectedTab={selectedTab}
+          curTabPage={curTabPage}
+          total={total}
+          posts={posts}
+          likePosts={likePosts}
+          followingUsers={followingUsers}
+          handleTabSelect={handleTabSelect}
+          handleTabPageChange={handleTabPageChange}
+        />
+      </Layout>
+    )
 }
 
 export default UserContainer

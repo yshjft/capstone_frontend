@@ -3,6 +3,7 @@ import {useParams, useLocation, useHistory} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import {getAlgoPost, deleteAlgoPost, postAlgoPostLike, deleteAlgoPostLike} from '../../../actions/algoPost'
 import {handleUnauthorized} from '../../../lib/handleResError'
+import Loading from '../../../components/Loading'
 import Layout from '../../../components/common/Layout/Layout'
 import ServerError from '../../../components/Error/ServerError'
 import NotFoundError from '../../../components/Error/NotFoundError'
@@ -16,14 +17,14 @@ const ReadContainer = (props) => {
   const [deleteModalVisible, setDeleteModalVisible] = useState(false)
   const [errorModalVisible, setErrorModalVisible] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
-  const params = useParams()
-  const location = useLocation()
-  const history = useHistory()
   const dispatch = useDispatch()
   const isLoading = useSelector((state) => state.algoPost.isLoading)
   const postDetail = useSelector((state) => state.algoPost.dataDetail)
   const userNickName = useSelector((state) => state.auth.nickName)
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+  const params = useParams()
+  const location = useLocation()
+  const history = useHistory()
 
   const handleGetPost = useCallback(() => {
     const {nickName, id} = params
@@ -85,11 +86,13 @@ const ReadContainer = (props) => {
     setErrorModalVisible(false)
   }
 
+  if (isLoading) return <Loading />
+
   return (
     <Layout>
-      {!isLoading && isError && errorStatus !== 404 && <ServerError errStatus={errorStatus} redo={handleGetPost} />}
-      {!isLoading && isError && errorStatus === 404 && <NotFoundError />}
-      {!isLoading && !isError && (
+      {isError && errorStatus !== 404 && <ServerError errStatus={errorStatus} redo={handleGetPost} />}
+      {isError && errorStatus === 404 && <NotFoundError />}
+      {!isError && (
         <ReadPresenter
           postDetail={postDetail}
           isLoggedIn={isLoggedIn}

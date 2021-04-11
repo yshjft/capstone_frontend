@@ -1,38 +1,21 @@
-import React, {useState, useEffect} from 'react'
-import {useLocation, useHistory} from 'react-router-dom'
-import qs from 'query-string'
+import React from 'react'
 import Tabs from '../../../components/Tabs'
 import PostTabPresenter from './PostTabPresenter'
 import LikeTabPresenter from './LikeTabPresenter'
-import SubscribeTabPresenter from './SubscribeTabPresenter'
+import FollowingTabPresenter from './FollowingTabPresenter'
+import PaginationBlock from '../../../components/PaginationBlock/PaginationBlock'
 
 const TabPresenter = (props) => {
-  // posts & likes & subscribes
-  const [selectedTab, setSelectedTab] = useState('')
-  const location = useLocation()
-  const history = useHistory()
-  const query = qs.parse(location.search)
-
-  useEffect(() => {
-    setSelectedTab(query.tab)
-  }, [query.tab])
-
-  function handleTabSelect(selectedValue) {
-    query.tab = selectedValue
-    history.push({
-      pathname: location.pathname,
-      search: qs.stringify(query)
-    })
-    setSelectedTab(selectedValue)
-  }
+  const {selectedTab, curTabPage, total, posts, likePosts, followingUsers, handleTabSelect, handleTabPageChange} = props
 
   return (
     <>
       <Tabs selectedTab={selectedTab} handleTabSelect={handleTabSelect} />
       <div>
-        {selectedTab === 'posts' && <PostTabPresenter />}
-        {selectedTab === 'likes' && <LikeTabPresenter />}
-        {selectedTab === 'followings' && <SubscribeTabPresenter />}
+        {selectedTab === 'posts' && <PostTabPresenter posts={posts} />}
+        {selectedTab === 'likes' && <LikeTabPresenter likePosts={likePosts} />}
+        {selectedTab === 'followings' && <FollowingTabPresenter followingUsers={followingUsers} />}
+        {/*{total > 0 && <PaginationBlock total={total} handlePagination={handleTabPageChange} />}*/}
       </div>
     </>
   )

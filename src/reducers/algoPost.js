@@ -20,8 +20,8 @@ import {
 } from '../actions/algoPost'
 
 const initialState = {
-  isLoading: false,
-  isSending: false,
+  isLoading: true,
+  isSending: true,
   total: 0,
   data: [],
   dataDetail: {

@@ -1,7 +1,18 @@
-import {GET_USER_INFO, GET_USER_INFO_SUCCESS, GET_USER_INFO_ERROR, GET_USER_INFO_FINISH} from '../actions/uesr'
+import {
+  GET_USER_INFO,
+  GET_USER_POST_LOG,
+  GET_USER_TAB_POST,
+  GET_USER_INFO_SUCCESS,
+  GET_USER_INFO_ERROR,
+  GET_USER_INFO_FINISH,
+  GET_USER_POST_LOG_FINISH,
+  GET_USER_TAB_POST_FINISH
+} from '../actions/uesr'
 
 const initialState = {
-  isLoading: false,
+  isUserInfoLoading: true,
+  isPostLogLoading: true,
+  isTabPostLoading: true,
   userInfo: {
     id: 0,
     nickName: '',
@@ -21,7 +32,11 @@ const initialState = {
 export default function userReducer(state = initialState, action) {
   switch (action.type) {
     case GET_USER_INFO:
-      return {...state, isLoading: true}
+      return {...state, isUserInfoLoading: true}
+    case GET_USER_POST_LOG:
+      return {...state, isPostLogLoading: true}
+    case GET_USER_TAB_POST:
+      return {...state, isTabPostLoading: true}
     case GET_USER_INFO_SUCCESS:
       const {userInfo, postLog, posts, likePosts, followingUsers, total} = action.payload
       return {...state, userInfo, postLog, posts, likePosts, followingUsers, total}
@@ -44,7 +59,11 @@ export default function userReducer(state = initialState, action) {
         total: 0
       }
     case GET_USER_INFO_FINISH:
-      return {...state, isLoading: false}
+      return {...state, isUserInfoLoading: false}
+    case GET_USER_POST_LOG_FINISH:
+      return {...state, isPostLogLoading: false}
+    case GET_USER_TAB_POST_FINISH:
+      return {...state, isTabPostLoading: false}
     default:
       return state
   }

@@ -2,12 +2,16 @@ import * as userApi from '../api/user'
 import {GET_AUTH_CHECK} from './auth'
 
 export const GET_USER_INFO = 'GET_USER_INFO'
+export const GET_USER_POST_LOG = 'GET_USER_POST_LOG'
+export const GET_USER_TAB_POST = 'GET_USER_TAB_POST'
 export const GET_USER_INFO_SUCCESS = 'GET_USER_INFO_SUCCESS'
 export const GET_USER_INFO_ERROR = 'GET_USER_INFO_ERROR'
 export const GET_USER_INFO_FINISH = 'GET_USER_INFO_FINISH'
-export const getUserInfo = (userNickName, year, tab, tabPage) => {
+export const GET_USER_POST_LOG_FINISH = 'GET_USER_POST_LOG_FINISH'
+export const GET_USER_TAB_POST_FINISH = 'GET_USER_TAB_POST_FINISH'
+export const getUserInfo = (type, userNickName, year, tab, tabPage) => {
   return async (dispatch, state) => {
-    dispatch({type: GET_USER_INFO})
+    dispatch({type})
     try {
       const {
         auth,
@@ -24,7 +28,7 @@ export const getUserInfo = (userNickName, year, tab, tabPage) => {
       dispatch({type: GET_USER_INFO_ERROR})
       throw error
     } finally {
-      dispatch({type: GET_USER_INFO_FINISH})
+      dispatch({type: type + '_FINISH'})
     }
   }
 }
