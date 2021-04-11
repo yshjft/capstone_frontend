@@ -32,3 +32,16 @@ export const getUserInfo = (type, userNickName, year, tab, tabPage) => {
     }
   }
 }
+
+export const POST_USER_FOLLOW = 'POST_USER_FOLLOW'
+export const postUserFollow = (followingId) => {
+  return async (dispatch, state) => {
+    try {
+      const {followerNum} = await userApi.postUserFollow(followingId)
+    } catch (error) {
+      throw error
+    }
+  }
+}
+
+export const DELETE_USER_FOLLOW = 'DELETE_USER_FOLLOW'

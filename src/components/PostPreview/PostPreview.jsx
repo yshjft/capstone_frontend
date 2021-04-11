@@ -1,7 +1,7 @@
 import React from 'react'
 import {useHistory} from 'react-router-dom'
 import {Badge, Card} from 'react-bootstrap'
-import {faThumbsUp} from '@fortawesome/free-solid-svg-icons'
+import {faLock, faThumbsUp} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import language from '../../lib/language'
 import {formatDate} from '../../lib/formatDate'
@@ -33,6 +33,12 @@ const PostPreview = (props) => {
           <div className={style.byWriter}>
             <span>by </span>
             <span className={style.writer}>{`${postInfo.writer}`}</span>
+            {postInfo.public === 0 && (
+              <span className={style.private}>
+                <FontAwesomeIcon icon={faLock} className={style.icon} />
+                <span>비공개</span>
+              </span>
+            )}
           </div>
         </Card.Body>
       </Card>

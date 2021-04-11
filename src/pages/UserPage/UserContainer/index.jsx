@@ -15,9 +15,9 @@ const UserContainer = (props) => {
   const [curTabPage, setCurTabPage] = useState(0)
   const dispatch = useDispatch()
   // useSelector 부분 정리좀 해주세요
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
+  const logInUserId = useSelector((state) => state.auth.id)
   const isUserInfoLoading = useSelector((state) => state.user.isUserInfoLoading)
-  const isPostLogLoading = useSelector((state) => state.user.isPostLogLoading)
-  const isTabPostLoading = useSelector((state) => state.user.isTabPostLoading)
   const userInfo = useSelector((state) => state.user.userInfo)
   const postLog = useSelector((state) => state.user.postLog)
   const posts = useSelector((state) => state.user.posts)
@@ -46,10 +46,14 @@ const UserContainer = (props) => {
     const {nickName} = params
     const {year, tab, tabPage} = query
     handleGetUserInfo(GET_USER_INFO, nickName, year, tab, tabPage)
+    return () => {
+      // 야매로 해놓음, 따로 type 만들어서 해결할 것
+      dispatch({type: GET_USER_INFO})
+    }
   }, [params.nickName])
 
   // api 호출, postLogLoading
-  async function handleYearChange(year) {
+  function handleYearChange(year) {
     const {nickName} = params
     const {tab, tabPage} = query
 
@@ -62,7 +66,7 @@ const UserContainer = (props) => {
   }
 
   // api 호출, TabPPostLoading
-  async function handleTabSelect(tab) {
+  function handleTabSelect(tab) {
     const {nickName} = params
     const {year} = query
 
@@ -76,7 +80,7 @@ const UserContainer = (props) => {
   }
 
   // api 호출, TabPPostLoading
-  async function handleTabPageChange(tabPage) {
+  function handleTabPageChange(tabPage) {
     const {nickName} = params
     const {year, tab} = query
 
@@ -88,11 +92,20 @@ const UserContainer = (props) => {
     handleGetUserInfo(GET_USER_TAB_POST, nickName, year, tab, tabPage)
   }
 
+  function handleFollowUser() {
+    if (!isLoggedIn) {
+      const reTurnTo = location.pathname
+      return history.push(`/login?returnTo=${reTurnTo}`)
+    }
+  }
+
+  function handleUnFollowUser() {}
+
   if (isUserInfoLoading) return <Loading />
   if (!isUserInfoLoading)
     return (
       <Layout>
-        <UserInfoPresenter userInfo={userInfo} />
+        <UserInfoPresenter loginUserId={logInUserId} userInfo={userInfo} handleFollowUser={handleFollowUser} />
         <UserPostLogPresenter
           userInfo={userInfo}
           postLog={postLog}

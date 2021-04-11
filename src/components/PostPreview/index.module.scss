@@ -2,6 +2,7 @@
   padding: 16px 0;
   border-bottom: 1px solid rgba(0,0,0,.125);
   cursor: pointer;
+  color: #24292e;
   .header {
     font-size: 20px;
     font-weight: bold;
@@ -25,7 +26,18 @@
   .byWriter {
     margin-top: 5px;
     .writer {
+      margin-right: 10px;
       font-weight: bold;
+    }
+    .private {
+      border-radius: 5px;
+      padding: 2px 4px;
+      background-color: #24292e;
+      color: white;
+      font-weight: bold;
+      .icon{
+        margin-right: 5px;
+      }
     }
   }
 }

@@ -1,6 +1,5 @@
 import React from 'react'
-import {useSelector} from 'react-redux'
-import {faEnvelope, faUsers, faThumbsUp, faUserPlus} from '@fortawesome/free-solid-svg-icons'
+import {faEnvelope, faUsers, faThumbsUp, faUserPlus, faUserCheck} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import styles from './index.module.scss'
 
@@ -12,7 +11,7 @@ import styles from './index.module.scss'
 */
 
 const UserInfoPresenter = (props) => {
-  const {userInfo} = props
+  const {loginUserId, userInfo, handleFollowUser} = props
 
   return (
     <div className={styles.userInfoLayout}>
@@ -31,12 +30,22 @@ const UserInfoPresenter = (props) => {
           <span> {userInfo.totalLike} 좋아요</span>
         </span>
       </div>
-      <div className={styles.userFollow}>
-        <button>
-          <FontAwesomeIcon icon={faUserPlus} className={styles.icon} />
-          <span>팔로우</span>
-        </button>
-      </div>
+      {loginUserId !== userInfo.id && (
+        <div className={styles.userFollow}>
+          {!userInfo.follow && (
+            <button onClick={handleFollowUser}>
+              <FontAwesomeIcon icon={faUserPlus} className={styles.icon} />
+              <span>팔로우</span>
+            </button>
+          )}
+          {userInfo.follow && (
+            <button onClick={handleFollowUser}>
+              <FontAwesomeIcon icon={faUserCheck} className={styles.icon} />
+              <span>언팔로우</span>
+            </button>
+          )}
+        </div>
+      )}
     </div>
   )
 }

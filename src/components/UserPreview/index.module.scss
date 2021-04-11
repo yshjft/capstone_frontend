@@ -1,0 +1,19 @@
+.userPreviewLayout {
+  margin-bottom: 10px;
+}
+.cardBody{
+  color: #24292e;
+  cursor: pointer;
+  font-weight: bold;
+  .nickName {
+    font-size: 20px;
+  }
+  .icon {
+    margin-right: 5px;
+  }
+  .info {
+    span {
+      margin-right: 10px;
+    }
+  }
+}
