@@ -21,7 +21,7 @@ import {
 
 const initialState = {
   isLoading: true,
-  isSending: true,
+  isSending: false,
   total: 0,
   data: [],
   dataDetail: {

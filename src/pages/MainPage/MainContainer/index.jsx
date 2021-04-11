@@ -45,9 +45,7 @@ const MainContainer = (props) => {
     <Layout>
       <MainSearch />
       {isError && <ServerError errStatus={errStatus} redo={handlePagination} />}
-      {!isError && (
-        <PostListPresenter postList={data} total={total} page={query.page} handlePagination={handlePagination} />
-      )}
+      {!isError && <PostListPresenter postList={data} />}
       <PaginationBlock total={total} handlePagination={handlePagination} />
     </Layout>
   )

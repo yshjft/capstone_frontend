@@ -11,7 +11,9 @@ const PaginationBlock = (props) => {
 
   useEffect(() => {
     const query = qs.parse(location.search)
-    setPage(Number(query.page))
+
+    if (query.page) setPage(Number(query.page))
+    else setPage(Number(query.tabPage))
   }, [location])
 
   function handleChange(event, value) {

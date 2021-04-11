@@ -45,7 +45,6 @@ const UserContainer = (props) => {
   useEffect(() => {
     const {nickName} = params
     const {year, tab, tabPage} = query
-    dispatch({type: GET_USER_INFO})
     handleGetUserInfo(GET_USER_INFO, nickName, year, tab, tabPage)
   }, [params.nickName])
 
@@ -65,18 +64,29 @@ const UserContainer = (props) => {
   // api 호출, TabPPostLoading
   async function handleTabSelect(tab) {
     const {nickName} = params
-    const {year, tabPage} = query
+    const {year} = query
 
     query.tab = tab
+    query.tabPage = 1
+    history.push({
+      pathname: location.pathname,
+      search: qs.stringify(query)
+    })
+    handleGetUserInfo(GET_USER_TAB_POST, nickName, year, tab, 1)
+  }
+
+  // api 호출, TabPPostLoading
+  async function handleTabPageChange(tabPage) {
+    const {nickName} = params
+    const {year, tab} = query
+
+    query.tabPage = tabPage
     history.push({
       pathname: location.pathname,
       search: qs.stringify(query)
     })
     handleGetUserInfo(GET_USER_TAB_POST, nickName, year, tab, tabPage)
   }
-
-  // api 호출, TabPPostLoading
-  async function handleTabPageChange() {}
 
   if (isUserInfoLoading) return <Loading />
   if (!isUserInfoLoading)

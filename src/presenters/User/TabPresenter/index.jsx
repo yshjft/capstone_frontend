@@ -15,7 +15,7 @@ const TabPresenter = (props) => {
         {selectedTab === 'posts' && <PostTabPresenter posts={posts} />}
         {selectedTab === 'likes' && <LikeTabPresenter likePosts={likePosts} />}
         {selectedTab === 'followings' && <FollowingTabPresenter followingUsers={followingUsers} />}
-        {/*{total > 0 && <PaginationBlock total={total} handlePagination={handleTabPageChange} />}*/}
+        {total !== 0 && <PaginationBlock total={total} handlePagination={handleTabPageChange} />}
       </div>
     </>
   )
