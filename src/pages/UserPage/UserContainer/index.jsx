@@ -6,8 +6,6 @@ import {
   GET_USER_POST_LOG,
   GET_USER_TAB_POST,
   getUserInfo,
-  POST_USER_FOLLOW,
-  DELETE_USER_FOLLOW,
   postUserFollow,
   deleteUserFollow
 } from '../../../actions/uesr'
@@ -24,7 +22,6 @@ const UserContainer = (props) => {
   const [selectedTab, setSelectedTab] = useState('')
   const [curTabPage, setCurTabPage] = useState(0)
   const dispatch = useDispatch()
-  // useSelector 부분 정리좀 해주세요
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
   const logInUserId = useSelector((state) => state.auth.id)
   const isUserInfoLoading = useSelector((state) => state.user.isUserInfoLoading)
@@ -53,16 +50,16 @@ const UserContainer = (props) => {
   )
 
   useEffect(() => {
-    const {nickName} = params
-    const {year, tab, tabPage} = query
+    const nickName = params.nickName
+    const year = query.year
+    const tab = query.tab
+    const tabPage = query.tabPage
     handleGetUserInfo(GET_USER_INFO, nickName, year, tab, tabPage)
     return () => {
-      // 야매로 해놓음, 따로 type 만들어서 해결할 것
       dispatch({type: GET_USER_INFO})
     }
-  }, [params.nickName])
+  }, [params.nickName, query.year, query.tab, query.tabPage, dispatch, handleGetUserInfo])
 
-  // api 호출, postLogLoading
   function handleYearChange(year) {
     const {nickName} = params
     const {tab, tabPage} = query
@@ -75,7 +72,6 @@ const UserContainer = (props) => {
     handleGetUserInfo(GET_USER_POST_LOG, nickName, year, tab, tabPage)
   }
 
-  // api 호출, TabPPostLoading
   function handleTabSelect(tab) {
     const {nickName} = params
     const {year} = query
@@ -89,7 +85,6 @@ const UserContainer = (props) => {
     handleGetUserInfo(GET_USER_TAB_POST, nickName, year, tab, 1)
   }
 
-  // api 호출, TabPPostLoading
   function handleTabPageChange(tabPage) {
     const {nickName} = params
     const {year, tab} = query

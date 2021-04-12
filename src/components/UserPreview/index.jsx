@@ -1,7 +1,7 @@
 import React from 'react'
 import {useHistory} from 'react-router-dom'
 import {Card} from 'react-bootstrap'
-import {faEnvelope, faUsers, faThumbsUp, faUserPlus} from '@fortawesome/free-solid-svg-icons'
+import {faEnvelope, faUsers, faThumbsUp} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import styles from './index.module.scss'
 

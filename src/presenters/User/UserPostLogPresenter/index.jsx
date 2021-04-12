@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {useLocation, useHistory} from 'react-router-dom'
-import qs from 'query-string'
-import {formatYearMonthDateDay, getDateByType} from '../../../lib/formatDate'
+import {formatYearMonthDateDay} from '../../../lib/formatDate'
 import CalenderForLog from '../../../components/CalenderForLog'
 import styles from './index.module.scss'
 

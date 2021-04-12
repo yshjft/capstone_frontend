@@ -27,6 +27,8 @@ const getDateByType = (type) => {
       return new Date().getMonth() + 1
     case 'date':
       return new Date().getDate()
+    default:
+      return ''
   }
 }
 

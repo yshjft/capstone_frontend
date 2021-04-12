@@ -6,7 +6,7 @@ import FollowingTabPresenter from './FollowingTabPresenter'
 import PaginationBlock from '../../../components/PaginationBlock/PaginationBlock'
 
 const TabPresenter = (props) => {
-  const {selectedTab, curTabPage, total, posts, likePosts, followingUsers, handleTabSelect, handleTabPageChange} = props
+  const {selectedTab, total, posts, likePosts, followingUsers, handleTabSelect, handleTabPageChange} = props
 
   return (
     <>
