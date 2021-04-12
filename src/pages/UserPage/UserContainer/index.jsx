@@ -1,13 +1,23 @@
 import React, {useEffect, useState, useCallback} from 'react'
 import {useHistory, useParams, useLocation} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
-import {GET_USER_INFO, GET_USER_POST_LOG, GET_USER_TAB_POST, getUserInfo} from '../../../actions/uesr'
+import {
+  GET_USER_INFO,
+  GET_USER_POST_LOG,
+  GET_USER_TAB_POST,
+  getUserInfo,
+  POST_USER_FOLLOW,
+  DELETE_USER_FOLLOW,
+  postUserFollow,
+  deleteUserFollow
+} from '../../../actions/uesr'
 import qs from 'query-string'
 import Layout from '../../../components/common/Layout/Layout'
 import Loading from '../../../components/Loading'
 import UserInfoPresenter from '../../../presenters/User/UserInfoPresenter'
 import UserPostLogPresenter from '../../../presenters/User/UserPostLogPresenter'
 import TabPresenter from '../../../presenters/User/TabPresenter'
+import {handleUnauthorized} from '../../../lib/handleResError'
 
 const UserContainer = (props) => {
   const [selectedYear, setSelectedYear] = useState('')
@@ -92,14 +102,21 @@ const UserContainer = (props) => {
     handleGetUserInfo(GET_USER_TAB_POST, nickName, year, tab, tabPage)
   }
 
-  function handleFollowUser() {
+  async function handleFollowUser() {
     if (!isLoggedIn) {
       const reTurnTo = location.pathname
       return history.push(`/login?returnTo=${reTurnTo}`)
     }
+    try {
+      if (!userInfo.follow) {
+        await dispatch(postUserFollow(userInfo.id))
+      } else {
+        await dispatch(deleteUserFollow(userInfo.id))
+      }
+    } catch (error) {
+      if (error.response.status === 401) handleUnauthorized(location.pathname, dispatch, history)
+    }
   }
-
-  function handleUnFollowUser() {}
 
   if (isUserInfoLoading) return <Loading />
   if (!isUserInfoLoading)

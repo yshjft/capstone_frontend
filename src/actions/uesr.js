@@ -38,6 +38,7 @@ export const postUserFollow = (followingId) => {
   return async (dispatch, state) => {
     try {
       const {followerNum} = await userApi.postUserFollow(followingId)
+      dispatch({type: POST_USER_FOLLOW, payload: {followNum: followerNum, follow: true}})
     } catch (error) {
       throw error
     }
@@ -45,3 +46,13 @@ export const postUserFollow = (followingId) => {
 }
 
 export const DELETE_USER_FOLLOW = 'DELETE_USER_FOLLOW'
+export const deleteUserFollow = (followingId) => {
+  return async (dispatch, state) => {
+    try {
+      const {followerNum} = await userApi.deleteUserFollow(followingId)
+      dispatch({type: DELETE_USER_FOLLOW, payload: {followNum: followerNum, follow: false}})
+    } catch (error) {
+      throw error
+    }
+  }
+}

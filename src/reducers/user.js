@@ -6,7 +6,9 @@ import {
   GET_USER_INFO_ERROR,
   GET_USER_INFO_FINISH,
   GET_USER_POST_LOG_FINISH,
-  GET_USER_TAB_POST_FINISH
+  GET_USER_TAB_POST_FINISH,
+  POST_USER_FOLLOW,
+  DELETE_USER_FOLLOW
 } from '../actions/uesr'
 
 const initialState = {
@@ -20,7 +22,8 @@ const initialState = {
     followNum: 0,
     totalLike: 0,
     createdAt: '',
-    lastPostCreatedAt: ''
+    lastPostCreatedAt: '',
+    follow: false
   },
   postLog: [],
   posts: [],
@@ -64,6 +67,12 @@ export default function userReducer(state = initialState, action) {
       return {...state, isPostLogLoading: false}
     case GET_USER_TAB_POST_FINISH:
       return {...state, isTabPostLoading: false}
+    case POST_USER_FOLLOW:
+    case DELETE_USER_FOLLOW:
+      const {followNum, follow} = action.payload
+      const cpyUserInfo = {...state.userInfo, followNum, follow}
+      state.userInfo = cpyUserInfo
+      return state
     default:
       return state
   }

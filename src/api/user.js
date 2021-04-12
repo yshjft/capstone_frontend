@@ -11,7 +11,7 @@ export async function getUserInfo(userNickName, year, tab, tabPage) {
 
 export async function postUserFollow(followingId) {
   try {
-    const res = await api.post(`/users/${followingId}`)
+    const res = await api.post(`/users/follow/${followingId}`)
     return res.data
   } catch (error) {
     throw error
@@ -20,7 +20,7 @@ export async function postUserFollow(followingId) {
 
 export async function deleteUserFollow(followingId) {
   try {
-    const res = await api.post(`/users/${followingId}`)
+    const res = await api.delete(`/users/follow/${followingId}`)
     return res.data
   } catch (error) {
     throw error
