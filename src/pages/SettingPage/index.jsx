@@ -1,7 +1,8 @@
 import React from 'react'
+import SettingContainer from './SettingContainer'
 
 const SettingPage = (page) => {
-  return <div>Setting Component</div>
+  return <SettingContainer />
 }
 
 export default SettingPage

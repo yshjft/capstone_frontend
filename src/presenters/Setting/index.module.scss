@@ -1,0 +1,40 @@
+.settingLayout {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 30%;
+  color: #24292e;
+  .settingArea {
+    width: 100%;
+    .userInfo {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 10px;
+      font-size: 20px;
+      font-weight: bold;
+      .icon{
+        margin-right: 10px;
+      }
+      .tag {
+        margin-right: 20px;
+      }
+      .deleteUser{
+        border: 1px solid #e74c3c;
+        background-color: #e74c3c;
+      }
+      button {
+        border: 1px solid #24292e;
+        border-radius: 10px;
+        color: white;
+        background-color: #24292e;
+      }
+      button:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}

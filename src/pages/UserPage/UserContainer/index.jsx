@@ -51,14 +51,12 @@ const UserContainer = (props) => {
 
   useEffect(() => {
     const nickName = params.nickName
-    const year = query.year
-    const tab = query.tab
-    const tabPage = query.tabPage
+    const {year, tab, tabPage} = query
     handleGetUserInfo(GET_USER_INFO, nickName, year, tab, tabPage)
     return () => {
       dispatch({type: GET_USER_INFO})
     }
-  }, [params.nickName, query.year, query.tab, query.tabPage, dispatch, handleGetUserInfo])
+  }, [params.nickName, dispatch, handleGetUserInfo])
 
   function handleYearChange(year) {
     const {nickName} = params

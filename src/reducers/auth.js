@@ -13,6 +13,7 @@ const initialState = {
   isLoading: false,
   id: 0,
   nickName: '',
+  email: '',
   isLoggedIn: false
 }
 
