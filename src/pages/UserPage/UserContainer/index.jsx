@@ -12,6 +12,8 @@ import {
 import qs from 'query-string'
 import Layout from '../../../components/common/Layout/Layout'
 import Loading from '../../../components/Loading'
+import NotFoundError from '../../../components/Error/NotFoundError'
+import ServerError from '../../../components/Error/ServerError'
 import UserInfoPresenter from '../../../presenters/User/UserInfoPresenter'
 import UserPostLogPresenter from '../../../presenters/User/UserPostLogPresenter'
 import TabPresenter from '../../../presenters/User/TabPresenter'
@@ -21,6 +23,8 @@ const UserContainer = (props) => {
   const [selectedYear, setSelectedYear] = useState('')
   const [selectedTab, setSelectedTab] = useState('')
   const [curTabPage, setCurTabPage] = useState(0)
+  const [isError, setIsError] = useState(false)
+  const [errStatus, setErrStatus] = useState(200)
   const dispatch = useDispatch()
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn)
   const logInUserId = useSelector((state) => state.auth.id)
@@ -37,26 +41,29 @@ const UserContainer = (props) => {
   const query = qs.parse(location.search)
 
   const handleGetUserInfo = useCallback(
-    (type, nickName, year, tab, tabPage) => {
+    (type = GET_USER_INFO, nickName = params.nickName, year = query.year, tab = query.tab, tabPage = query.tabPage) => {
       dispatch(getUserInfo(type, nickName, year, tab, tabPage - 1))
         .then((result) => {
+          setIsError(false)
+          setErrStatus(200)
           setSelectedYear(Number(year))
           setSelectedTab(tab)
           setCurTabPage(tabPage)
         })
-        .catch((error) => console.log(error))
+        .catch((error) => {
+          setIsError(true)
+          setErrStatus(error.response.status)
+        })
     },
-    [dispatch]
+    [params.nickName, query.year, query.tab, query.tabPage, dispatch]
   )
 
   useEffect(() => {
-    const nickName = params.nickName
-    const {year, tab, tabPage} = query
-    handleGetUserInfo(GET_USER_INFO, nickName, year, tab, tabPage)
+    handleGetUserInfo()
     return () => {
       dispatch({type: GET_USER_INFO})
     }
-  }, [params.nickName, dispatch, handleGetUserInfo])
+  }, [dispatch, handleGetUserInfo])
 
   function handleYearChange(year) {
     const {nickName} = params
@@ -112,6 +119,21 @@ const UserContainer = (props) => {
   }
 
   if (isUserInfoLoading) return <Loading />
+
+  if (isError && errStatus === 404)
+    return (
+      <Layout>
+        <NotFoundError />
+      </Layout>
+    )
+
+  if (isError && errStatus !== 404)
+    return (
+      <Layout>
+        <ServerError errStatus={errStatus} redo={handleGetUserInfo} />
+      </Layout>
+    )
+
   if (!isUserInfoLoading)
     return (
       <Layout>

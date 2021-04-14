@@ -1,7 +1,6 @@
 import React, {useState, useRef} from 'react'
 import {useDispatch} from 'react-redux'
 import {postJoin} from '../../../actions/auth'
-import {validateEmailForm} from '../../../lib/validate'
 import Layout from '../../../components/common/Layout/Layout'
 import JoinPresenter from '../../../presenters/Auth/JoinPresenter'
 import {
