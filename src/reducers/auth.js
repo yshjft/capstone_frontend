@@ -6,7 +6,10 @@ import {
   POST_LOGIN_ERROR,
   POST_LOGIN_FINISH,
   GET_AUTH_CHECK,
-  GET_LOGOUT
+  GET_LOGOUT,
+  PUT_USER_INFO,
+  PUT_USER_INFO_SUCCESS,
+  PUT_USER_INFO_FINISH
 } from '../actions/auth'
 
 const initialState = {
@@ -34,6 +37,12 @@ export default function authReducer(state = initialState, action) {
     case POST_JOIN:
       return {...state, isLoading: true}
     case POST_JOIN_FINISH:
+      return {...state, isLoading: false}
+    case PUT_USER_INFO:
+      return {...state, isLoading: true}
+    case PUT_USER_INFO_SUCCESS:
+      return {...state, ...{...action.payload}}
+    case PUT_USER_INFO_FINISH:
       return {...state, isLoading: false}
     default:
       return state

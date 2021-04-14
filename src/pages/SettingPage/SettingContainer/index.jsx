@@ -1,17 +1,19 @@
 import React, {useRef, useState} from 'react'
-import {useSelector} from 'react-redux'
-import SettingPresenter from '../../../presenters/Setting'
-import SettingModal from '../../../components/Modal/SettingModal'
+import {useDispatch, useSelector} from 'react-redux'
+import {putUserInfo} from '../../../actions/auth'
 import {
   handleValidNickName,
   handleValidEmail,
   handleValidPassword,
   handleValidPasswordCheck
 } from '../../../lib/validate'
+import SettingPresenter from '../../../presenters/Setting'
+import SettingModal from '../../../components/Modal/SettingModal'
 
 const SettingContainer = (props) => {
   const [show, setShow] = useState(false)
   const [settingType, setSettingType] = useState('')
+  const dispatch = useDispatch()
   const userId = useSelector((state) => state.auth.id)
   const userNickName = useSelector((state) => state.auth.nickName)
   const userEmail = useSelector((state) => state.auth.email)
@@ -57,16 +59,24 @@ const SettingContainer = (props) => {
 
     if (!valid) return
 
-    switch (settingType) {
-      case 'nickName':
-        console.log(nickNameRef.current.value)
-        break
-      case 'email':
-        console.log(emailRef.current.value)
-        break
-      case 'password':
-        console.log(passwordRef.current.value)
-        break
+    try {
+      let data = ''
+      switch (settingType) {
+        case 'nickName':
+          data = nickNameRef.current.value
+          break
+        case 'email':
+          data = emailRef.current.value
+          break
+        case 'password':
+          data = passwordRef.current.value
+          break
+        default:
+          return
+      }
+      await dispatch(putUserInfo(data, settingType))
+    } catch (error) {
+      console.log(error)
     }
   }
 

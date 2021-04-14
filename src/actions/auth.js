@@ -2,13 +2,6 @@ import * as authApi from '../api/auth'
 
 export const POST_JOIN = 'POST_JOIN'
 export const POST_JOIN_FINISH = 'POST_JOIN_FINISH'
-export const POST_LOGIN = 'POST_LOGIN'
-export const POST_LOGIN_SUCCESS = 'POST_LOGIN_SUCCESS'
-export const POST_LOGIN_ERROR = 'POST_LOGIN_ERROR'
-export const POST_LOGIN_FINISH = 'POST_LOGIN_FINISH'
-export const GET_AUTH_CHECK = 'GET_AUTH_CHECK'
-export const GET_LOGOUT = 'GET_LOGOUT'
-
 export const postJoin = ({email, nickName, password}) => {
   return async (dispatch, state) => {
     dispatch({type: POST_JOIN})
@@ -22,6 +15,10 @@ export const postJoin = ({email, nickName, password}) => {
   }
 }
 
+export const POST_LOGIN = 'POST_LOGIN'
+export const POST_LOGIN_SUCCESS = 'POST_LOGIN_SUCCESS'
+export const POST_LOGIN_ERROR = 'POST_LOGIN_ERROR'
+export const POST_LOGIN_FINISH = 'POST_LOGIN_FINISH'
 export const postLogin = ({email, password}) => {
   return async (dispatch, state) => {
     dispatch({type: POST_LOGIN})
@@ -37,6 +34,7 @@ export const postLogin = ({email, password}) => {
   }
 }
 
+export const GET_AUTH_CHECK = 'GET_AUTH_CHECK'
 export const getAuthCheck = () => {
   return async (dispatch, state) => {
     try {
@@ -49,6 +47,7 @@ export const getAuthCheck = () => {
   }
 }
 
+export const GET_LOGOUT = 'GET_LOGOUT'
 export const getLogout = () => {
   return async (dispatch, state) => {
     try {
@@ -56,6 +55,23 @@ export const getLogout = () => {
       dispatch({type: GET_LOGOUT})
     } catch (error) {
       throw error
+    }
+  }
+}
+
+export const PUT_USER_INFO = 'PUT_USER_INFO'
+export const PUT_USER_INFO_SUCCESS = 'PUT_USER_INFO_SUCCESS'
+export const PUT_USER_INFO_FINISH = 'PUT_USER_INFO_FINISH'
+export const putUserInfo = (data, editType) => {
+  return async (dispatch, state) => {
+    dispatch({type: PUT_USER_INFO})
+    try {
+      const payload = await authApi.putUserInfo(data, editType)
+      dispatch({type: PUT_USER_INFO_SUCCESS, payload})
+    } catch (error) {
+      throw error
+    } finally {
+      dispatch({type: PUT_USER_INFO_FINISH})
     }
   }
 }

@@ -35,3 +35,12 @@ export async function getLogOut() {
     throw error
   }
 }
+
+export async function putUserInfo(data, editType) {
+  try {
+    const res = await api.put(`/auth/edit?editType=${editType}`, data)
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
