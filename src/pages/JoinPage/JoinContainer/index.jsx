@@ -1,9 +1,15 @@
 import React, {useState, useRef} from 'react'
 import {useDispatch} from 'react-redux'
 import {postJoin} from '../../../actions/auth'
-import {validateEmail} from '../../../lib/validate'
+import {validateEmailForm} from '../../../lib/validate'
 import Layout from '../../../components/common/Layout/Layout'
 import JoinPresenter from '../../../presenters/Auth/JoinPresenter'
+import {
+  handleValidEmail,
+  handleValidNickName,
+  handleValidPassword,
+  handleValidPasswordCheck
+} from '../../../lib/validate'
 
 const JoinContainer = (props) => {
   const {history} = props
@@ -17,78 +23,13 @@ const JoinContainer = (props) => {
   const passwordCheckRef = useRef(null)
   const dispatch = useDispatch()
 
-  function handleValidEmail() {
-    const email = emailRef.current.value
-
-    if (email === '') {
-      setIsValidEmail({isValid: false, inValidType: 'EMPTY'})
-      return false
-    }
-
-    if (!validateEmail(email)) {
-      setIsValidEmail({isValid: false, inValidType: 'INVALID_EMAIL'})
-      return false
-    }
-
-    setIsValidEmail({isValid: true, inValidType: ''})
-    return true
-  }
-
-  function handleValidNickName() {
-    const nickName = nickNameRef.current.value
-
-    if (nickName === '') {
-      setIsValidNickName({isValid: false, inValidType: 'EMPTY'})
-      return false
-    }
-
-    if (nickName.length > 10) {
-      setIsValidNickName({isValid: false, inValidType: 'TOO_LONG'})
-      return false
-    }
-
-    setIsValidNickName({isValid: true, inValidType: ''})
-    return true
-  }
-
-  function handleValidPassword() {
-    const password = passwordRef.current.value
-    if (password === '') {
-      setIsValidPassword({isValid: false, inValidType: 'EMPTY'})
-      return false
-    }
-    if (password.length < 6) {
-      setIsValidPassword({isValid: false, inValidType: 'TOO_SHORT'})
-      return false
-    }
-
-    setIsValidPassword({isValid: true, inValidType: ''})
-    return true
-  }
-
-  function handleValidPasswordCheck() {
-    const password = passwordRef.current.value
-    const passwordCheck = passwordCheckRef.current.value
-    if (passwordCheck === '') {
-      setIsValidPasswordCheck({isValid: false, inValidType: 'EMPTY'})
-      return false
-    }
-    if (password !== passwordCheck) {
-      setIsValidPasswordCheck({isValid: false, inValidType: 'NOT_EQUAL'})
-      return false
-    }
-
-    setIsValidPasswordCheck({isValid: true, inValidType: ''})
-    return true
-  }
-
   async function handleJoin(e) {
     e.preventDefault()
 
-    const validEmail = handleValidEmail()
-    const validNickName = handleValidNickName()
-    const validPassword = handleValidPassword()
-    const validPasswordCheck = handleValidPasswordCheck()
+    const validEmail = handleValidEmail(emailRef, setIsValidEmail)
+    const validNickName = handleValidNickName(nickNameRef, setIsValidNickName)
+    const validPassword = handleValidPassword(passwordRef, setIsValidPassword)
+    const validPasswordCheck = handleValidPasswordCheck(passwordRef, passwordCheckRef, setIsValidPasswordCheck)
 
     if (!validEmail || !validNickName || !validPassword || !validPasswordCheck) return
 
@@ -119,10 +60,12 @@ const JoinContainer = (props) => {
         isValidNickName={isValidNickName}
         isValidPassword={isValidPassword}
         isValidPasswordCheck={isValidPasswordCheck}
-        handleValidEmail={handleValidEmail}
-        handleValidNickName={handleValidNickName}
-        handleValidPassword={handleValidPassword}
-        handleValidPasswordCheck={handleValidPasswordCheck}
+        handleValidEmail={() => handleValidEmail(emailRef, setIsValidEmail)}
+        handleValidNickName={() => handleValidNickName(nickNameRef, setIsValidNickName)}
+        handleValidPassword={() => handleValidPassword(passwordRef, setIsValidPassword)}
+        handleValidPasswordCheck={() =>
+          handleValidPasswordCheck(passwordRef, passwordCheckRef, setIsValidPasswordCheck)
+        }
         handleJoin={handleJoin}
       />
     </Layout>
