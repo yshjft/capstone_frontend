@@ -36,7 +36,7 @@ const SettingPresenter = (props) => {
           <div>
             <FontAwesomeIcon icon={faDoorOpen} className={styles.icon} />
             <span className={styles.tag}>회원 탈퇴</span>
-            <button onClick={() => handleOpen('exit')} className={styles.deleteUser}>
+            <button onClick={() => handleOpen('quit')} className={styles.deleteUser}>
               회원 탈퇴
             </button>
           </div>

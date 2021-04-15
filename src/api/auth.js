@@ -44,3 +44,11 @@ export async function putUserInfo(data, editType) {
     throw error
   }
 }
+
+export async function deleteUser() {
+  try {
+    await api.delete('/auth/quit')
+  } catch (error) {
+    throw error
+  }
+}

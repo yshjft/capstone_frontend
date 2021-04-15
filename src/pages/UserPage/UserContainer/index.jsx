@@ -55,7 +55,7 @@ const UserContainer = (props) => {
           setErrStatus(error.response.status)
         })
     },
-    [params.nickName, query.year, query.tab, query.tabPage, dispatch]
+    [params.nickName, dispatch]
   )
 
   useEffect(() => {

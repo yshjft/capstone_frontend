@@ -6,6 +6,7 @@ const SettingModal = forwardRef((props, ref) => {
   const {
     show,
     settingType,
+    isLoading,
     userNickName,
     userEmail,
     isValidNickName,
@@ -117,8 +118,8 @@ const SettingModal = forwardRef((props, ref) => {
           <button onClick={handleClose} className={styles.cancel}>
             취소
           </button>
-          <button className={styles.change} onClick={handleEdit}>
-            변경
+          <button className={styles.change} onClick={handleEdit} disabled={isLoading ? 'disabled' : ''}>
+            {isLoading ? '변경 중...' : '변경'}
           </button>
         </div>
       </div>

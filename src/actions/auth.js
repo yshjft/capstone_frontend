@@ -75,3 +75,19 @@ export const putUserInfo = (data, editType) => {
     }
   }
 }
+
+export const DELETE_USER = 'DELETE_USER'
+export const DELETE_USER_FINISH = 'DELETE_USER_FINISH'
+export const deleteUser = () => {
+  return async (dispatch, state) => {
+    dispatch({type: DELETE_USER})
+    try {
+      await authApi.deleteUser()
+      dispatch({type: GET_LOGOUT})
+    } catch (error) {
+      throw error
+    } finally {
+      dispatch({type: DELETE_USER_FINISH})
+    }
+  }
+}

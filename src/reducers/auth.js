@@ -9,7 +9,9 @@ import {
   GET_LOGOUT,
   PUT_USER_INFO,
   PUT_USER_INFO_SUCCESS,
-  PUT_USER_INFO_FINISH
+  PUT_USER_INFO_FINISH,
+  DELETE_USER,
+  DELETE_USER_FINISH
 } from '../actions/auth'
 
 const initialState = {
@@ -43,6 +45,10 @@ export default function authReducer(state = initialState, action) {
     case PUT_USER_INFO_SUCCESS:
       return {...state, ...{...action.payload}}
     case PUT_USER_INFO_FINISH:
+      return {...state, isLoading: false}
+    case DELETE_USER:
+      return {...state, isLoading: true}
+    case DELETE_USER_FINISH:
       return {...state, isLoading: false}
     default:
       return state
