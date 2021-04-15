@@ -70,7 +70,7 @@ const SettingModal = forwardRef((props, ref) => {
               <div className={styles.warning}>
                 {isValidNickName.inValidType === 'EMPTY' && '닉네임을 입력해주세요'}
                 {isValidNickName.inValidType === 'TOO_LONG' && '10자 이내 닉네임을 입력해주세요'}
-                {isValidNickName.inValidType === 'SAME_NICK_NAME' && '사용할 수 없는 닉네임입니다'}
+                {isValidNickName.inValidType === 'SAME_NICKNAME' && '사용할 수 없는 닉네임입니다'}
               </div>
             )}
           </div>

@@ -1,6 +1,7 @@
 import React, {useRef, useState} from 'react'
+import {useHistory} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
-import {putUserInfo} from '../../../actions/auth'
+import {GET_LOGOUT, putUserInfo} from '../../../actions/auth'
 import {
   handleValidNickName,
   handleValidEmail,
@@ -13,8 +14,8 @@ import SettingModal from '../../../components/Modal/SettingModal'
 const SettingContainer = (props) => {
   const [show, setShow] = useState(false)
   const [settingType, setSettingType] = useState('')
+  const history = useHistory()
   const dispatch = useDispatch()
-  const userId = useSelector((state) => state.auth.id)
   const userNickName = useSelector((state) => state.auth.nickName)
   const userEmail = useSelector((state) => state.auth.email)
   const [isValidNickName, setIsValidNickName] = useState({isValid: true, inValidType: ''})
@@ -29,8 +30,8 @@ const SettingContainer = (props) => {
   function handleOpen(value) {
     setShow(true)
     setSettingType(value)
-    setIsValidEmail({isValid: true, inValidType: ''})
     setIsValidNickName({isValid: true, inValidType: ''})
+    setIsValidEmail({isValid: true, inValidType: ''})
     setIsValidPassword({isValid: true, inValidType: ''})
     setIsValidPasswordCheck({isValid: true, inValidType: ''})
   }
@@ -63,20 +64,31 @@ const SettingContainer = (props) => {
       let data = ''
       switch (settingType) {
         case 'nickName':
-          data = nickNameRef.current.value
+          data = {nickName: nickNameRef.current.value}
           break
         case 'email':
-          data = emailRef.current.value
+          data = {email: emailRef.current.value}
           break
         case 'password':
-          data = passwordRef.current.value
+          data = {password: passwordRef.current.value}
           break
         default:
           return
       }
       await dispatch(putUserInfo(data, settingType))
+      setShow(false)
     } catch (error) {
-      console.log(error)
+      if (error.response.status === 401) {
+        dispatch({type: GET_LOGOUT})
+        return history.push('/login?returnTo=setting')
+      }
+
+      if (error.response.status === 409) {
+        if (error.response.data.type === 'SAME_NICKNAME')
+          setIsValidNickName({isValid: false, inValidType: error.response.data.type})
+        if (error.response.data.type === 'SAME_EMAIL')
+          setIsValidEmail({isValid: false, inValidType: error.response.data.type})
+      }
     }
   }
 
