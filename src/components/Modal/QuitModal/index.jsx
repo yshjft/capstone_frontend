@@ -3,7 +3,7 @@ import {Dialog} from '@material-ui/core'
 import styles from './quit.module.scss'
 
 const QuitModal = (props) => {
-  const {show, handleClose, handleQuit} = props
+  const {show, isLoading, handleClose, handleQuit} = props
 
   return (
     <Dialog open={show}>
@@ -14,8 +14,8 @@ const QuitModal = (props) => {
           <button onClick={handleClose} className={styles.cancel}>
             취소
           </button>
-          <button onClick={handleQuit} className={styles.quit}>
-            탈퇴
+          <button onClick={handleQuit} disabled={isLoading ? 'disabled' : ''} className={styles.quit}>
+            {isLoading ? '탈퇴 중...' : '탈퇴'}
           </button>
         </div>
       </div>
