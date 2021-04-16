@@ -34,6 +34,18 @@ export const postLogin = ({email, password}) => {
   }
 }
 
+export const GET_LOGOUT = 'GET_LOGOUT'
+export const getLogout = () => {
+  return async (dispatch, state) => {
+    try {
+      await authApi.getLogOut()
+      dispatch({type: GET_LOGOUT})
+    } catch (error) {
+      throw error
+    }
+  }
+}
+
 export const GET_AUTH_CHECK = 'GET_AUTH_CHECK'
 export const getAuthCheck = () => {
   return async (dispatch, state) => {
@@ -47,14 +59,17 @@ export const getAuthCheck = () => {
   }
 }
 
-export const GET_LOGOUT = 'GET_LOGOUT'
-export const getLogout = () => {
+export const GET_PASSWORD_SEARCH = 'GET_PASSWORD_SEARCH'
+export const GET_PASSWORD_SEARCH_FINISH = 'GET_PASSWORD_SEARCH_FINISH'
+export const getPasswordSearch = (email) => {
   return async (dispatch, state) => {
+    dispatch({type: GET_PASSWORD_SEARCH})
     try {
-      await authApi.getLogOut()
-      dispatch({type: GET_LOGOUT})
+      await authApi.getPasswordSearch(email)
     } catch (error) {
       throw error
+    } finally {
+      dispatch({type: GET_PASSWORD_SEARCH_FINISH})
     }
   }
 }

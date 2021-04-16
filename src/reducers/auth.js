@@ -11,7 +11,9 @@ import {
   PUT_USER_INFO_SUCCESS,
   PUT_USER_INFO_FINISH,
   DELETE_USER,
-  DELETE_USER_FINISH
+  DELETE_USER_FINISH,
+  GET_PASSWORD_SEARCH,
+  GET_PASSWORD_SEARCH_FINISH
 } from '../actions/auth'
 
 const initialState = {
@@ -49,6 +51,10 @@ export default function authReducer(state = initialState, action) {
     case DELETE_USER:
       return {...state, isLoading: true}
     case DELETE_USER_FINISH:
+      return {...state, isLoading: false}
+    case GET_PASSWORD_SEARCH:
+      return {...state, isLoading: true}
+    case GET_PASSWORD_SEARCH_FINISH:
       return {...state, isLoading: false}
     default:
       return state

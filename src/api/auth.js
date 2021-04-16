@@ -18,6 +18,15 @@ export async function postLogin(data) {
   }
 }
 
+export async function getLogOut() {
+  try {
+    const res = await api.get('/auth/logout')
+    return res.data
+  } catch (error) {
+    throw error
+  }
+}
+
 export async function getAuthCheck() {
   try {
     const res = await api.get('/auth/authCheck')
@@ -27,9 +36,9 @@ export async function getAuthCheck() {
   }
 }
 
-export async function getLogOut() {
+export async function getPasswordSearch(data) {
   try {
-    const res = await api.get('/auth/logout')
+    const res = await api.get('/auth/searchPassword', data)
     return res.data
   } catch (error) {
     throw error

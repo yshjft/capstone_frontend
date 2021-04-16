@@ -1,18 +1,24 @@
-import React from 'react'
+import React, {forwardRef} from 'react'
 import styles from './index.module.scss'
 import {Spinner} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 
-const SearchPasswordPresenter = (props) => {
+const SearchPasswordPresenter = forwardRef((props, ref) => {
+  const {isValidEmail, handleEmailChange, handlePasswordSearch} = props
+
   return (
     <div className={styles.searchPasswordLayout}>
       <div className={styles.searchPasswordArea}>
         <div className={styles.title}>비밀번호 찾기</div>
         <div className={styles.inputArea}>
-          <input placeholder={'이메일'} />
-          <button>찾기</button>
+          <input ref={ref} placeholder={'이메일'} onChange={handleEmailChange} />
+          <button onClick={handlePasswordSearch}>찾기</button>
         </div>
-        <div className={styles.warning}>가입되지 않은 이메일입니다</div>
+        <div className={styles.warning}>
+          {/*가입되지 않은 이메일입니다*/}
+          {isValidEmail.inValidType === 'EMPTY' && '이메일을 입력해주세요'}
+          {isValidEmail.inValidType === 'INVALID_EMAIL' && '올바른 이메일 주소를 입력해주세요'}
+        </div>
       </div>
       {/*<div className={styles.loadingArea}>*/}
       {/*  <div className={styles.title}>비밀번호 찾는 중</div>*/}
@@ -25,6 +31,6 @@ const SearchPasswordPresenter = (props) => {
       {/*</div>*/}
     </div>
   )
-}
+})
 
 export default SearchPasswordPresenter
