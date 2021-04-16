@@ -1,6 +1,7 @@
 export {default as MainPage} from './MainPage'
 export {default as JoinPage} from './JoinPage'
 export {default as LoginPage} from './LoginPage'
+export {default as SearchPasswordPage} from './SearchPasswordPage'
 export {default as WritePage} from './WritePage'
 export {default as ReadPage} from './ReadPage'
 export {default as EditPage} from './EditPage'

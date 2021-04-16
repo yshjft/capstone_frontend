@@ -23,9 +23,13 @@ const LoginPresenter = forwardRef((props, ref) => {
             {isLoading ? '로그인 중...' : '로그인'}
           </Button>
         </div>
-        <div className={styles.forFirst}>
+        <div className={styles.moveTo}>
           <div>계정이 없으신가요?</div>
           <Link to="/join">회원가입</Link>
+        </div>
+        <div className={styles.moveTo}>
+          <div>비밀번호를 잊으셨나요?</div>
+          <Link to="/searchPassword">비밀번호 찾기</Link>
         </div>
       </Form>
     </div>

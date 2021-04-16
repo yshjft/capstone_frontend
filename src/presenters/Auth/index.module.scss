@@ -1,10 +1,11 @@
 .loginLayout {
-  margin: 9% 5%;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 9% 5%;
   border: 1px solid #ced4da;
   border-radius: 10px;
+  padding: 3%;
   .form {
     width: 60%;
     .title {
@@ -29,10 +30,15 @@
         background-color: #24292e;
       }
     }
-    .forFirst {
-      margin-bottom: 10%;
-      text-align: center;
+    .moveTo {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin: 1% 0;
       color: #24292e;
+      div {
+        margin-right: 10px;
+      }
     }
   }
 }
@@ -67,5 +73,63 @@
         background-color: #24292e;
       }
     }
+  }
+}
+
+.searchPasswordLayout {
+  margin: 20% 5%;
+  border: 1px solid silver;
+  border-radius: 10px;
+  padding: 10%;
+  color: #24292e;
+  .searchPasswordArea {
+    text-align: center;
+    .title {
+      margin-bottom: 10%;
+      font-size: 32px;
+      font-weight: bold;
+    }
+    .inputArea {
+      input {
+        width: 60%;
+        height: 40px;
+        outline: none;
+      }
+      button {
+        height: 40px;
+        border: 1px solid #24292e;
+        color: white;
+        font-weight: bold;
+        background-color: #24292e;
+      }
+      button:active {
+        opacity: 0.8;
+      }
+    }
+    .warning {
+      margin-top: 10px;
+      color: #e74c3c;
+    }
+  }
+  .loadingArea {
+    text-align: center;
+    .title {
+      margin-bottom: 5%;
+      font-size: 32px;
+      font-weight: bold;
+    }
+  }
+  .result {
+    .title {
+      margin-bottom: 5%;
+      font-size: 32px;
+      font-weight: bold;
+    }
+    .instruction {
+      margin-bottom: 2%;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    text-align: center;
   }
 }
