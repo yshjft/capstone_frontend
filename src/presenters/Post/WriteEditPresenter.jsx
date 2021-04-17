@@ -19,7 +19,7 @@ const WriteEditPresenter = (props) => {
     if (type === 'edit' && postDetail != null) {
       setTitle(postDetail.title)
       setLanguage(postDetail.language)
-      setIsPublic(postDetail.public)
+      setIsPublic(!!postDetail.public)
       setCode(postDetail.code)
       setMemo(postDetail.memo)
     }
