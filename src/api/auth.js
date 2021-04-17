@@ -36,9 +36,9 @@ export async function getAuthCheck() {
   }
 }
 
-export async function getPasswordSearch(data) {
+export async function getPasswordSearch(email) {
   try {
-    const res = await api.get('/auth/searchPassword', data)
+    const res = await api.get(`/auth/searchPassword?email=${email}`)
     return res.data
   } catch (error) {
     throw error
