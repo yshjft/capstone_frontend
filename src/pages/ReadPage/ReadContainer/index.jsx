@@ -60,7 +60,7 @@ const ReadContainer = (props) => {
   async function handleDeletePost() {
     try {
       await dispatch(deleteAlgoPost(postDetail.id))
-      history.push('/')
+      history.push(`/@${userNickName}`)
     } catch (error) {
       if (error.response.status === 401) {
         handleUnauthorized(location.pathname, dispatch, history)
