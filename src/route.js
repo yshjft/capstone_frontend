@@ -7,7 +7,8 @@ import {
   ReadPage,
   EditPage,
   SettingPage,
-  UserPage
+  UserPage,
+  NotFoundPage
 } from './pages'
 import withIsNotLoggedIn from './hoc/withIsNotLoggedIn'
 import withIsLoggedIn from './hoc/withIsLoggedIn'
@@ -21,5 +22,6 @@ export const routes = [
   {path: '/write/:id', component: withIsLoggedIn(EditPage)},
   {path: '/@:nickName', component: UserPage, exact: true},
   {path: '/@:nickName/:id', component: ReadPage},
-  {path: '/setting', component: withIsLoggedIn(SettingPage)}
+  {path: '/setting', component: withIsLoggedIn(SettingPage)},
+  {path: '*', component: NotFoundPage}
 ]
