@@ -13,6 +13,7 @@ const MainContainer = (props) => {
   const [isError, setIsError] = useState(false)
   const [errStatus, setErrStatus] = useState(200)
   const dispatch = useDispatch()
+  const isLoading = useSelector((state) => state.algoPost.isLoading)
   const data = useSelector((state) => state.algoPost.data)
   const total = useSelector((state) => state.algoPost.total)
   const location = useLocation()
