@@ -41,7 +41,7 @@ const Header = (props) => {
           {!isLoggedIn && (
             <>
               <NavLink
-                to={returnTo !== '/join' ? `/login?returnTo=${returnTo}` : '/login'}
+                to={returnTo !== '/join' && returnTo !== '/searchPassword' ? `/login?returnTo=${returnTo}` : '/login'}
                 className={styles.navLink}
                 activeClassName={styles.activeNavLink}
               >
