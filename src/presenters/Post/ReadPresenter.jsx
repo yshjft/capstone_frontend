@@ -31,8 +31,6 @@ import style from './index.module.scss'
 const ReadPresenter = (props) => {
   const {postDetail, isLoggedIn, userNickName, handleLikePost, handleEditPost, handleDeleteModalVisible} = props
 
-  console.log('확인 = ', postDetail)
-
   return (
     <div className={style.readPostLayout}>
       <div className={style.postTitle}>{postDetail.title}</div>
