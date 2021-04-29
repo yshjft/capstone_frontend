@@ -28,7 +28,6 @@ export const getAlgoPosts = (page) => {
       dispatch({type: GET_AUTH_CHECK, payload: auth})
       dispatch({type: GET_ALGO_POSTS_SUCCESS, payload: {data, total}})
     } catch (error) {
-      // 서버 에러가 있는 경우 아예 에러 전용 창을 보여줄 수 있도록 하자
       dispatch({type: GET_ALGO_POSTS_ERROR})
       throw error
     } finally {

@@ -1,14 +1,13 @@
 import axios from 'axios'
 
-const instance = axios.create({baseURL: '/api', withCredentials: true, time: 20000})
+const instance = axios.create({
+  baseURL: '/api',
+  withCredentials: true,
+  time: 20000
+})
 
 async function errorHandler(e) {
   console.log(`[Error Data]: ${JSON.stringify(e.response.data, null, 2)}`)
-  // if (e.response.status === 401) {
-  //   const returnTo = window.location.pathname
-  //   window.history.go({data: `/login?returnTo=${returnTo}`})
-  //   // window.open('/', '_self')
-  // }
   throw e
 }
 
@@ -16,6 +15,7 @@ if (process.env.REACT_APP_ENV === 'dev') {
   instance.interceptors.request.use(
     (config) => {
       const {url, method, params, data} = config
+      console.log(process.env.REACT_APP_ENV)
       console.log(`[Request]: ${JSON.stringify({url, params, method, data}, null, 2)}`)
       return config
     },
