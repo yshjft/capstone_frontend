@@ -15,7 +15,6 @@ if (process.env.REACT_APP_ENV === 'dev') {
   instance.interceptors.request.use(
     (config) => {
       const {url, method, params, data} = config
-      console.log(process.env.REACT_APP_ENV)
       console.log(`[Request]: ${JSON.stringify({url, params, method, data}, null, 2)}`)
       return config
     },
