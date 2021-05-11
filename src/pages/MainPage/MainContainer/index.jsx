@@ -20,11 +20,26 @@ const MainContainer = (props) => {
   const query = qs.parse(location.search)
 
   useEffect(() => {
-    dispatch(getAlgoPosts(query.page)).catch((error) => {
+    dispatch(getAlgoPosts(query.page, query.search)).catch((error) => {
       setErrStatus(error.response.status)
       setIsError(true)
     })
   }, [dispatch])
+
+  async function handleSearch(search) {
+    try {
+      if (search === '') delete query.search
+      else query.search = search
+      history.push({
+        pathname: location.pathname,
+        search: qs.stringify(query)
+      })
+      await dispatch(getAlgoPosts(query.page, query.search))
+    } catch (error) {
+      setErrStatus(error.response.status)
+      setIsError(true)
+    }
+  }
 
   async function handlePagination(page) {
     try {
@@ -34,7 +49,7 @@ const MainContainer = (props) => {
         pathname: location.pathname,
         search: qs.stringify(query)
       })
-      await dispatch(getAlgoPosts(query.page))
+      await dispatch(getAlgoPosts(query.page, query.search))
     } catch (error) {
       setErrStatus(error.response.status)
       setIsError(true)
@@ -43,7 +58,7 @@ const MainContainer = (props) => {
 
   return (
     <Layout>
-      <MainSearch />
+      <MainSearch handleSearch={handleSearch} />
       {isError && <ServerError errStatus={errStatus} redo={handlePagination} />}
       {!isError && <PostListPresenter postList={data} />}
       <PaginationBlock total={total} handlePagination={handlePagination} />

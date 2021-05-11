@@ -9,9 +9,13 @@ export async function postAlgoPost(data) {
   }
 }
 
-export async function getAlgoPosts(page) {
+export async function getAlgoPosts(page, search) {
   try {
-    const res = await api.get(`/posts?start=${page - 1}`)
+    let url = `/posts?start=${page - 1}`
+
+    if (search) url += `&search=${search}`
+
+    const res = await api.get(url)
     return res.data
   } catch (error) {
     throw error
