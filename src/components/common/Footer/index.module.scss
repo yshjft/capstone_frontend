@@ -18,18 +18,19 @@
     .developers {
       margin: 3px 0px;
     }
-    .gitForDevelopers{
-      margin: 1px 0px;
+    .gitHubLinkArea{
       display: flex;
       justify-content: center;
-      .gitForDeveloper {
-        margin: 0px 10px;
-        .link {
-          color: silver;
-          text-decoration: none;
-        }
-        .link:hover {
-          text-decoration: underline;
+      .gitHubLinks {
+        margin: 0 5px;
+        .gitHubLink {
+          .link {
+            color: silver;
+            text-decoration: none;
+          }
+          .link:hover {
+            text-decoration: underline;
+          }
         }
       }
     }

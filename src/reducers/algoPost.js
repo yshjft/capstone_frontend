@@ -2,6 +2,7 @@ import {
   POST_ALGO_POST,
   POST_ALGO_POST_FINISH,
   GET_ALGO_POSTS,
+  GET_ALGO_POSTS_SEARCH,
   GET_ALGO_POSTS_ERROR,
   GET_ALGO_POSTS_SUCCESS,
   GET_ALGO_POSTS_FINISH,
@@ -45,6 +46,8 @@ export default function algoPostReducer(state = initialState, action) {
       return {...state, isSending: true}
     case POST_ALGO_POST_FINISH:
       return {...state, isSending: false}
+    case GET_ALGO_POSTS_SEARCH:
+      return {...state, isLoading: true, total: 0}
     case GET_ALGO_POSTS:
       return {...state, isLoading: true}
     case GET_ALGO_POSTS_SUCCESS:

@@ -1,7 +1,6 @@
 import React, {useRef, useEffect} from 'react'
 import {useLocation} from 'react-router-dom'
 import qs from 'query-string'
-import {Button} from 'react-bootstrap'
 import {faSearch} from '@fortawesome/free-solid-svg-icons'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import styles from './index.module.scss'

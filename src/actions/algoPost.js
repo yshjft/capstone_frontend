@@ -17,12 +17,14 @@ export const postAlgoPost = (title, language, isPublic, code, memo) => {
 }
 
 export const GET_ALGO_POSTS = 'GET_ALGO_POSTS'
+export const GET_ALGO_POSTS_SEARCH = 'GET_ALGO_POST_SEARCH'
 export const GET_ALGO_POSTS_SUCCESS = 'GET_ALGO_POSTS_SUCCESS'
 export const GET_ALGO_POSTS_ERROR = 'GET_ALGO_POSTS_ERROR'
 export const GET_ALGO_POSTS_FINISH = 'GET_ALGO_POSTS_FINISH'
 export const getAlgoPosts = (page, search) => {
   return async (dispatch, state) => {
-    dispatch({type: GET_ALGO_POSTS})
+    if (search) dispatch({type: GET_ALGO_POSTS_SEARCH})
+    else dispatch({type: GET_ALGO_POSTS})
     try {
       const {auth, data, total} = await algoApi.getAlgoPosts(page, search)
       dispatch({type: GET_AUTH_CHECK, payload: auth})

@@ -9,11 +9,13 @@ import MainSearch from '../../../components/MainSearch'
 import PostListPresenter from '../../../presenters/Post/PostListPresenter'
 import NoData from '../../../components/NoData'
 import PaginationBlock from '../../../components/PaginationBlock/PaginationBlock'
+import Loading from '../../../components/Loading'
 
 const MainContainer = (props) => {
   const [isError, setIsError] = useState(false)
   const [errStatus, setErrStatus] = useState(200)
   const dispatch = useDispatch()
+  const isLoading = useSelector((state) => state.algoPost.isLoading)
   const data = useSelector((state) => state.algoPost.data)
   const total = useSelector((state) => state.algoPost.total)
   const location = useLocation()
@@ -30,12 +32,16 @@ const MainContainer = (props) => {
   async function handleSearch(search) {
     try {
       setIsError(false)
+
       if (search === '') delete query.search
       else query.search = search
+      query.page = 1
+
       history.push({
         pathname: location.pathname,
         search: qs.stringify(query)
       })
+
       await dispatch(getAlgoPosts(query.page, query.search))
     } catch (error) {
       setErrStatus(error.response.status)
@@ -62,8 +68,9 @@ const MainContainer = (props) => {
     <Layout>
       <MainSearch handleSearch={handleSearch} />
       {isError && <ServerError errStatus={errStatus} redo={handlePagination} />}
-      {!isError && total !== 0 && <PostListPresenter postList={data} />}
-      {!isError && total === 0 && <NoData />}
+      {!isError && isLoading && <Loading />}
+      {!isError && !isLoading && total !== 0 && <PostListPresenter postList={data} />}
+      {!isError && !isLoading && total === 0 && <NoData />}
       <PaginationBlock total={total} handlePagination={handlePagination} />
     </Layout>
   )
