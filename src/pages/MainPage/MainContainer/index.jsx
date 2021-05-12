@@ -7,6 +7,7 @@ import Layout from '../../../components/common/Layout/Layout'
 import ServerError from '../../../components/Error/ServerError'
 import MainSearch from '../../../components/MainSearch'
 import PostListPresenter from '../../../presenters/Post/PostListPresenter'
+import NoData from '../../../components/NoData'
 import PaginationBlock from '../../../components/PaginationBlock/PaginationBlock'
 
 const MainContainer = (props) => {
@@ -28,6 +29,7 @@ const MainContainer = (props) => {
 
   async function handleSearch(search) {
     try {
+      setIsError(false)
       if (search === '') delete query.search
       else query.search = search
       history.push({
@@ -60,7 +62,8 @@ const MainContainer = (props) => {
     <Layout>
       <MainSearch handleSearch={handleSearch} />
       {isError && <ServerError errStatus={errStatus} redo={handlePagination} />}
-      {!isError && <PostListPresenter postList={data} />}
+      {!isError && total !== 0 && <PostListPresenter postList={data} />}
+      {!isError && total === 0 && <NoData />}
       <PaginationBlock total={total} handlePagination={handlePagination} />
     </Layout>
   )

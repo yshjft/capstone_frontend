@@ -1,0 +1,33 @@
+.mainSearch {
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 0;
+  .searchBox {
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid #24292e;
+    border-radius: 5px;
+    padding: 2px;
+    input {
+      width: 100%;
+      border: 0;
+      outline: none;
+      font-weight: bold;
+      font-size: 25px;
+    }
+    button {
+      border: none;
+      background-color: transparent;
+      .icon {
+        margin: 0 5px;
+        font-weight: bold;
+        font-size: 20px;
+        color: rgb(118, 118, 118);
+      }
+    }
+  }
+}
