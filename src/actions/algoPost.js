@@ -21,9 +21,9 @@ export const GET_ALGO_POSTS_SEARCH = 'GET_ALGO_POST_SEARCH'
 export const GET_ALGO_POSTS_SUCCESS = 'GET_ALGO_POSTS_SUCCESS'
 export const GET_ALGO_POSTS_ERROR = 'GET_ALGO_POSTS_ERROR'
 export const GET_ALGO_POSTS_FINISH = 'GET_ALGO_POSTS_FINISH'
-export const getAlgoPosts = (page, search) => {
+export const getAlgoPosts = (page, search, bySearch) => {
   return async (dispatch, state) => {
-    if (search) dispatch({type: GET_ALGO_POSTS_SEARCH})
+    if (bySearch) dispatch({type: GET_ALGO_POSTS_SEARCH})
     else dispatch({type: GET_ALGO_POSTS})
     try {
       const {auth, data, total} = await algoApi.getAlgoPosts(page, search)

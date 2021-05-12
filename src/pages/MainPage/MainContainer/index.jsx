@@ -42,7 +42,7 @@ const MainContainer = (props) => {
         search: qs.stringify(query)
       })
 
-      await dispatch(getAlgoPosts(query.page, query.search))
+      await dispatch(getAlgoPosts(query.page, query.search, true))
     } catch (error) {
       setErrStatus(error.response.status)
       setIsError(true)
@@ -57,7 +57,7 @@ const MainContainer = (props) => {
         pathname: location.pathname,
         search: qs.stringify(query)
       })
-      await dispatch(getAlgoPosts(query.page, query.search))
+      await dispatch(getAlgoPosts(query.page, query.search, false))
     } catch (error) {
       setErrStatus(error.response.status)
       setIsError(true)
