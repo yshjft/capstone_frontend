@@ -27,7 +27,7 @@ const MainContainer = (props) => {
       setErrStatus(error.response.status)
       setIsError(true)
     })
-  }, [dispatch])
+  }, [dispatch, query.page, query.search])
 
   async function handleSearch(search) {
     try {
@@ -41,8 +41,6 @@ const MainContainer = (props) => {
         pathname: location.pathname,
         search: qs.stringify(query)
       })
-
-      await dispatch(getAlgoPosts(query.page, query.search, true))
     } catch (error) {
       setErrStatus(error.response.status)
       setIsError(true)
@@ -57,7 +55,6 @@ const MainContainer = (props) => {
         pathname: location.pathname,
         search: qs.stringify(query)
       })
-      await dispatch(getAlgoPosts(query.page, query.search, false))
     } catch (error) {
       setErrStatus(error.response.status)
       setIsError(true)
