@@ -53,7 +53,6 @@ const WritePost = (props) => {
             <option value="ruby">Ruby</option>
             <option value="kotlin">Kotlin</option>
             <option value="swift">Swift</option>
-            <option value="golang">Go</option>
           </select>
         </div>
         <div className={styles.isPublicArea}>
