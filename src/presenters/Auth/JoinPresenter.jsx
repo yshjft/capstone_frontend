@@ -4,6 +4,7 @@ import styles from './index.module.scss'
 
 const JoinPresenter = forwardRef((props, ref) => {
   const {
+    isLoading,
     isValidEmail,
     isValidNickName,
     isValidPassword,
@@ -81,7 +82,7 @@ const JoinPresenter = forwardRef((props, ref) => {
         </Form.Group>
         <div className={styles.buttonArea}>
           <Button type="submit" size="lg" className={styles.button}>
-            회원가입
+            {isLoading ? '회원가입 중...' : '회원가입'}
           </Button>
         </div>
       </Form>

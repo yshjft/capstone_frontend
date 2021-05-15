@@ -1,5 +1,5 @@
 import React, {useState, useRef} from 'react'
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {postJoin} from '../../../actions/auth'
 import Layout from '../../../components/common/Layout/Layout'
 import JoinPresenter from '../../../presenters/Auth/JoinPresenter'
@@ -16,11 +16,12 @@ const JoinContainer = (props) => {
   const [isValidNickName, setIsValidNickName] = useState({isValid: true, inValidType: ''})
   const [isValidPassword, setIsValidPassword] = useState({isValid: true, inValidType: ''})
   const [isValidPasswordCheck, setIsValidPasswordCheck] = useState({isValid: true, inValidType: ''})
+  const dispatch = useDispatch()
+  const isLoading = useSelector((state) => state.auth.isLoading)
   const emailRef = useRef(null)
   const nickNameRef = useRef(null)
   const passwordRef = useRef(null)
   const passwordCheckRef = useRef(null)
-  const dispatch = useDispatch()
 
   async function handleJoin(e) {
     e.preventDefault()
@@ -55,6 +56,7 @@ const JoinContainer = (props) => {
     <Layout>
       <JoinPresenter
         ref={{emailRef, nickNameRef, passwordRef, passwordCheckRef}}
+        isLoading={isLoading}
         isValidEmail={isValidEmail}
         isValidNickName={isValidNickName}
         isValidPassword={isValidPassword}
