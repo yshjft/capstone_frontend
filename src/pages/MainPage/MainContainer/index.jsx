@@ -34,7 +34,8 @@ const MainContainer = (props) => {
       setIsError(false)
 
       if (search === '') delete query.search
-      else query.search = search
+      else query.search = search.replace(/#/g, '%23')
+
       query.page = 1
 
       history.push({
