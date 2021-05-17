@@ -34,7 +34,7 @@ const MainContainer = (props) => {
       setIsError(false)
 
       if (search === '') delete query.search
-      else query.search = search.replace(/#/g, '%23')
+      else query.search = encodeURIComponent(search)
 
       query.page = 1
 

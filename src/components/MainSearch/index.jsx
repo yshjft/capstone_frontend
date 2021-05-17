@@ -12,7 +12,7 @@ const MainSearch = (props) => {
   const query = qs.parse(location.search)
 
   useEffect(() => {
-    inputRef.current.value = query.search == null ? '' : query.search.replaceAll(/%23/g, '#')
+    inputRef.current.value = query.search == null ? '' : decodeURIComponent(query.search)
   }, [query.search])
 
   async function enterKey() {
