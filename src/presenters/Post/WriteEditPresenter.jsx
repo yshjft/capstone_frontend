@@ -7,7 +7,7 @@ const WriteEditPresenter = (props) => {
   const {type = 'write', postDetail = null, handleSubmit} = props
   const [title, setTitle] = useState('')
   const [language, setLanguage] = useState('c')
-  const [isPublic, setIsPublic] = useState(true)
+  const [isPublic, setIsPublic] = useState('')
   const [code, setCode] = useState('')
   const [memo, setMemo] = useState('')
   const [warningForTitle, setWarningForTitle] = useState(false)
@@ -16,7 +16,9 @@ const WriteEditPresenter = (props) => {
   const isSending = useSelector((state) => state.algoPost.isSending)
 
   useEffect(() => {
-    if (type === 'edit' && postDetail != null) {
+    if (type === 'write' && postDetail == null) {
+      setIsPublic(true)
+    } else if (type === 'edit' && postDetail != null) {
       setTitle(postDetail.title)
       setLanguage(postDetail.language)
       setIsPublic(!!postDetail.public)

@@ -60,14 +60,14 @@ const WritePost = (props) => {
           <div>
             <Button
               onClick={() => handleIsPublicChange(true)}
-              className={!isPublic ? styles.button : styles.buttonSelected}
+              className={isPublic === '' ? styles.button : isPublic === true ? styles.buttonSelected : styles.button}
             >
               <FontAwesomeIcon icon={faLockOpen} />
               <span>전체 공개</span>
             </Button>
             <Button
               onClick={() => handleIsPublicChange(false)}
-              className={isPublic ? styles.button : styles.buttonSelected}
+              className={isPublic === '' ? styles.button : isPublic === false ? styles.buttonSelected : styles.button}
             >
               <FontAwesomeIcon icon={faLock} />
               <span>비공개</span>
