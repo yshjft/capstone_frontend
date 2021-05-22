@@ -23,6 +23,7 @@ const MainContainer = (props) => {
   const query = qs.parse(location.search)
 
   useEffect(() => {
+    console.log(1)
     dispatch(getAlgoPosts(query.page, query.search)).catch((error) => {
       setErrStatus(error.response.status)
       setIsError(true)
@@ -62,10 +63,20 @@ const MainContainer = (props) => {
     }
   }
 
+  async function handleRedo() {
+    try {
+      setIsError(false)
+      await dispatch(getAlgoPosts(query.page, query.search))
+    } catch (error) {
+      setErrStatus(error.response.status)
+      setIsError(true)
+    }
+  }
+
   return (
     <Layout>
       <MainSearch handleSearch={handleSearch} />
-      {isError && <ServerError errStatus={errStatus} redo={handlePagination} />}
+      {isError && <ServerError errStatus={errStatus} redo={handleRedo} />}
       {!isError && isLoading && <Loading />}
       {!isError && !isLoading && total !== 0 && <PostListPresenter postList={data} />}
       {!isError && !isLoading && total === 0 && <NoData />}
