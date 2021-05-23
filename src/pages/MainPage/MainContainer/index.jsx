@@ -23,7 +23,6 @@ const MainContainer = (props) => {
   const query = qs.parse(location.search)
 
   useEffect(() => {
-    console.log(1)
     dispatch(getAlgoPosts(query.page, query.search)).catch((error) => {
       setErrStatus(error.response.status)
       setIsError(true)
