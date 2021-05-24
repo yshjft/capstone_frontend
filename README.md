@@ -7,3 +7,6 @@
 
 ### 백엔드 레파지토리
 https://github.com/yshjft/capstone_backend
+
+### 배포 주소
+http://3.36.74.34
