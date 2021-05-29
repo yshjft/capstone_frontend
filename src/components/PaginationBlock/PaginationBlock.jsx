@@ -8,13 +8,17 @@ const PaginationBlock = (props) => {
   const {total, handlePagination} = props
   const [page, setPage] = useState(1)
   const location = useLocation()
+  const query = qs.parse(location.search)
 
   useEffect(() => {
-    const query = qs.parse(location.search)
+    if (query.page) {
+      setPage(Number(query.page))
+    } else{
+      setPage(Number(query.tabPage))
+    }
 
-    if (query.page) setPage(Number(query.page))
-    else setPage(Number(query.tabPage))
-  }, [location])
+  }, [query.page, query.tabPage])
+
 
   function handleChange(event, value) {
     setPage(value)

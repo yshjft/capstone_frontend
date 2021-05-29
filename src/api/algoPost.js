@@ -9,11 +9,12 @@ export async function postAlgoPost(data) {
   }
 }
 
-export async function getAlgoPosts(page, search) {
+export async function getAlgoPosts(page, search, langFilter) {
   try {
     let url = `/posts?start=${page - 1}`
 
     if (search) url += `&search=${search}`
+    if (langFilter) url += `&langFilter=${langFilter}`
 
     const res = await api.get(url)
     return res.data

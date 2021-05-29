@@ -10,10 +10,12 @@ import PostListPresenter from '../../../presenters/Post/PostListPresenter'
 import NoData from '../../../components/NoData'
 import PaginationBlock from '../../../components/PaginationBlock/PaginationBlock'
 import Loading from '../../../components/Loading'
+import LanguageFilter from "../../../components/LanguageFilter";
 
 const MainContainer = (props) => {
   const [isError, setIsError] = useState(false)
   const [errStatus, setErrStatus] = useState(200)
+  const [selectedLang, setSelectedLang] = useState([])
   const dispatch = useDispatch()
   const isLoading = useSelector((state) => state.algoPost.isLoading)
   const data = useSelector((state) => state.algoPost.data)
@@ -23,14 +25,15 @@ const MainContainer = (props) => {
   const query = qs.parse(location.search)
 
   useEffect(() => {
-    dispatch(getAlgoPosts(query.page, query.search)).catch((error) => {
+    if(query.langFilter) setSelectedLang(decodeURIComponent(query.langFilter).split(','))
+
+    dispatch(getAlgoPosts(query.page, query.search, query.langFilter)).catch((error) => {
       setErrStatus(error.response.status)
       setIsError(true)
     })
-  }, [dispatch, query.page, query.search])
+  }, [dispatch, query.page, query.search, query.langFilter])
 
-  async function handleSearch(search) {
-    try {
+  function handleSearch(search) {
       setIsError(false)
 
       if (search === '') delete query.search
@@ -42,24 +45,43 @@ const MainContainer = (props) => {
         pathname: location.pathname,
         search: qs.stringify(query)
       })
-    } catch (error) {
-      setErrStatus(error.response.status)
-      setIsError(true)
-    }
   }
 
-  async function handlePagination(page) {
-    try {
+  function handleLanguageFilter(language){
+    setIsError(false)
+
+    let prev = selectedLang.concat()
+    let after = []
+
+    if(prev.includes(language)){
+      after = prev.filter(lang => lang !== language)
+    }else{
+      after = prev.concat(language)
+    }
+    setSelectedLang(after)
+
+    if(after.length === 0) delete query.langFilter
+    else query.langFilter = encodeURIComponent(after.join(','))
+
+    history.push({
+      pathname: location.pathname,
+      search: qs.stringify(query)
+    })
+
+  }
+
+  function handlePagination(page) {
+    // try {
       setIsError(false)
       if (page != null) query.page = page
       history.push({
         pathname: location.pathname,
         search: qs.stringify(query)
       })
-    } catch (error) {
-      setErrStatus(error.response.status)
-      setIsError(true)
-    }
+    // } catch (error) {
+    //   setErrStatus(error.response.status)
+    //   setIsError(true)
+    // }
   }
 
   async function handleRedo() {
@@ -75,6 +97,7 @@ const MainContainer = (props) => {
   return (
     <Layout>
       <MainSearch handleSearch={handleSearch} />
+      <LanguageFilter selectedLang={selectedLang} handleLanguageFilter={handleLanguageFilter}/>
       {isError && <ServerError errStatus={errStatus} redo={handleRedo} />}
       {!isError && isLoading && <Loading />}
       {!isError && !isLoading && total !== 0 && <PostListPresenter postList={data} />}

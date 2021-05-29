@@ -11,6 +11,7 @@ const MainSearch = (props) => {
   const location = useLocation()
   const query = qs.parse(location.search)
 
+
   useEffect(() => {
     inputRef.current.value = query.search == null ? '' : decodeURIComponent(query.search)
   }, [query.search])
@@ -22,14 +23,15 @@ const MainSearch = (props) => {
   }
 
   return (
-    <div className={styles.mainSearch}>
-      <div className={styles.searchBox}>
-        <input ref={inputRef} placeholder="검색어를 입력하세요" onKeyUp={enterKey} />
-        <button onClick={() => handleSearch(inputRef.current.value)}>
-          <FontAwesomeIcon icon={faSearch} className={styles.icon} />
-        </button>
-      </div>
-    </div>
+        <div className={styles.mainSearch}>
+          <div className={styles.searchBox}>
+            <input ref={inputRef} placeholder="검색어를 입력하세요" onKeyUp={enterKey} />
+            <button onClick={() => handleSearch(inputRef.current.value)}>
+              <FontAwesomeIcon icon={faSearch} className={styles.icon} />
+            </button>
+          </div>
+        </div>
+
   )
 }
 
