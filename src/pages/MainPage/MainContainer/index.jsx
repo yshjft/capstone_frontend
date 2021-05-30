@@ -63,25 +63,21 @@ const MainContainer = (props) => {
     if(after.length === 0) delete query.langFilter
     else query.langFilter = encodeURIComponent(after.join(','))
 
+    query.page = 1
+
     history.push({
       pathname: location.pathname,
       search: qs.stringify(query)
     })
-
   }
 
   function handlePagination(page) {
-    // try {
       setIsError(false)
       if (page != null) query.page = page
       history.push({
         pathname: location.pathname,
         search: qs.stringify(query)
       })
-    // } catch (error) {
-    //   setErrStatus(error.response.status)
-    //   setIsError(true)
-    // }
   }
 
   async function handleRedo() {
