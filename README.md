@@ -10,7 +10,7 @@
 * 메인페이지 & 언어 필터 & 검색
 
 * 로그인 & 비밀번호 찾기 & 회원가입    
-<img src="/ImgForMd/login.png"></img>
+<img src="/ImgForMd/login.png" width="800px"></img>
 
 * 글 상세보기
 
