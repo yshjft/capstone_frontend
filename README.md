@@ -12,7 +12,7 @@
 * 로그인 & 비밀번호 찾기 & 회원가입    
     * 로그인  
     <img src="/ImgForMd/login.png" width="800px"></img>
-    * 비밀번호 찾기
+    * 비밀번호 찾기   
       <img src="/ImgForMd/FindPwd.png" width="800px"></img>
 
 * 글 상세보기
