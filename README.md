@@ -13,8 +13,8 @@
       메인페이지에서는 게시물 목록을 확인할 수 있으며 언어 필터와 검색 기능을 사용할 수 있다.
       
     * 언어 필터    
-      <img src="/ImgForMd/langFilter.gif" width="800px"></img> 
-      
+      <img src="/ImgForMd/langFilter.gif" width="800px"></img>      
+      특정 언어로 작성된 게시물을 확인할 수 있다. 복수 선택이 가능하다.
 
 
 * 로그인 & 비밀번호 찾기 & 회원가입    
