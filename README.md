@@ -11,6 +11,10 @@
     * 메인 페이지      
       <img src="/ImgForMd/main.png" width="800px"></img>       
       메인페이지에서는 게시물 목록을 확인할 수 있으며 언어 필터와 검색 기능을 사용할 수 있다.
+      
+    * 언어 필터    
+      <img src="/ImgForMd/langFilter.gif" width="800px"></img> 
+      
 
 
 * 로그인 & 비밀번호 찾기 & 회원가입    
