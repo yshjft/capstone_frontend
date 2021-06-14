@@ -18,6 +18,7 @@
       
     * 검색    
       <img src="/ImgForMd/search.gif" width="800px"></img>   
+      검색을 통하여 원하는 게시물을 찾을 수 있다. 제목과 메모 부분에 대해 검색을 진행한다.
 
 * 로그인 & 비밀번호 찾기 & 회원가입    
     * 로그인  
@@ -36,12 +37,15 @@
 * 글 상세보기
     * 글 상세보기(로그인 전)        
       <img src="/ImgForMd/detail(bf login).png" width="800px"></img>   
+      글 상세 내용을 확인할 수 있다. 작성자 닉네임을 클릭하면 해당 작성자의 마이페이지로 이동할 수 있다. 좋아요를 누르기 위해서는 로그인을 해야 한다.
       
     * 글 상세보기(로그인 후, 나의 글)     
-      <img src="/ImgForMd/detail(af login, mine).png" width="800px"></img>
+      <img src="/ImgForMd/detail(af login, mine).png" width="800px"></img>      
+      자신이 작성한 글의 공개 여부를 확인 할 수 있으며 관리(수정 & 삭제)를 할 수 있다. 자신의 글에도 좋아요를 넣을 수 있다.
       
     * 글 상세보기(로그인 후, 남의 글)    
-      <img src="/ImgForMd/detail(af login, others).png" width="800px"></img>     
+      <img src="/ImgForMd/detail(af login, others).png" width="800px"></img>    
+      좋아요를 누를 수 있다.
 
 * 유저페이지
 
