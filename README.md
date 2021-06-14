@@ -47,8 +47,13 @@
       <img src="/ImgForMd/detail(af login, others).png" width="800px"></img>    
       좋아요를 누를 수 있다.
 
-* 유저페이지
-
+* 유저페이지(마이페이지)
+    * 유저페이지(로그인 전)     
+      <img src="/ImgForMd/userpage.gif" width="800px"></img>
+        
+    * 유저페이지(로그인 후, 자기 자신것)
+    * 유저페이지(로그인 후, 남의 것)
+    
 * 설정 페이지
 
 ### 백엔드 레파지토리
