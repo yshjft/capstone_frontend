@@ -10,7 +10,7 @@ const Tabs = (props) => {
         게시물
       </button>
       <button onClick={() => handleTabSelect('likes')} className={selectedTab === 'likes' ? styles.selected : ''}>
-        좋아요 누른 게시물
+        좋아요
       </button>
       <button
         onClick={() => handleTabSelect('followings')}
