@@ -15,7 +15,8 @@
     * 언어 필터    
       <img src="/ImgForMd/langFilter.gif" width="800px"></img>      
       특정 언어로 작성된 게시물을 확인할 수 있다. 복수 선택이 가능하다.
-
+      
+    * 검색    
 
 * 로그인 & 비밀번호 찾기 & 회원가입    
     * 로그인  
@@ -32,6 +33,14 @@
 
 
 * 글 상세보기
+    * 글 상세보기(로그인 전)        
+      <img src="/ImgForMd/detail(bf login).png" width="800px"></img>   
+      
+    * 글 상세보기(로그인 후, 나의 글)     
+      <img src="/ImgForMd/detail(af login, mine).png" width="800px"></img>
+      
+    * 글 상세보기(로그인 후, 남의 글)    
+      <img src="/ImgForMd/detail(af login, others).png" width="800px"></img>     
 
 * 유저페이지
 
