@@ -56,13 +56,25 @@
       <img src="/ImgForMd/userpage(aft login).gif" width="800px"></img>     
       로그인을 하고 자신의 마이페이지에서는 비공개 글도 확인할 수 있다. 다른 사용자의 마이페이지에서는 팔로우를 진행할 수 있다.
       
-* 글 작성 & 수정
-    * 글 작성
-    * 글 수정
+* 글 작성 & 수정 & 삭제      
+    
+    
 
+* 설정 페이지    
+아래와 같이 사용자의 닉네임, 이메일, 비밀번호를 변경 가능하고, 회원 탈퇴를 진행할 수 있다.
+  * 닉네임 변경    
+  <img src="/ImgForMd/nickChange.png" width="800px"></img>
+      
+  * 이메일 변경    
+  <img src="/ImgForMd/emailChange.png" width="800px"></img>
 
-* 설정 페이지
-
+  * 비밀번호 변경    
+  <img src="/ImgForMd/pwdChange.png" width="800px"></img>
+    
+  * 회원 탈퇴      
+  <img src="/ImgForMd/bye.png" width="800px"></img>   
+    
+    
 ### 백엔드 레파지토리
 https://github.com/yshjft/capstone_backend
 
