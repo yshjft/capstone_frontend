@@ -1,12 +1,18 @@
 # AlgoHub 프론트엔드
 
-### 사용 기술
-* React.js
-* Redux
-* redux-thunk
+### 기술 스택
+1.  React.js
+    
+
+2.  Redux
+    여러 상태 값들을 중아에서 관리히가 위해 사용하였습니다.
+    
+
+3. redux-thunk    
+    미들웨어로서 비동기 작업을 처리하기 위해 사용하였습니다.
+
 
 ### 페이지별 설명
-
 * 메인페이지 & 언어 필터 & 검색
     * 메인 페이지      
       <img src="/ImgForMd/main.png" width="800px"></img>       
