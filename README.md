@@ -81,7 +81,8 @@
   <img src="/ImgForMd/bye.png" width="800px"></img>   
     
     
-### 백엔드 레파지토리
+### 백엔드 레파지토리     
+아래 링크에서 백엔드와 관련된 설명을 확인하실 수 있습니다.       
 https://github.com/yshjft/capstone_backend
 
 ### 배포 주소
